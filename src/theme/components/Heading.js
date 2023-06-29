@@ -1,5 +1,3 @@
-import { StyleFunctionProps } from "@chakra-ui/react";
-
 export const HeadingStyle = {
   baseStyle: () => ({
     fontSize: { base: "16px", lg: "1.2vw" },

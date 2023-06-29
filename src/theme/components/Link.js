@@ -1,5 +1,3 @@
-import { StyleFunctionProps } from '@chakra-ui/styled-system';
-
 export const LinkStyle = {
   baseStyle: () => ({
     marginBottom: '2',

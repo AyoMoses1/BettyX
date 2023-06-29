@@ -1,5 +1,3 @@
-import { StyleFunctionProps } from '@chakra-ui/styled-system';
-
 export const TextStyle = {
   baseStyle: () => ({
     fontSize: { base: '16px', lg: '1.2vw' },

@@ -1,5 +1,3 @@
-import { StyleFunctionProps } from '@chakra-ui/styled-system';
-
 export const InputStyle = {
   baseStyle: (props) => ({
     field: {
