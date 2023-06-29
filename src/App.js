@@ -12,6 +12,7 @@ import Statistics from './pages/statistics'
 import SignIn from './pages/auth'
 import { paths } from './common/Paths';
 import Layout from "./common/Layout";
+import './App.css'
 
 const App = () => {
   return (

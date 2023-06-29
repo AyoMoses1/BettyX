@@ -1,39 +1,212 @@
-import { BiTimeFive } from "react-icons/bi";
-import { FiHome, FiUser, FiLogOut } from "react-icons/fi";
+import { BiTimeFive } from 'react-icons/bi';
+import { FiHome, FiUser, FiLogOut } from 'react-icons/fi';
 
-
-export const paths= {
+export const paths = {
   home: '/',
   login: '/login',
   games: '/games',
   messages: '/messages',
   rules: '/rules',
   settings: '/settings',
-  statistics: '/statistics',
   agents: '/agents',
-}
-
+  statistics: '/statistics',
+  pending: '/pending',
+  customers: '/customers',
+  cashier: '/cashier',
+  addCustomer: '/add-customer',
+  liveLimits: '/live-limits',
+  agentPerformance: '/agents-performance',
+  analysis: '/analysis',
+  ipTracker: '/ip-tracker',
+  transactions: '/transactions',
+  collections: '/collections',
+  deletedWagers: '/deleted-wagers',
+  sportsbookLines: '/sportsbook',
+  betTicker: '/bet-ticker',
+  ticketWriter: '/ticket-writer',
+  scores: '/scores',
+  agentAdmin: '/agent-admin',
+  billing: '/billing',
+  feedback: '/feedback',
+  faq: '/faq',
+  userManual: '/manual',
+};
 
 export const pageTitles = {
   dashboard: 'Dashboard',
   timeclock: 'Time Clock',
   profile: 'Profile',
-}
-
+};
 
 export const NavNames = {
-  dashboard: 'Dashboard',
-  profile: 'Profile',
-  timeclock: 'Time Clock',
-  logout: "Log Out"
-}
+  statistics: 'Weekly Figures',
+  pending: 'Pending',
+  messages: 'Messaging',
+  games: 'Game Admin',
+  customers: 'Customer Admin',
+  cashier: 'Cashier',
+  addCustomer: 'Add Customer',
+  liveLimits: 'My Live Limits',
+  agentPerformance: 'Agent Performance',
+  analysis: 'Analysis',
+  ipTracker: 'IP Tracker',
+  transactions: 'Transactions History',
+  collections: 'Collections',
+  deletedWagers: 'Deleted Wagers',
+  sportsbookLines: 'Sportsbook Lines',
+  betTicker: 'Bet Ticker',
+  ticketWriter: 'Ticket Writer',
+  scores: 'Scores',
+  agentAdmin: 'Agent Admin',
+  billing: 'Billing',
+  settings: 'Settings',
+  rules: 'Rules',
+  feedback: 'Feedback',
+  faq: 'F.A.Q',
+  userManual: 'User Manual',
+};
 
 export const pathObject = [
-  { icon: FiHome, name: NavNames.dashboard, route: paths.home },
-  { icon: FiUser, name: NavNames.profile, route: paths.profile },
-  { icon: BiTimeFive, name: NavNames.timeclock, route: paths.timeclock },
-  { icon: FiLogOut, name: NavNames.logout, route: paths.login },
+  {
+    icon: FiHome,
+    name: NavNames.statistics,
+    route: paths.statistics,
+    color: 'indigo',
+  },
+  {
+    icon: FiHome,
+    name: NavNames.pending,
+    route: paths.pending,
+    color: 'indigo',
+  },
+  {
+    icon: FiHome,
+    name: NavNames.messages,
+    route: paths.messages,
+    color: 'indigo',
+  },
+  {
+    icon: FiHome,
+    name: NavNames.games,
+    route: paths.messages,
+    color: 'indigo',
+  },
+  {
+    icon: FiHome,
+    name: NavNames.customers,
+    route: paths.customers,
+    color: 'green',
+  },
+  {
+    icon: FiHome,
+    name: NavNames.cashier,
+    route: paths.cashier,
+    color: 'green',
+  },
+  {
+    icon: FiHome,
+    name: NavNames.addCustomer,
+    route: paths.addCustomer,
+    color: 'green',
+  },
+  {
+    icon: FiHome,
+    name: NavNames.liveLimits,
+    route: paths.liveLimits,
+    color: 'green',
+  },
+  {
+    icon: FiHome,
+    name: NavNames.agentPerformance,
+    route: paths.agentPerformance,
+    color: 'grey2',
+  },
+  {
+    icon: FiHome,
+    name: NavNames.analysis,
+    route: paths.analysis,
+    color: 'grey2',
+  },
+  {
+    icon: FiHome,
+    name: NavNames.ipTracker,
+    route: paths.ipTracker,
+    color: 'grey2',
+  },
+  {
+    icon: FiHome,
+    name: NavNames.transactions,
+    route: paths.transactions,
+    color: 'grey2',
+  },
+  {
+    icon: FiHome,
+    name: NavNames.collections,
+    route: paths.collections,
+    color: 'white',
+  },
+  {
+    icon: FiHome,
+    name: NavNames.deletedWagers,
+    route: paths.deletedWagers,
+    color: 'white',
+  },
+  {
+    icon: FiHome,
+    name: NavNames.sportsbookLines,
+    route: paths.sportsbookLines,
+    color: 'black',
+  },
+  {
+    icon: FiHome,
+    name: NavNames.betTicker,
+    route: paths.betTicker,
+    color: 'black',
+  },
+  {
+    icon: FiHome,
+    name: NavNames.ticketWriter,
+    route: paths.ticketWriter,
+    color: '#87CEEB',
+  },
+  {
+    icon: FiHome,
+    name: NavNames.scores,
+    route: paths.scores,
+    color: '#87CEEB',
+  },
+  {
+    icon: FiHome,
+    name: NavNames.agentAdmin,
+    route: paths.agentAdmin,
+    color: '#87CEEB',
+  },
+  {
+    icon: FiHome,
+    name: NavNames.billing,
+    route: paths.billing,
+    color: '#87CEEB',
+  },
+  {
+    icon: FiHome,
+    name: NavNames.settings,
+    route: paths.settings,
+    color: '#87CEEB',
+  },
+  { icon: FiUser, name: NavNames.rules, route: paths.rules, color: '#87CEEB' },
+  {
+    icon: BiTimeFive,
+    name: NavNames.feedback,
+    route: paths.feedback,
+    color: 'red',
+  },
+  { icon: FiLogOut, name: NavNames.faq, route: paths.faq, color: 'red' },
+  {
+    icon: FiLogOut,
+    name: NavNames.userManual,
+    route: paths.userManual,
+    color: 'red',
+  },
 ];
-
 
 export default paths;
