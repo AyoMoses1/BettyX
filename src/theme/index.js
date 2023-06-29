@@ -1,9 +1,7 @@
 import { extendTheme } from '@chakra-ui/react';
 import { ButtonStyle as Button } from './components/Button';
-import { ProgressStyle as Progress } from './components/Progress';
 import { HeadingStyle as Heading } from './components/Heading';
 import { InputStyle as Input } from './components/Input';
-import { formLabelStyle as FormLabel } from './components/FormLabel';
 import { TextStyle as Text } from './components/Text';
 import { LinkStyle as Link } from './components/Link';
 import { tokens as colors }from './styles';
@@ -24,11 +22,9 @@ const theme = extendTheme({
   components: {
     Button,
     Input,
-    FormLabel,
     Text,
     Link,
     Heading,
-    Progress,
   },
 
   textStyles: {
