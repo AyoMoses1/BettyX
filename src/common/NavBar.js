@@ -23,7 +23,7 @@ const Navbar = () => {
   };
 
   return (
-    <Box bg="gray.800" color="white" py={4}>
+    <Box bg="gray.800" color="white" py={4} h="12vh">
       <Flex maxW="98%" mx="auto" align="center">
         <Box>
           <Flex spacing="10px">

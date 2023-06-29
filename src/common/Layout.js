@@ -7,7 +7,7 @@ const Layout = () => {
   return (
     <>
       <NavBar />
-      <Container maxW="95%">
+      <Container maxW="100%" bg="grey" h="85vh">
         <Outlet />
       </Container>
     </>
