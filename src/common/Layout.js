@@ -1,14 +1,16 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 import NavBar from './NavBar';
 import { Outlet } from 'react-router-dom';
-import { Container, Grid, GridItem } from '@chakra-ui/react';
+import { Container } from '@chakra-ui/react';
 
 const Layout = () => {
   return (
-    <Container maxW="95%">
+    <>
       <NavBar />
-      <Outlet />
-    </Container>
+      <Container maxW="95%">
+        <Outlet />
+      </Container>
+    </>
   );
 };
 
