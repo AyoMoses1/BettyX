@@ -1,10 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { GridItem, Flex, Text } from '@chakra-ui/react';
 import { Icon } from '@chakra-ui/react';
+import { CurrentPageContext } from '../../../App';
 
 const GridBox = ({ data }) => {
+  const { setCurrentPage } = useContext(CurrentPageContext);
   return (
-    <GridItem colSpan={1} bg={data.color} py={4} borderRadius="md">
+    <GridItem
+      colSpan={1}
+      bg={data.color}
+      py={4}
+      borderRadius="md"
+      cursor="pointer"
+      onClick={() => setCurrentPage(data.route)}
+    >
       <Flex
         justifyContent="space-between"
         align="center"

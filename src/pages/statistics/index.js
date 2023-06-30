@@ -1,9 +1,25 @@
-import React from 'react'
+import React, { useState } from 'react';
+import DynamicTable from '../../common/DynamicTable';
+import { summaryColumns } from './components/helpers';
+import { summary as data } from './components/data';
 
-function index() {
+const Index = (props) => {
   return (
-    <div>Statistics</div>
-  )
-}
+    <>
+      <DynamicTable
+        columns={summaryColumns}
+        data={data}
+        totalCount={data?.length}
+        totalPages={0}
+      />
+      <DynamicTable
+        columns={summaryColumns}
+        data={data}
+        totalCount={data?.length}
+        totalPages={0}
+      />
+    </>
+  );
+};
 
-export default index
+export default Index;

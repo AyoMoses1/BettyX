@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
   Box,
   Flex,
@@ -16,21 +16,24 @@ import {
   AiOutlineCalendar,
   AiOutlineSetting,
 } from 'react-icons/ai';
+import { CurrentPageContext } from '../App';
 
 const Navbar = () => {
   const handleLogout = () => {
     console.log('Logout clicked');
   };
 
+  const { setCurrentPage } = useContext(CurrentPageContext);
+
   return (
     <Box bg="gray.800" color="white" py={4} h="12vh">
       <Flex maxW="98%" mx="auto" align="center">
         <Box>
           <Flex spacing="10px">
-            <Box p={4} mr={2} bg="green">
+            <Box p={4} mr={2} bg="green" onClick={() => setCurrentPage('home')}>
               <AiOutlineHome size={24} />
             </Box>
-            <Box p="4" mr={2} bg="blue">
+            <Box p="4" mr={2} bg="blue" onClick={() => setCurrentPage('games')}>
               <AiOutlineMessage size={24} />
             </Box>
             <Box p="4" mr={2} bg="blue">
@@ -53,7 +56,7 @@ const Navbar = () => {
           <Input
             type="text"
             placeholder="Search Accounts..."
-            sx={{ borderRadius: '0px', paddingLeft:'16' }}
+            sx={{ borderRadius: '0px', paddingLeft: '16' }}
           />
         </InputGroup>
         <Spacer />
