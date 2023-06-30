@@ -26,8 +26,8 @@ export const HeadingStyle = {
     }),
     h1: (props) => ({
       fontWeight: 600,
-      fontSize: "52px",
-      lineHeight: "62px",
+      fontSize: "18px",
+      color: "#383838",
     }),
     tertiary: (props) => ({
       color:
