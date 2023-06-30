@@ -21,7 +21,7 @@ const App = () => {
   const renderPage = () => {
     switch (currentPage) {
       case 'home':
-        return <Rules />;
+        return <Settings />;
       case 'games':
         return <Games />;
       case 'messages':
