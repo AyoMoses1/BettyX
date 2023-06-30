@@ -57,7 +57,8 @@ const Index = ({
           key={header.id}
           layerStyle="dark"
           textAlign="center"
-          style={{ wordBreak: "keep-all" }}
+          style={{ wordBreak: "keep-all", color:"white" }}
+          background="tableHeader"
         >
           {header.isPlaceholder
             ? null
@@ -70,17 +71,31 @@ const Index = ({
   const tableBodyRows = table.getRowModel().rows.map((row) => (
     <Tr key={row.id}>
       {row.getVisibleCells().map((cell, index, cells) => {
-        let borderRight = index < cells.length - 1 ? "1px" : "0px";
+        if(flexRender(cell.column.columnDef.cell, cell.getContext()) === "-108.35"){
+
+        }
+        // let borderRight = index < cells.length - 1 ? "1px" : "0px";
+        // let cellValue = flexRender(cell.column.columnDef.cell, cell.getContext());
+        // let textColor = ""; // Define an empty string for the text color      
+        // if(index !== 0 || index!==1 || index!==2){
+        //   if (String(cellValue).startsWith("+")) {
+        //     textColor = "green"; // Apply green color for values starting with "+"
+        //   }
+        //   else {
+        //     textColor = "red"
+        //   }
+        // }
+        
+
         return (
           <Td
             key={cell.id}
-            maxWidth={`${85 / cells.length}vw`}
-            borderRightWidth={borderRight}
+            width="auto"
             textAlign="center"
-            style={{ wordBreak: "break-all" }}
+            style={{ wordBreak: "break-all", fontSize:"12px" }}
             overflowY="auto"
           >
-            {flexRender(cell.column.columnDef.cell, cell.getContext())}
+             {flexRender(cell.column.columnDef.cell, cell.getContext())}
           </Td>
         );
       })}
@@ -90,13 +105,13 @@ const Index = ({
   return (
     <TableContainer width="100%">
        {isLoading && <Loading text="loading data" />}
-      <Table>
+      <Table variant='striped' colorScheme='red'>
         <Thead backgroundColor={colorMode === "dark" ? "black" : "#F0F2F5"}>
           {tableHeadRows}
         </Thead>
         <Tbody>{tableBodyRows}</Tbody>
       </Table>
-      {!hidePagination && (
+      {/* {!hidePagination && (
         <Pagination
           previousPage={table.previousPage}
           nextPage={table.nextPage}
@@ -110,7 +125,7 @@ const Index = ({
           pageIndex={table.getState().pagination.pageIndex}
           pageCount={totalPages ?? 0}
         />
-      )}
+      )} */}
     </TableContainer>
   );
 };

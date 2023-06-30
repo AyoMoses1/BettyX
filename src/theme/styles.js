@@ -6,6 +6,7 @@ export const tokens = {
   gray4: '#18181B',
   text: '#EFEFEF',
   indigo: "#ff5d2a",
+  tableHeader: "#060110",
   background: '#141414',
   lightBlue: '#3188D8',
   lighterBlue: ' #AED8FF',
