@@ -15,10 +15,6 @@ export const ButtonStyle = {
       width: '127px',
       fontWeight: '600',
       borderRadius: 'none',
-      // ':hover': {
-      //   bg: props.theme.colors.secondary,
-      //   boxShadow: 'md',
-      // },
       ':focus': {
         bg: props.theme.colors.secondary,
         boxShadow: 'md',
@@ -31,15 +27,15 @@ export const ButtonStyle = {
         },
       },
     }),
+    success: (props) => ({
+      bg: props.theme.colors.green,
+      color: props.theme.colors.white,
+    }),
     secondary: (props) => ({
       bg: props.theme.colors.buttonOne,
       color: props.theme.colors.text,
       width: '127px',
       borderRadius: 'none',
-      // ':hover': {
-      //   bg: props.theme.colors.primary,
-      //   boxShadow: 'md',
-      // },
       ':focus': {
         bg: props.theme.colors.primary,
         boxShadow: 'md',

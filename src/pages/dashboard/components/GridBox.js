@@ -4,7 +4,16 @@ import { Icon } from '@chakra-ui/react';
 import { CurrentPageContext } from '../../../App';
 
 const GridBox = ({ data }) => {
-  const { setCurrentPage } = useContext(CurrentPageContext);
+  const { setCurrentPage, handleOpenModal } = useContext(CurrentPageContext);
+
+  const handleClick = () => {
+    if (data.route === 'feedback') {
+      setCurrentPage(data.route);
+      handleOpenModal();
+    } else {
+      setCurrentPage(data.route);
+    }
+  };
   return (
     <GridItem
       colSpan={1}
@@ -12,7 +21,7 @@ const GridBox = ({ data }) => {
       py={4}
       borderRadius="md"
       cursor="pointer"
-      onClick={() => setCurrentPage(data.route)}
+      onClick={handleClick}
     >
       <Flex
         justifyContent="space-between"
