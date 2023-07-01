@@ -1,6 +1,5 @@
 import { useState, useContext } from 'react';
 import {
-  Box,
   Button,
   Modal,
   ModalOverlay,
@@ -18,7 +17,7 @@ import {
 import { CurrentPageContext } from '../../App';
 
 const FeedbackModal = ({ isOpen, onClose }) => {
-  const { setCurrentPage, isModalOpen, handleCloseModal, handleOpenModal } =
+  const { isModalOpen, handleCloseModal } =
     useContext(CurrentPageContext);
   const [subject, setSubject] = useState('');
   const [message, setMessage] = useState('');
@@ -32,10 +31,7 @@ const FeedbackModal = ({ isOpen, onClose }) => {
   };
 
   const handleSendFeedback = () => {
-    // Implement your logic for sending feedback here
     console.log('Sending feedback:', { subject, message });
-
-    // Close the modal
     onClose();
   };
 

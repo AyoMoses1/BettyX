@@ -1,10 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useMemo } from "react";
+import React, { useMemo } from 'react';
 import {
   flexRender,
   getCoreRowModel,
   useReactTable,
-} from "@tanstack/react-table";
+} from '@tanstack/react-table';
 import {
   Table,
   TableContainer,
@@ -14,19 +14,24 @@ import {
   Tbody,
   Td,
   useColorMode,
-} from "@chakra-ui/react";
-import Pagination from "./Pagination";
-import Loading from "../../common/Loading";
+} from '@chakra-ui/react';
+import Pagination from './Pagination';
+import Loading from '../../common/Loading';
 
 const Index = ({
   columns,
   data,
+  size,
   hidePagination,
   totalCount,
   setPageProps,
   pageProps,
   totalPages,
-  isLoading
+  isLoading,
+  alignHeader,
+  alignBody,
+  variant,
+  colorScheme,
 }) => {
   const { colorMode } = useColorMode();
   const pagination = useMemo(
@@ -49,15 +54,14 @@ const Index = ({
     debugTable: true,
   });
 
-
   const tableHeadRows = table.getHeaderGroups().map((headerGroup) => (
     <Tr key={headerGroup.id}>
       {headerGroup.headers.map((header) => (
         <Th
           key={header.id}
           layerStyle="dark"
-          textAlign="center"
-          style={{ wordBreak: "keep-all", color:"white" }}
+          textAlign={alignHeader}
+          style={{ wordBreak: 'keep-all', color: 'white' }}
           background="tableHeader"
         >
           {header.isPlaceholder
@@ -71,31 +75,15 @@ const Index = ({
   const tableBodyRows = table.getRowModel().rows.map((row) => (
     <Tr key={row.id}>
       {row.getVisibleCells().map((cell, index, cells) => {
-        if(flexRender(cell.column.columnDef.cell, cell.getContext()) === "-108.35"){
-
-        }
-        // let borderRight = index < cells.length - 1 ? "1px" : "0px";
-        // let cellValue = flexRender(cell.column.columnDef.cell, cell.getContext());
-        // let textColor = ""; // Define an empty string for the text color      
-        // if(index !== 0 || index!==1 || index!==2){
-        //   if (String(cellValue).startsWith("+")) {
-        //     textColor = "green"; // Apply green color for values starting with "+"
-        //   }
-        //   else {
-        //     textColor = "red"
-        //   }
-        // }
-        
-
         return (
           <Td
             key={cell.id}
             width="auto"
-            textAlign="center"
-            style={{ wordBreak: "break-all", fontSize:"12px" }}
+            textAlign={alignBody}
+            style={{ wordBreak: 'break-all', fontSize: '12px' }}
             overflowY="auto"
           >
-             {flexRender(cell.column.columnDef.cell, cell.getContext())}
+            {flexRender(cell.column.columnDef.cell, cell.getContext())}
           </Td>
         );
       })}
@@ -104,9 +92,13 @@ const Index = ({
 
   return (
     <TableContainer width="100%">
-       {isLoading && <Loading text="loading data" />}
-      <Table variant='striped' colorScheme='red'>
-        <Thead backgroundColor={colorMode === "dark" ? "black" : "#F0F2F5"}>
+      {isLoading && <Loading text="loading data" />}
+      <Table
+        variant={variant ?? 'striped'}
+        colorScheme={colorScheme}
+        size={size}
+      >
+        <Thead backgroundColor={colorMode === 'dark' ? 'black' : '#F0F2F5'}>
           {tableHeadRows}
         </Thead>
         <Tbody>{tableBodyRows}</Tbody>

@@ -11,6 +11,7 @@ import Settings from './pages/settings';
 import Statistics from './pages/statistics';
 import Collections from './pages/collections';
 import Feedback from './pages/feedback';
+import Billing from './pages/billing';
 import SignIn from './pages/auth';
 import Layout from './common/Layout';
 import './App.css';
@@ -22,7 +23,7 @@ const App = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleOpenModal = () => {
-    console.log("this is true here oh!!!")
+    console.log('this is true here oh!!!');
     setIsModalOpen(true);
   };
 
@@ -33,7 +34,7 @@ const App = () => {
   const renderPage = () => {
     switch (currentPage) {
       case 'home':
-        return <Dashboard />;
+        return <Billing />;
       case 'games':
         return <Games />;
       case 'messages':
@@ -48,6 +49,8 @@ const App = () => {
         return <Settings />;
       case 'collections':
         return <Collections />;
+      case 'billing':
+        return <Billing />;
       default:
         return <Dashboard />;
     }
@@ -55,9 +58,17 @@ const App = () => {
 
   return (
     <ChakraProvider theme={theme}>
-      <CurrentPageContext.Provider value={{ currentPage, setCurrentPage, isModalOpen, handleCloseModal, handleOpenModal  }}>
+      <CurrentPageContext.Provider
+        value={{
+          currentPage,
+          setCurrentPage,
+          isModalOpen,
+          handleCloseModal,
+          handleOpenModal,
+        }}
+      >
         <Layout setCurrentPage={setCurrentPage}>{renderPage()}</Layout>
-        <Feedback/>
+        <Feedback />
       </CurrentPageContext.Provider>
     </ChakraProvider>
   );
