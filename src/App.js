@@ -9,6 +9,7 @@ import Messages from './pages/messages';
 import Rules from './pages/rules';
 import Settings from './pages/settings';
 import Statistics from './pages/statistics';
+import Collections from './pages/collections';
 import SignIn from './pages/auth';
 import Layout from './common/Layout';
 import './App.css';
@@ -21,7 +22,7 @@ const App = () => {
   const renderPage = () => {
     switch (currentPage) {
       case 'home':
-        return <Settings />;
+        return <Messages />;
       case 'games':
         return <Games />;
       case 'messages':
@@ -34,6 +35,8 @@ const App = () => {
         return <Agents />;
       case 'settings':
         return <Settings />;
+      case 'collections':
+        return <Collections />;
       default:
         return <Dashboard />;
     }

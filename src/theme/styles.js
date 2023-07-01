@@ -27,6 +27,7 @@ export const tokens = {
   green: '#2d9757',
   yellow: '#FFFDF2',
   blue3: '#090914',
+  buttonOne: "#F3486A",
   dark: {
     primary: '#B6C2CF',
     secondary: '#FFC300',
