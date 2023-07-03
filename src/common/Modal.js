@@ -6,6 +6,7 @@ import {
   ModalBody,
   ModalCloseButton,
   ModalFooter,
+  Divider,
 } from '@chakra-ui/react';
 
 function ModalComponent(props) {
@@ -17,7 +18,8 @@ function ModalComponent(props) {
     >
       <ModalOverlay />
       <ModalContent>
-        <ModalHeader textAlign="center">{props.title}</ModalHeader>
+        <ModalHeader>{props.title}</ModalHeader>
+        <Divider/>
         <ModalBody maxH="70vh" overflow="auto">
           {props.children}
         </ModalBody>

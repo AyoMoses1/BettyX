@@ -5,7 +5,7 @@ export const InputStyle = {
       borderWidth: 1,
       ':focus': {
         borderWidth: 2,
-        borderColor: props.theme.colors.primary,
+        borderColor: 'none',
       },
     },
   }),

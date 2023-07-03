@@ -4,12 +4,17 @@ import { Icon } from '@chakra-ui/react';
 import { CurrentPageContext } from '../../../App';
 
 const GridBox = ({ data }) => {
-  const { setCurrentPage, handleOpenModal } = useContext(CurrentPageContext);
+  const { setCurrentPage, handleOpenModal, handleOpenDrawer } =
+    useContext(CurrentPageContext);
 
   const handleClick = () => {
     if (data.route === 'feedback') {
       setCurrentPage(data.route);
       handleOpenModal();
+    } else if (data.route === 'scores') {
+      console.log("scores")
+      setCurrentPage(data.route);
+      handleOpenDrawer();
     } else {
       setCurrentPage(data.route);
     }

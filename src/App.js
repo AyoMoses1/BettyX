@@ -12,6 +12,8 @@ import Statistics from './pages/statistics';
 import Collections from './pages/collections';
 import Feedback from './pages/feedback';
 import Billing from './pages/billing';
+import TicketWriter from './pages/ticket';
+import Scores from './pages/scores';
 import SignIn from './pages/auth';
 import Layout from './common/Layout';
 import './App.css';
@@ -21,9 +23,15 @@ export const CurrentPageContext = createContext();
 const App = () => {
   const [currentPage, setCurrentPage] = useState('home');
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
+  const handleOpenDrawer = () => {
+    setIsDrawerOpen(true);
+  };
+  const handleCloseDrawer = () => {
+    setIsDrawerOpen(false);
+  };
   const handleOpenModal = () => {
-    console.log('this is true here oh!!!');
     setIsModalOpen(true);
   };
 
@@ -34,7 +42,7 @@ const App = () => {
   const renderPage = () => {
     switch (currentPage) {
       case 'home':
-        return <Agents />;
+        return <Dashboard />;
       case 'games':
         return <Games />;
       case 'messages':
@@ -53,6 +61,8 @@ const App = () => {
         return <Billing />;
       case 'agent-admin':
         return <Agents />;
+      case 'ticket-writer':
+        return <TicketWriter />;
       default:
         return <Dashboard />;
     }
@@ -65,12 +75,16 @@ const App = () => {
           currentPage,
           setCurrentPage,
           isModalOpen,
+          isDrawerOpen,
           handleCloseModal,
           handleOpenModal,
+          handleOpenDrawer,
+          handleCloseDrawer,
         }}
       >
         <Layout setCurrentPage={setCurrentPage}>{renderPage()}</Layout>
         <Feedback />
+        <Scores />
       </CurrentPageContext.Provider>
     </ChakraProvider>
   );
