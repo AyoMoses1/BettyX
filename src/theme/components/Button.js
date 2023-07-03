@@ -30,6 +30,12 @@ export const ButtonStyle = {
     success: (props) => ({
       bg: props.theme.colors.green,
       color: props.theme.colors.white,
+      borderRadius: "none"
+    }),
+    cancel: (props) => ({
+      bg: "red",
+      color: props.theme.colors.white,
+      borderRadius: "none"
     }),
     secondary: (props) => ({
       bg: props.theme.colors.buttonOne,

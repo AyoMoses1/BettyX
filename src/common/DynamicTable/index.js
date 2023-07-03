@@ -94,7 +94,7 @@ const Index = ({
     <TableContainer width="100%">
       {isLoading && <Loading text="loading data" />}
       <Table
-        variant={variant ?? 'striped'}
+        variant={variant}
         colorScheme={colorScheme}
         size={size}
       >

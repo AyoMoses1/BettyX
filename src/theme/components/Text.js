@@ -12,6 +12,12 @@ export const TextStyle = {
     normalBold: (props) => ({
       fontWeight: '600',
     }),
+    tableText: (props) => ({
+      fontWeight: '400',
+      fontSize: '1rem',
+      lineHeight: '1.45',
+      color: '#373a3c',
+    }),
     smallBoldNormal: (props) => ({
       fontWeight: 'bold',
       fontSize: '1.15vw',
@@ -35,7 +41,7 @@ export const TextStyle = {
     cardText: (props) => ({
       fontWeight: '400',
       fontSize: '14px',
-      color: props.theme.colors.white
+      color: props.theme.colors.white,
     }),
     reviewText: (props) => ({
       fontWeight: '200',
@@ -52,9 +58,10 @@ export const TextStyle = {
       fontWeight: '400',
       fontSize: 14,
       lineHeight: 5,
-      color: props.colorMode === 'dark'
-      ? props.theme.colors.textWhite
-      : props.theme.colors.gray1,
+      color:
+        props.colorMode === 'dark'
+          ? props.theme.colors.textWhite
+          : props.theme.colors.gray1,
     }),
     faqQuestion: (props) => ({
       fontWeight: 600,
