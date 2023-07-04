@@ -17,7 +17,7 @@ const TableTop = ({ inputObj, buttons, onChange }) => {
   };
 
   return (
-    <Flex mb={2} bgColor="gray.50" mt={4} p={3} flexWrap="wrap">
+    <Flex mb={2} bgColor="gray.50" mt={4} p={3} flexWrap="wrap" align="center">
       {inputObj.map((input) => (
         <Box
           key={input.name}
@@ -40,11 +40,17 @@ const TableTop = ({ inputObj, buttons, onChange }) => {
       ))}
 
       {buttons?.map((button) => (
-        <Box key={button.name}>
+        <Box key={button.name} mx={8}>
           <FormLabel visibility="hidden" mb={0}>
             {button.name}
           </FormLabel>
-          <Button onClick={() => onClick(button.name)}>{button.name}</Button>
+          <Button
+            onClick={() => onClick(button.name)}
+            variant="primary"
+            leftIcon={button.icon} // Replace `FaIconName` with the desired React Icons component
+          >
+            {button.name}
+          </Button>
         </Box>
       ))}
     </Flex>

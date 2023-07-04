@@ -1,24 +1,19 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import {
-  Button,
-  Center,
-  Flex,
-  Menu,
-  MenuButton,
-  Box,
-  MenuItem,
-  MenuList,
-  useDisclosure,
-} from '@chakra-ui/react';
-import { createColumnHelper, ColumnDef } from '@tanstack/react-table';
+import { useDisclosure } from '@chakra-ui/react';
 import TableTop from '../../common/TableTop';
+import { FaSearch, FaCog } from 'react-icons/fa';
 import DynamicTable from '../../common/DynamicTable';
-import { Info } from '../../common/Info';
-import { columns, data } from './helpers';
-import statesInNigeria from "../../utils/statesInNig";
+import {
+  columns,
+  data,
+  selectAmount,
+  selectDates,
+  selectTypes,
+} from './helpers';
 
 const Index = () => {
   const [topInputObj, setTopInputObj] = useState({ state: '', query: '' });
+  const { onOpen, onClose } = useDisclosure();
 
   const handleInputChange = (name, value) => {
     setTopInputObj((prevState) => ({
@@ -30,38 +25,59 @@ const Index = () => {
   const tableTopInput = useMemo(
     () => [
       {
-        name: 'query',
+        name: 'Agents',
         label: '',
-        placeholder: 'Search by name,email or phone number',
+        placeholder: 'Search',
         type: 'text',
       },
-
       {
-        name: 'state',
+        name: 'Players',
         label: '',
-        type: 'select',
-        options: statesInNigeria.map((item) => ({ value: item, name: item })),
+        placeholder: 'Search',
+        type: 'text',
       },
-
       {
-        name: 'date',
-        label: '',
-        placeholder: 'Search by date',
-        type: 'date',
+        name: 'time',
+        label: 'Time',
+        type: 'select',
+        options: selectDates.map((item) => ({
+          value: item.value,
+          name: item.name,
+        })),
+      },
+      {
+        name: 'type',
+        label: 'Type',
+        type: 'select',
+        options: selectTypes.map((item) => ({
+          value: item.value,
+          name: item.name,
+        })),
+      },
+      {
+        name: 'amount',
+        label: 'Amount',
+        type: 'select',
+        options: selectAmount.map((item) => ({
+          value: item.value,
+          name: item.name,
+        })),
       },
     ],
     []
   );
 
+  const topTableButtons = [
+    { name: 'Search', onClick: onOpen, icon: <FaSearch /> },
+    { name: 'Settings', onClick: onOpen, icon: <FaCog /> },
+  ];
+
   return (
     <>
-      <Info>View all customers assigned to you and manage them</Info>
-
-      <Flex mb={4} p={3} justifyContent="flex-end" alignItems="center"></Flex>
       <TableTop
         onChange={handleInputChange}
         inputObj={tableTopInput}
-        // buttons={topTableButtons}
+        buttons={topTableButtons}
       />
       <DynamicTable
         totalCount={data?.length}
