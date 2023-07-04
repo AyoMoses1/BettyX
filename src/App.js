@@ -14,6 +14,7 @@ import Feedback from './pages/feedback';
 import Billing from './pages/billing';
 import TicketWriter from './pages/ticket';
 import Scores from './pages/scores';
+import DeletedWagers from './pages/wagers';
 import SignIn from './pages/auth';
 import Layout from './common/Layout';
 import './App.css';
@@ -63,6 +64,8 @@ const App = () => {
         return <Agents />;
       case 'ticket-writer':
         return <TicketWriter />;
+      case 'deleted-wagers':
+        return <DeletedWagers />;
       default:
         return <Dashboard />;
     }
