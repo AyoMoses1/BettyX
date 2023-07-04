@@ -40,7 +40,7 @@ export const HeadingStyle = {
     cardHeader: (props) => ({
       fontWeight: "700",
       fontSize: "18px",
-      color: props.theme.colors.primary,
+      color: props.theme.colors.blue,
     }),
     defaultProps: {
       size: "md",

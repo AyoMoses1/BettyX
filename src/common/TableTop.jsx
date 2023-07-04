@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
-import { Flex, Button, Box, FormLabel } from '@chakra-ui/react';
+import { Flex, Button, Box, FormLabel, Heading } from '@chakra-ui/react';
 import generateInputs from './DynamicForm';
 import underscore from 'underscore';
 
-const TableTop = ({ inputObj, buttons, onChange }) => {
+const TableTop = ({ inputObj, buttons, onChange, title }) => {
   const debouncedOnChange = underscore.debounce(onChange, 1000);
 
   useEffect(() => {
@@ -17,7 +17,8 @@ const TableTop = ({ inputObj, buttons, onChange }) => {
   };
 
   return (
-    <Flex mb={2} bgColor="gray.50" mt={4} p={3} flexWrap="wrap" align="center">
+    <Flex mb={2} bgColor="gray.50" mt={4} p={3} flexWrap="wrap" align="center" width="100%">
+      <Box>{title && <Heading variant="cardHeader">{title}</Heading>}</Box>
       {inputObj.map((input) => (
         <Box
           key={input.name}

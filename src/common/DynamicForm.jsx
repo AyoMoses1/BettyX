@@ -7,9 +7,11 @@ import {
   FormHelperText,
   InputLeftAddon,
   InputGroup,
+  Box,
+  Button,
 } from '@chakra-ui/react';
 import DateRangePicker from './DateRange';
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 const generateInputs = (inputObj) => {
   if (
@@ -24,7 +26,7 @@ const generateInputs = (inputObj) => {
         <FormLabel htmlFor={inputObj.name} mb={0}>
           {inputObj.label}
         </FormLabel>
-        <InputGroup>
+        <InputGroup maxW="400px" ml="auto">
           <StyledInputLeftAddon children={inputObj.name} />
           <Input
             id={inputObj.name}
@@ -37,6 +39,16 @@ const generateInputs = (inputObj) => {
             disabled={inputObj?.disabled}
             key={inputObj.type}
           />
+
+          {inputObj.buttons?.map((button) => {
+            return button.asButton ? (
+              <Button variant="primary" ml={4}>
+                {button.icon}
+              </Button>
+            ) : (
+              button.icon
+            );
+          })}
         </InputGroup>
         {/* <Input
           id={inputObj.name}
@@ -99,7 +111,6 @@ const generateInputs = (inputObj) => {
 };
 
 export default generateInputs;
-
 
 const StyledInputLeftAddon = styled(InputLeftAddon)`
   border: 1px solid #cbd5e0;
