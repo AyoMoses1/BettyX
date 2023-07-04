@@ -1,8 +1,6 @@
-import { Box, Select } from '@chakra-ui/react';
 import React from 'react';
 import DynamicTable from '../../../common/DynamicTable';
 import { Info } from '../../../common/Info';
-import { PageScaffold } from '../../../common/PageScaffold';
 import { wagerColumns, wagerData as data } from './helpers';
 
 const Table = () => {

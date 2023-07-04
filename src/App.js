@@ -15,6 +15,7 @@ import Billing from './pages/billing';
 import TicketWriter from './pages/ticket';
 import Scores from './pages/scores';
 import DeletedWagers from './pages/wagers';
+import Pending from './pages/pending';
 import SignIn from './pages/auth';
 import Layout from './common/Layout';
 import './App.css';
@@ -43,7 +44,7 @@ const App = () => {
   const renderPage = () => {
     switch (currentPage) {
       case 'home':
-        return <Dashboard />;
+        return <Pending />;
       case 'games':
         return <Games />;
       case 'messages':
@@ -66,6 +67,8 @@ const App = () => {
         return <TicketWriter />;
       case 'deleted-wagers':
         return <DeletedWagers />;
+      case 'pending':
+        return <Pending />;
       default:
         return <Dashboard />;
     }
