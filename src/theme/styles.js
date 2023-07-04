@@ -19,6 +19,8 @@ export const tokens = {
   link: '#333333',
   muted: '#64748b',
   blue: '#06364d',
+  blueViolet: "#8A2BE2",
+  turquoise: "#00CED1",
   blue2: '#001D3D',
   grey: '#F9F9F9',
   grey2: "#E0DCDC",

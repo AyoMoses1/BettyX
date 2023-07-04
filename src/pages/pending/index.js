@@ -84,6 +84,8 @@ const Index = () => {
         columns={columns}
         data={data}
         size="sm"
+        variant="striped"
+        colorScheme="orange"
       />
     </>
   );

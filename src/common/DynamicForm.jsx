@@ -92,7 +92,7 @@ const generateInputs = (inputObj) => {
         >
           {inputObj?.options?.map((item) => {
             return (
-              <option value={item.value} key={item.name}>
+              <option value={item.value} key={item.name} style={{color: "#000" }}>
                 {item.name}
               </option>
             );

@@ -22,7 +22,7 @@ const GridBox = ({ data }) => {
   return (
     <GridItem
       colSpan={1}
-      bg={data.color}
+      bg="blue"
       py={4}
       borderRadius="md"
       cursor="pointer"
@@ -37,11 +37,11 @@ const GridBox = ({ data }) => {
         <Icon
           as={data.icon}
           boxSize={8}
-          color={data.color === 'white' ? 'black' : 'white'}
+          color={data.color}
         />
         <Text
           variant="cardText"
-          color={data.color === 'white' ? 'black' : 'white'}
+          color={data.color}
         >
           {data.name}
         </Text>

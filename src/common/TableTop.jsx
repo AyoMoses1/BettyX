@@ -17,7 +17,7 @@ const TableTop = ({ inputObj, buttons, onChange, title, float }) => {
   };
 
   return (
-    <Flex mb={2} bgColor="gray.50" mt={4} p={3} flexWrap="wrap" align="center" width="100%">
+    <Flex mb={2} bgColor="blue" mt={4} p={3} flexWrap="wrap" align="center" width="100%" color="white">
       <Box>{title && <Heading variant="cardHeader">{title}</Heading>}</Box>
       {inputObj.map((input) => (
         <Box

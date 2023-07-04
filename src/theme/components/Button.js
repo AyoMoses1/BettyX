@@ -10,7 +10,7 @@ export const ButtonStyle = {
   },
   variants: {
     primary: (props) => ({
-      bg: props.theme.colors.blue,
+      bg: props.theme.colors.turquoise,
       color: '#fff',
       width: '127px',
       fontWeight: '600',
