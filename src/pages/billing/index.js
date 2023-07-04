@@ -25,7 +25,7 @@ const index = () => {
           >
             $24.00
           </span>
-          <Box ml="auto" bg="gray" color="white">
+          <Box ml="auto" bg="blue" color="white">
             <Select placeholder="Select Days"  border="none" color="white">
               <option value="30">30 days</option>
               <option value="60">60 days</option>

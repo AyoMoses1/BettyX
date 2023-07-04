@@ -1,5 +1,26 @@
 import { BiTimeFive } from 'react-icons/bi';
 import { FiHome, FiUser, FiLogOut } from 'react-icons/fi';
+import {
+  RiBarChartLine,
+  RiMessage2Line,
+  RiClockLine,
+  RiGameLine,
+  RiGroupLine,
+  RiUserAddLine,
+  RiCashLine,
+  RiBroadcastLine,
+  RiUserSettingsLine,
+  RiChartLine,
+  RiTrophyLine,
+  RiMoneyDollarCircleLine,
+  RiClipboardLine,
+  RiTicketLine,
+  RiFootballLine,
+  RiReceiptLine,
+  RiSettings2Line,
+  RiFeedbackLine,
+  RiBookLine,
+} from 'react-icons/ri';
 
 export const paths = {
   home: 'home',
@@ -69,49 +90,49 @@ export const NavNames = {
 
 export const pathObject = [
   {
-    icon: FiHome,
+    icon: RiBarChartLine,
     name: NavNames.statistics,
     route: paths.statistics,
     color: 'indigo',
   },
   {
-    icon: FiHome,
+    icon: BiTimeFive,
     name: NavNames.pending,
     route: paths.pending,
     color: 'indigo',
   },
   {
-    icon: FiHome,
+    icon: RiMessage2Line,
     name: NavNames.messages,
     route: paths.messages,
     color: 'indigo',
   },
   {
-    icon: FiHome,
+    icon: RiGameLine,
     name: NavNames.games,
     route: paths.messages,
     color: 'indigo',
   },
   {
-    icon: FiHome,
+    icon: RiGroupLine ,
     name: NavNames.customers,
     route: paths.customerAdmin,
     color: 'green',
   },
   {
-    icon: FiHome,
+    icon: RiCashLine ,
     name: NavNames.cashier,
     route: paths.cashier,
     color: 'green',
   },
   {
-    icon: FiHome,
+    icon: RiUserAddLine,
     name: NavNames.addCustomer,
     route: paths.addCustomer,
     color: 'green',
   },
   {
-    icon: FiHome,
+    icon: RiBroadcastLine,
     name: NavNames.liveLimits,
     route: paths.liveLimits,
     color: 'green',
@@ -123,19 +144,19 @@ export const pathObject = [
     color: 'grey2',
   },
   {
-    icon: FiHome,
+    icon: RiTrophyLine,
     name: NavNames.analysis,
     route: paths.analysis,
     color: 'grey2',
   },
   {
-    icon: FiHome,
+    icon: RiClipboardLine ,
     name: NavNames.ipTracker,
     route: paths.ipTracker,
     color: 'grey2',
   },
   {
-    icon: FiHome,
+    icon: RiMoneyDollarCircleLine ,
     name: NavNames.transactions,
     route: paths.transactions,
     color: 'grey2',
@@ -147,13 +168,13 @@ export const pathObject = [
     color: 'turquoise',
   },
   {
-    icon: FiHome,
+    icon: RiSettings2Line ,
     name: NavNames.deletedWagers,
     route: paths.deletedWagers,
     color: 'turquoise',
   },
   {
-    icon: FiHome,
+    icon: RiBookLine ,
     name: NavNames.sportsbookLines,
     route: paths.sportsbookLines,
     color: 'turquoise',
@@ -165,13 +186,13 @@ export const pathObject = [
     color: 'turquoise',
   },
   {
-    icon: FiHome,
+    icon: RiTicketLine,
     name: NavNames.ticketWriter,
     route: paths.ticketWriter,
     color: '#87CEEB',
   },
   {
-    icon: FiHome,
+    icon: RiFootballLine,
     name: NavNames.scores,
     route: paths.scores,
     color: '#87CEEB',
@@ -189,7 +210,7 @@ export const pathObject = [
     color: '#87CEEB',
   },
   {
-    icon: FiHome,
+    icon:   RiSettings2Line,
     name: NavNames.settings,
     route: paths.settings,
     color: '#87CEEB',

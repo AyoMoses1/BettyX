@@ -33,17 +33,17 @@ const Navbar = () => {
             <Box p={4} mr={2} bg="green" onClick={() => setCurrentPage('home')}>
               <AiOutlineHome size={24} />
             </Box>
-            <Box p="4" mr={2} bg="blue" onClick={() => setCurrentPage('games')}>
+            <Box p="4" mr={2} bg="blue">
+              <AiOutlineLineChart size={24} onClick={() => setCurrentPage('statistics')} />
+            </Box>
+            <Box p="4" mr={2} bg="blue" onClick={() => setCurrentPage('pending')}>
               <AiOutlineMessage size={24} />
             </Box>
             <Box p="4" mr={2} bg="blue">
-              <AiOutlineLineChart size={24} />
+              <AiOutlineCalendar size={24} onClick={() => setCurrentPage('messages')}/>
             </Box>
             <Box p="4" mr={2} bg="blue">
-              <AiOutlineCalendar size={24} />
-            </Box>
-            <Box p="4" mr={2} bg="blue">
-              <AiOutlineSetting size={24} />
+              <AiOutlineSetting size={24} onClick={() => setCurrentPage('settings')} />
             </Box>
           </Flex>
         </Box>

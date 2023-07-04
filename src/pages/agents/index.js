@@ -29,7 +29,7 @@ const Index = () => {
   return (
     <>
       <Info>
-        <Box ml="auto" bg="gray" color="white">
+        <Box ml="auto" bg="blue" color="white">
           <Select placeholder="Agent Management" border="none" color="white">
             <option value="30">Agent Management</option>
             <option value="60">Active Player Count</option>

@@ -25,6 +25,7 @@ export const tokens = {
   grey: '#F9F9F9',
   grey2: "#E0DCDC",
   pink: '#FEF5FF',
+  darkGrey: "#333333",
   bgGrey: '#F8F8F8',
   green: '#2d9757',
   yellow: '#FFFDF2',
