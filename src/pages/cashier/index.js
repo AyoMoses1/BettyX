@@ -6,10 +6,8 @@ import DynamicTable from '../../common/DynamicTable';
 import {
   columns,
   data,
-  selectAmount,
-  selectDates,
-  selectTypes,
-} from './helpers';
+  selectMode,
+} from './components/helpers';
 
 const Index = () => {
   const [topInputObj, setTopInputObj] = useState({ state: '', query: '' });
@@ -22,25 +20,25 @@ const Index = () => {
     }));
   };
 
-  const topTableButtons = [
-    { name: '', onClick: onOpen, icon: <FaCog />, asButton: true },
-    {
-      name: '',
-      onClick: onOpen,
-      icon: <Icon as={FaFileExcel} ml={2} boxSize={10} color="green" />,
-      asButton: false,
-    },
-  ];
-
   const tableTopInput = useMemo(
     () => [
       {
         name: 'Agents',
         label: '',
-        placeholder: 'Search accounts...',
+        placeholder: 'Search...',
         type: 'text',
+        float: false
+      },
+      {
+        name: 'time',
+        type: 'select',
         float: true,
-        buttons: topTableButtons,
+        size:'sm',
+        width: '200px',
+        options: selectMode.map((item) => ({
+          value: item.value,
+          name: item.name,
+        })),
       },
     ],
     []
@@ -52,7 +50,6 @@ const Index = () => {
         <TableTop
           onChange={handleInputChange}
           inputObj={tableTopInput}
-          title="Customer Admin"
         />
       </Flex>
       <DynamicTable
@@ -61,6 +58,8 @@ const Index = () => {
         data={data}
         size="sm"
         title="Customer Admin"
+        variant="striped"
+        colorScheme="gray"
       />
     </>
   );

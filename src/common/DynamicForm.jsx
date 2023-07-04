@@ -26,7 +26,7 @@ const generateInputs = (inputObj) => {
         <FormLabel htmlFor={inputObj.name} mb={0}>
           {inputObj.label}
         </FormLabel>
-        <InputGroup maxW="400px" ml="auto">
+        <InputGroup maxW="400px" ml={inputObj.float ? 'auto' : ''}>
           <StyledInputLeftAddon children={inputObj.name} />
           <Input
             id={inputObj.name}
@@ -71,7 +71,11 @@ const generateInputs = (inputObj) => {
     );
   } else if (inputObj.type === 'select') {
     return (
-      <FormControl isInvalid={inputObj.isInvalid} mb={4} key={inputObj.name}>
+      <FormControl
+        isInvalid={inputObj.isInvalid}
+        mb={4}
+        key={inputObj.name}
+      >
         <FormLabel mb={0} htmlFor={inputObj.name}>
           {inputObj.label}
         </FormLabel>
@@ -83,6 +87,8 @@ const generateInputs = (inputObj) => {
           onChange={inputObj?.onChange}
           disabled={inputObj?.disabled}
           defaultValue={inputObj?.defaultValue}
+          width={inputObj?.width}
+          ml={inputObj.float ? 'auto' : ''}
         >
           {inputObj?.options?.map((item) => {
             return (

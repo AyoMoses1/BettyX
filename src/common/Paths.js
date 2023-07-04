@@ -12,6 +12,7 @@ export const paths = {
   statistics: 'statistics',
   pending: 'pending',
   customers: 'customers',
+  customerAdmin: 'customer-admin',
   cashier: 'cashier',
   addCustomer: 'add-customer',
   liveLimits: 'live-limits',
@@ -94,7 +95,7 @@ export const pathObject = [
   {
     icon: FiHome,
     name: NavNames.customers,
-    route: paths.customers,
+    route: paths.customerAdmin,
     color: 'green',
   },
   {

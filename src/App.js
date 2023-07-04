@@ -17,6 +17,7 @@ import Scores from './pages/scores';
 import DeletedWagers from './pages/wagers';
 import Pending from './pages/pending';
 import CustomerAdmin from './pages/customer-admin';
+import Cashier from './pages/cashier';
 import SignIn from './pages/auth';
 import Layout from './common/Layout';
 import './App.css';
@@ -45,7 +46,7 @@ const App = () => {
   const renderPage = () => {
     switch (currentPage) {
       case 'home':
-        return <CustomerAdmin />;
+        return <Cashier />;
       case 'games':
         return <Games />;
       case 'messages':
@@ -72,6 +73,8 @@ const App = () => {
         return <Pending />;
       case 'customer-admin':
         return <CustomerAdmin />;
+      case 'cashier':
+        return <Cashier />;
       default:
         return <Dashboard />;
     }
