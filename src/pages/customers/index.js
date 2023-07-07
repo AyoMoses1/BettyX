@@ -1,9 +1,28 @@
-import React from 'react'
+import React, { useContext } from 'react';
+import { Button, useDisclosure } from '@chakra-ui/react';
+import Modal from '../../common/Modal';
+import { CurrentPageContext } from '../../App';
+import styled from 'styled-components';
+import ModalOptions from './ModalOptions';
 
-function index() {
+const Index = () => {
+  const { isModalOpen, handleCloseModal } = useContext(CurrentPageContext);
+
   return (
-    <div>index</div>
-  )
-}
+    <Modal
+      title="Add Customer"
+      isOpen={isModalOpen}
+      onClose={handleCloseModal}
+      size="md"
+    >
+      <ModalOptions onClose={handleCloseModal} />
+    </Modal>
+  );
+};
 
-export default index
+const StyledButton = styled(Button)`
+  text-decoration: underline;
+  color: red;
+`;
+
+export default Index;

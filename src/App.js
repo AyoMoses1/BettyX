@@ -17,6 +17,7 @@ import Scores from './pages/scores';
 import DeletedWagers from './pages/wagers';
 import Pending from './pages/pending';
 import CustomerAdmin from './pages/customer-admin';
+import AddCustomer from './pages/customers';
 import Cashier from './pages/cashier';
 import SignIn from './pages/auth';
 import Layout from './common/Layout';
@@ -95,7 +96,7 @@ const App = () => {
         }}
       >
         <Layout setCurrentPage={setCurrentPage}>{renderPage()}</Layout>
-        <Feedback />
+        {currentPage === 'feedback' ? <Feedback /> : <AddCustomer />}
         <Scores />
       </CurrentPageContext.Provider>
     </ChakraProvider>

@@ -8,11 +8,10 @@ const GridBox = ({ data }) => {
     useContext(CurrentPageContext);
 
   const handleClick = () => {
-    if (data.route === 'feedback') {
+    if (data.route === 'feedback' || data.route === 'add-customer') {
       setCurrentPage(data.route);
       handleOpenModal();
     } else if (data.route === 'scores') {
-      console.log("scores")
       setCurrentPage(data.route);
       handleOpenDrawer();
     } else {
