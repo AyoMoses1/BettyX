@@ -23,6 +23,8 @@ import Cashier from './pages/cashier';
 import Analysis from './pages/analysis';
 import AgentPerformance from './pages/agents/Performance';
 import NewCustomer from './pages/customers/NewCustomer';
+import Transactions from './pages/transactions';
+import IPTracker from './pages/ip-tracker';
 import CustomerDetails from './pages/customers/CustomerDetails';
 import SignIn from './pages/auth';
 import Layout from './common/Layout';
@@ -91,6 +93,10 @@ const App = () => {
         return <AgentPerformance />;
       case 'analysis':
         return <Analysis />;
+      case 'ip-tracker':
+        return <IPTracker />;
+      case 'transactions':
+        return <Transactions />;
       default:
         return <Dashboard />;
     }

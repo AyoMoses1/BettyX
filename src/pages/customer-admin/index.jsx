@@ -1,25 +1,18 @@
-import React, { useState, useMemo, useEffect, useContext } from 'react';
+import React, { useState, useMemo, useContext } from 'react';
 import { Flex, useDisclosure, Icon, Box, Button } from '@chakra-ui/react';
 import TableTop from '../../common/TableTop';
 import { FaCog, FaFileExcel } from 'react-icons/fa';
 import DynamicTable from '../../common/DynamicTable';
-import {
-  columns,
-  data,
-  selectAmount,
-  selectDates,
-  selectTypes,
-} from './helpers';
+import { data } from './helpers';
 import { createColumnHelper } from '@tanstack/react-table';
 import { Link } from 'react-router-dom';
 import { CurrentPageContext } from '../../App';
 const columnHelper = createColumnHelper();
 
 const Index = () => {
-  const [topInputObj, setTopInputObj] = useState({ state: '', query: '' });
-  const { onOpen, onClose } = useDisclosure();
-  const { setCurrentPage, handleOpenModal, handleOpenDrawer } =
-  useContext(CurrentPageContext);
+  const [setTopInputObj] = useState({ state: '', query: '' });
+  const { onOpen } = useDisclosure();
+  const { setCurrentPage } = useContext(CurrentPageContext);
 
   const handleInputChange = (name, value) => {
     setTopInputObj((prevState) => ({
