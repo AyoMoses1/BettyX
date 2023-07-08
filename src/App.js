@@ -18,6 +18,7 @@ import DeletedWagers from './pages/wagers';
 import Pending from './pages/pending';
 import CustomerAdmin from './pages/customer-admin';
 import AddCustomer from './pages/customers';
+import LiveLimits from './pages/live-limits';
 import Cashier from './pages/cashier';
 import NewCustomer from './pages/customers/NewCustomer';
 import SignIn from './pages/auth';
@@ -48,7 +49,7 @@ const App = () => {
   const renderPage = () => {
     switch (currentPage) {
       case 'home':
-        return <Dashboard />;
+        return <LiveLimits />;
       case 'game-admin':
         return <Games />;
       case 'messages':
@@ -77,6 +78,8 @@ const App = () => {
         return <CustomerAdmin />;
       case 'cashier':
         return <Cashier />;
+      case 'live-limits':
+        return <LiveLimits />;
       case 'new-customer':
         return <NewCustomer />;
       default:
