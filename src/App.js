@@ -49,7 +49,7 @@ const App = () => {
   const renderPage = () => {
     switch (currentPage) {
       case 'home':
-        return <LiveLimits />;
+        return <Dashboard />;
       case 'game-admin':
         return <Games />;
       case 'messages':

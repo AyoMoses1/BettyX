@@ -33,7 +33,6 @@ const MyForm = () => {
           border="none"
           value={selectedOption}
           _focus={{ borderBottomColor: 'turquoise' }}
-          placeholder="Select an option"
           size="sm"
           width="200px"
           onChange={handleSelectChange}
