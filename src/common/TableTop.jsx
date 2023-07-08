@@ -3,7 +3,7 @@ import { Flex, Button, Box, FormLabel, Heading } from '@chakra-ui/react';
 import generateInputs from './DynamicForm';
 import underscore from 'underscore';
 
-const TableTop = ({ inputObj, buttons, onChange, title, float }) => {
+const TableTop = ({ inputObj, buttons, onChange, title, float, }) => {
   const debouncedOnChange = underscore.debounce(onChange, 1000);
 
   useEffect(() => {

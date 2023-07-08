@@ -25,7 +25,7 @@ import {
 export const paths = {
   home: 'home',
   login: 'login',
-  games: 'games',
+  games: 'game-admin',
   messages: 'messages',
   rules: 'rules',
   settings: 'settings',
@@ -110,7 +110,7 @@ export const pathObject = [
   {
     icon: RiGameLine,
     name: NavNames.games,
-    route: paths.messages,
+    route: paths.games,
     color: 'indigo',
   },
   {
