@@ -13,7 +13,7 @@ import {
   FormLabel,
   FormControl,
   Button,
-  Icon
+  Icon,
 } from '@chakra-ui/react';
 import { FaFileExcel, FaSearch } from 'react-icons/fa';
 import styled from 'styled-components';
@@ -115,20 +115,6 @@ const Performance = () => {
             <option value="30">30 days</option>
             <option value="90">90 days</option>
           </Select>
-        </Box>
-        <Box>
-          <FormControl display="flex" alignItems="center">
-            <FormLabel htmlFor="switch" mr={2}>
-              Show Buyouts
-            </FormLabel>
-            <Switch
-              id="switch"
-              colorScheme="red"
-              size="lg"
-              offTrackColor="red"
-              onTrackColor="green"
-            />
-          </FormControl>
         </Box>
       </Flex>
       <Flex p={4} gap={4} bg="grey">

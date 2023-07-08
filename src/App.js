@@ -20,8 +20,10 @@ import CustomerAdmin from './pages/customer-admin';
 import AddCustomer from './pages/customers';
 import LiveLimits from './pages/live-limits';
 import Cashier from './pages/cashier';
+import Analysis from './pages/analysis';
 import AgentPerformance from './pages/agents/Performance';
 import NewCustomer from './pages/customers/NewCustomer';
+import CustomerDetails from './pages/customers/CustomerDetails';
 import SignIn from './pages/auth';
 import Layout from './common/Layout';
 import './App.css';
@@ -50,7 +52,7 @@ const App = () => {
   const renderPage = () => {
     switch (currentPage) {
       case 'home':
-        return <AgentPerformance />;
+        return <Dashboard />;
       case 'game-admin':
         return <Games />;
       case 'messages':
@@ -77,6 +79,8 @@ const App = () => {
         return <Pending />;
       case 'customer-admin':
         return <CustomerAdmin />;
+      case 'customer-details':
+        return <CustomerDetails />;
       case 'cashier':
         return <Cashier />;
       case 'live-limits':
@@ -85,6 +89,8 @@ const App = () => {
         return <NewCustomer />;
       case 'agents-performance':
         return <AgentPerformance />;
+      case 'analysis':
+        return <Analysis />;
       default:
         return <Dashboard />;
     }
