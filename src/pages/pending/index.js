@@ -1,19 +1,24 @@
-import React, { useState, useMemo, useEffect } from 'react';
-import { useDisclosure } from '@chakra-ui/react';
+import React, { useState, useMemo, useContext } from 'react';
+import { HStack, Image, Text, useDisclosure } from '@chakra-ui/react';
 import TableTop from '../../common/TableTop';
-import { FaSearch, FaCog } from 'react-icons/fa';
+import { FaSearch, FaCog, FaTimes } from 'react-icons/fa';
 import DynamicTable from '../../common/DynamicTable';
 import {
-  columns,
   data,
   selectAmount,
   selectDates,
   selectTypes,
 } from './helpers';
+import { CurrentPageContext } from '../../App';
+import { createColumnHelper } from '@tanstack/react-table';
+import { Link } from 'react-router-dom';
 
 const Index = () => {
   const [topInputObj, setTopInputObj] = useState({ state: '', query: '' });
-  const { onOpen, onClose } = useDisclosure();
+  const { onOpen } = useDisclosure();
+  const { setCurrentPage } = useContext(CurrentPageContext);
+  const columnHelper = createColumnHelper();
+
 
   const handleInputChange = (name, value) => {
     setTopInputObj((prevState) => ({
@@ -21,6 +26,89 @@ const Index = () => {
       [name]: value,
     }));
   };
+  const columns = [
+    columnHelper.accessor('agent', {
+      header: 'Agent',
+      cell: (info) => {
+        const value = info.getValue();
+        return (
+          <Link
+            style={{ color: 'blue', textDecoration: 'underline' }}
+            onClick={() => setCurrentPage('customer-details')}
+          >
+            {value}
+          </Link>
+        );
+      },
+    }),
+    columnHelper.accessor('customer', {
+      header: 'Customer',
+      cell: (info) => {
+        const value = info.getValue();
+        return (
+          <Link
+            style={{ color: 'blue', textDecoration: 'underline' }}
+            onClick={() => setCurrentPage('customer-details')}
+          >
+            {value}
+          </Link>
+        );
+      },
+    }),
+    columnHelper.accessor('password', {
+      header: 'Password',
+      cell: (info) => info.getValue(),
+    }),
+    columnHelper.accessor('accepted', {
+      header: 'Accepted(PST)',
+      cell: (info) => info.getValue(),
+    }),
+    columnHelper.accessor('description', {
+      header: 'Descripton',
+      cell: (info) => {
+        const value = info.getValue();
+        return (
+          <div>
+            <Text variant="tableText" sx={{ color: 'green', fontWeight: 'bold' }}>
+              {value.name}
+            </Text>
+            <ul style={{ paddingLeft: '20px' }}>
+              {value.teams.map((team, index) => (
+                <HStack key={index}>
+                  <Image src={team.logo} sx={{ width: '20px' }} />
+                  <Text variant="tableText" fontSize={12}>
+                    {team.name}
+                  </Text>
+                </HStack>
+              ))}
+            </ul>
+          </div>
+        );
+      },
+    }),
+    columnHelper.accessor('risk', {
+      header: 'Risk',
+      cell: (info) => {
+        const value = info.getValue();
+        const textColor = 'red';
+        return <span style={{ color: textColor }}>${value}</span>;
+      },
+    }),
+    columnHelper.accessor('win', {
+      header: 'To Win',
+      cell: (info) => {
+        const value = info.getValue();
+        const textColor = 'green';
+        return <span style={{ color: textColor }}>${value}</span>;
+      },
+    }),
+    columnHelper.accessor('action', {
+      header: '',
+      cell: (info) => {
+        return <FaTimes color="red" />;
+      },
+    }),
+  ];
 
   const tableTopInput = useMemo(
     () => [
