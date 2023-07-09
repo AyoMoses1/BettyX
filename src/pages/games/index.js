@@ -1,5 +1,19 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { useDisclosure, Box, Flex, HStack, Icon } from '@chakra-ui/react';
+import {
+  useDisclosure,
+  Box,
+  Flex,
+  HStack,
+  Icon,
+  Table,
+  Thead,
+  Tbody,
+  Tr,
+  Th,
+  Td,
+  Text,
+  Button,
+} from '@chakra-ui/react';
 import DynamicTable from '../../common/DynamicTable';
 import {
   AiFillBaseball,
@@ -10,7 +24,6 @@ import {
 import { FaFootballBall, FaRegFutbol, FaUsers } from 'react-icons/fa';
 import {
   columns,
-  data,
   selectBaseball,
   selectCards,
   selectDates,
@@ -20,8 +33,10 @@ import {
   selectNfl,
   selectUsers,
 } from './helpers';
+import { data } from './data.js';
 import generateInputs from '../../common/DynamicForm';
 import { BiChevronDown } from 'react-icons/bi';
+import styled from 'styled-components';
 
 const Index = () => {
   const [topInputObj, setTopInputObj] = useState({ state: '', query: '' });
@@ -200,16 +215,262 @@ const Index = () => {
           )}
         </HStack>
       </Flex>
-      <DynamicTable
-        totalCount={data?.length}
-        columns={columns}
-        data={data}
-        size="sm"
-        variant="striped"
-        colorScheme="gray"
-      />
+      <Box w="100%" p={4}>
+        <Table variant="simple">
+          <Thead>
+            <Tr>
+              <Th></Th>
+              <Th>Score</Th>
+              <Th>Spread</Th>
+              <Th>Moneyline</Th>
+              <Th>Total</Th>
+              <Th>Team Totals</Th>
+            </Tr>
+          </Thead>
+          <Tbody>
+            {data.map((entry, index) => (
+              <Tr key={index}>
+                <Td>Period: 1st 5 linnings</Td>
+                <Td>
+                  <HStack>
+                    <StyledBox bgColor="red">$</StyledBox>
+                    <StyledBox bgColor="blue">R</StyledBox>
+                    <StyledBox bgColor="cyan">#</StyledBox>
+                  </HStack>
+                </Td>
+                <Td color={index % 2 === 0 ? 'red.500' : 'blue.500'}>
+                  <HStack>
+                    <StyledBox bgColor="blue">+</StyledBox>
+                    <StyledBox bgColor="blue">-</StyledBox>
+                  </HStack>
+                </Td>
+                <Td>
+                  <HStack>
+                    <StyledBox bgColor="blue">+</StyledBox>
+                    <StyledBox bgColor="blue">-</StyledBox>
+                  </HStack>
+                </Td>
+                <Td color={index % 2 === 0 ? 'green.500' : 'blue.500'}>
+                  <HStack>
+                    <StyledBox bgColor="blue">+</StyledBox>
+                    <StyledBox bgColor="blue">-</StyledBox>
+                  </HStack>
+                </Td>
+                <Td>
+                  <HStack>
+                    <StyledBox bgColor="blue">+</StyledBox>
+                    <StyledBox bgColor="blue">-</StyledBox>
+                  </HStack>
+                </Td>
+              </Tr>
+            ))}
+          </Tbody>
+        </Table>
+      </Box>
+      <Box bg="blue" color="white">
+        MLB
+      </Box>
+      <Table variant="simple">
+        <Tbody>
+          {data.map((entry, index) => (
+            <Tr key={index}>
+              <Td>
+                <StyledBoxTwo>0</StyledBoxTwo>
+                <StyledBoxTwo>1</StyledBoxTwo>
+              </Td>
+              <Td>
+                <StyledBoxTwo>0</StyledBoxTwo>
+                <StyledBoxTwo>1</StyledBoxTwo>
+              </Td>
+              <Td>
+                <StyledBoxTwo>0</StyledBoxTwo>
+                <StyledBoxTwo>1</StyledBoxTwo>
+              </Td>
+              <Td>
+                <StyledBoxTwo>0</StyledBoxTwo>
+                <StyledBoxTwo>1</StyledBoxTwo>
+              </Td>
+              <Td>
+                <StyledBoxTwo>0</StyledBoxTwo>
+                <StyledBoxTwo>1</StyledBoxTwo>
+              </Td>
+              <Td>
+                <StyledBoxTwo>0</StyledBoxTwo>
+                <StyledBoxTwo>1</StyledBoxTwo>
+              </Td>
+              <Td>
+                <StyledBoxTwo>0</StyledBoxTwo>
+                <StyledBoxTwo>1</StyledBoxTwo>
+              </Td>
+            </Tr>
+          ))}
+        </Tbody>
+      </Table>
+      <Table variant="simple">
+        <Tbody>
+          {data.map((entry, index) => (
+            <Tr key={index}>
+              <Td>
+                <StyledBoxTwo>0</StyledBoxTwo>
+                <StyledBoxTwo>1</StyledBoxTwo>
+              </Td>
+              <Td>
+                <StyledBoxTwo>0</StyledBoxTwo>
+                <StyledBoxTwo>1</StyledBoxTwo>
+              </Td>
+              <Td>
+                <StyledBoxTwo>0</StyledBoxTwo>
+                <StyledBoxTwo>1</StyledBoxTwo>
+              </Td>
+              <Td>
+                <StyledBoxTwo>0</StyledBoxTwo>
+                <StyledBoxTwo>1</StyledBoxTwo>
+              </Td>
+              <Td>
+                <StyledBoxTwo>0</StyledBoxTwo>
+                <StyledBoxTwo>1</StyledBoxTwo>
+              </Td>
+              <Td>
+                <StyledBoxTwo>0</StyledBoxTwo>
+                <StyledBoxTwo>1</StyledBoxTwo>
+              </Td>
+              <Td>
+                <StyledBoxTwo>0</StyledBoxTwo>
+                <StyledBoxTwo>1</StyledBoxTwo>
+              </Td>
+            </Tr>
+          ))}
+        </Tbody>
+      </Table>
+      <Table variant="simple">
+        <Tbody>
+          {data.map((entry, index) => (
+            <Tr key={index}>
+              <Td>
+                <StyledBoxTwo>0</StyledBoxTwo>
+                <StyledBoxTwo>1</StyledBoxTwo>
+              </Td>
+              <Td>
+                <StyledBoxTwo>0</StyledBoxTwo>
+                <StyledBoxTwo>1</StyledBoxTwo>
+              </Td>
+              <Td>
+                <StyledBoxTwo>0</StyledBoxTwo>
+                <StyledBoxTwo>1</StyledBoxTwo>
+              </Td>
+              <Td>
+                <StyledBoxTwo>0</StyledBoxTwo>
+                <StyledBoxTwo>1</StyledBoxTwo>
+              </Td>
+              <Td>
+                <StyledBoxTwo>0</StyledBoxTwo>
+                <StyledBoxTwo>1</StyledBoxTwo>
+              </Td>
+              <Td>
+                <StyledBoxTwo>0</StyledBoxTwo>
+                <StyledBoxTwo>1</StyledBoxTwo>
+              </Td>
+              <Td>
+                <StyledBoxTwo>0</StyledBoxTwo>
+                <StyledBoxTwo>1</StyledBoxTwo>
+              </Td>
+            </Tr>
+          ))}
+        </Tbody>
+      </Table>
+      <Table variant="simple">
+        <Tbody>
+          {data.map((entry, index) => (
+            <Tr key={index}>
+              <Td>
+                <StyledBoxTwo>0</StyledBoxTwo>
+                <StyledBoxTwo>1</StyledBoxTwo>
+              </Td>
+              <Td>
+                <StyledBoxTwo>0</StyledBoxTwo>
+                <StyledBoxTwo>1</StyledBoxTwo>
+              </Td>
+              <Td>
+                <StyledBoxTwo>0</StyledBoxTwo>
+                <StyledBoxTwo>1</StyledBoxTwo>
+              </Td>
+              <Td>
+                <StyledBoxTwo>0</StyledBoxTwo>
+                <StyledBoxTwo>1</StyledBoxTwo>
+              </Td>
+              <Td>
+                <StyledBoxTwo>0</StyledBoxTwo>
+                <StyledBoxTwo>1</StyledBoxTwo>
+              </Td>
+              <Td>
+                <StyledBoxTwo>0</StyledBoxTwo>
+                <StyledBoxTwo>1</StyledBoxTwo>
+              </Td>
+              <Td>
+                <StyledBoxTwo>0</StyledBoxTwo>
+                <StyledBoxTwo>1</StyledBoxTwo>
+              </Td>
+            </Tr>
+          ))}
+        </Tbody>
+      </Table>
+      <Table variant="simple">
+        <Tbody>
+          {data.map((entry, index) => (
+            <Tr key={index}>
+              <Td>
+                <StyledBoxTwo>0</StyledBoxTwo>
+                <StyledBoxTwo>1</StyledBoxTwo>
+              </Td>
+              <Td>
+                <StyledBoxTwo>0</StyledBoxTwo>
+                <StyledBoxTwo>1</StyledBoxTwo>
+              </Td>
+              <Td>
+                <StyledBoxTwo>0</StyledBoxTwo>
+                <StyledBoxTwo>1</StyledBoxTwo>
+              </Td>
+              <Td>
+                <StyledBoxTwo>0</StyledBoxTwo>
+                <StyledBoxTwo>1</StyledBoxTwo>
+              </Td>
+              <Td>
+                <StyledBoxTwo>0</StyledBoxTwo>
+                <StyledBoxTwo>1</StyledBoxTwo>
+              </Td>
+              <Td>
+                <StyledBoxTwo>0</StyledBoxTwo>
+                <StyledBoxTwo>1</StyledBoxTwo>
+              </Td>
+              <Td>
+                <StyledBoxTwo>0</StyledBoxTwo>
+                <StyledBoxTwo>1</StyledBoxTwo>
+              </Td>
+            </Tr>
+          ))}
+        </Tbody>
+      </Table>
     </>
   );
 };
 
 export default Index;
+
+const StyledBox = styled(Box)`
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  background: ${(props) => props.bgColor};
+`;
+
+const StyledBoxTwo = styled(Box)`
+  background: red;
+  color: white;
+  margin-right: 10px;
+  border-bottom: 1px solid white;
+  border-right: 1px solid white;
+  width: 200px;
+`;

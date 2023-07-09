@@ -15,25 +15,24 @@ import { accordionObj } from './components/helpers';
 
 function index() {
   return (
-    <Accordion defaultIndex={[0]} allowMultiple margin={2}>
+    <Accordion defaultIndex={[0]} allowMultiple margin={2} bg="blue">
       {accordionObj.map((item) => (
         <AccordionItem>
           <h1>
             <AccordionButton
-              sx={{ bg: 'white' }}
-              _hover={{ bg: 'white'}}
-              marginBottom={1}
+              sx={{ bg: 'blue' }}
+              _hover={{ bg: 'turquoise' }}
+              marginBottom={4}
             >
-              <Heading variant="h1" textDecoration="underline">
+              <Heading variant="h1" textDecoration="underline" color="white">
                 {item.header}
               </Heading>
-              <AccordionIcon />
             </AccordionButton>
           </h1>
           <AccordionPanel pb={4}>
-            <OrderedList>
+            <OrderedList pl={8}>
               {item.data.lists.map((list) => (
-                <ListItem color="white">{list}</ListItem>
+                <ListItem color="white" mb={4} fontSize={12}>{list}</ListItem>
               ))}
             </OrderedList>
           </AccordionPanel>
