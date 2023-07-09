@@ -12,7 +12,6 @@ export const ButtonStyle = {
     primary: (props) => ({
       bg: props.theme.colors.turquoise,
       color: '#fff',
-      width: '127px',
       fontWeight: '600',
       borderRadius: 'none',
       ':focus': {

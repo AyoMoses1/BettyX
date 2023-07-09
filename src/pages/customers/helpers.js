@@ -1,20 +1,22 @@
 export const data = [
   {
-    title: "Add one or more players to an agent",
-    link: "https://",
-    caption: "Player"
+    title: 'Add one or more players to an agent',
+    link: 'https://',
+    caption: 'Player',
   },
   {
-    title: "Add a new agent account. Agents have players under them(not agents)",
-    link: "https://",
-    caption: "Agent"
+    title:
+      'Add a new agent account. Agents have players under them(not agents)',
+    link: 'https://',
+    caption: 'Agent',
   },
   {
-    title: "Add a new master agent account. Master agents have agents under them(not players)",
-    link: "https://",
-    caption: "Master"
-  }
-]
+    title:
+      'Add a new master agent account. Master agents have agents under them(not players)',
+    link: 'https://',
+    caption: 'Master',
+  },
+];
 
 export const selectDates = [
   {
@@ -93,23 +95,8 @@ export const selectAmount = [
   },
 ];
 
-export const formData = [
-  {
-    label: 'Password',
-    value: 'ALEX321',
-  },
-  {
-    label: 'Name',
-    value: '',
-  },
-  {
-    label: 'Agent',
-    value: 500,
-  },
-  {
-    label: 'Min Straight Bet',
-    value: 10,
-  },
+
+export const formDataTwo = [
   {
     label: 'Max Straight Bet',
     value: 500,
@@ -125,14 +112,6 @@ export const formData = [
   {
     label: 'Max Straight Bet',
     value: 500,
-  },
-  {
-    label: 'Max Per Offering',
-    value: 500,
-  },
-  {
-    label: 'Min Straight Bet',
-    value: 10,
   },
   {
     label: 'Max Straight Bet',
@@ -152,13 +131,48 @@ export const formData = [
   },
 ];
 
+export const formData = [
+  {
+    label: 'Password',
+    value: 'ALEX321',
+  },
+  {
+    label: 'Name',
+    value: '',
+  },
+  {
+    label: 'Agent',
+    value: 'ALEX321',
+  },
+  {
+    label: 'Account Status',
+    value: 'Active',
+  },
+];
+
+export const formDataThree = [
+  {
+    label: 'Crypto Promo(%)',
+    value: 0,
+  },
+  {
+    label: 'Promo Type',
+    value: 'Promo Credit',
+  },
+];
 
 export const formSwitch = [
-  { label: 'Live Parlays:', isChecked: true },
-  { label: 'Block Wagering Prior To Start:', isChecked: true },
-  { label: 'Block Wagering at Halftime:', isChecked: true },
-  { label: 'Include Graded Wagers in Limits:', isChecked: true },
-  { label: 'Use Risk (not Volume) for Limits:', isChecked: false },
+  { label: 'Sportbook:', isChecked: true },
+  { label: 'Casino', isChecked: true },
+  { label: 'Racebook:', isChecked: true },
+  { label: 'Messaging:', isChecked: true },
+  { label: 'Dynamic Live:', isChecked: true },
+  { label: 'Prop Plus:', isChecked: true },
+  { label: 'Lottery', isChecked: true },
+];
+
+export const formSwitchTwo = [
+  { label: 'Enable Captcha:', isChecked: false },
 ];
 
 export const caption =
