@@ -7,12 +7,14 @@ import { data } from './helpers';
 import { createColumnHelper } from '@tanstack/react-table';
 import { Link } from 'react-router-dom';
 import { CurrentPageContext } from '../../App';
-const columnHelper = createColumnHelper();
+import Modal from '../../common/Modal';
+import EditForm from './components/EditForm';
 
 const Index = () => {
-  const [setTopInputObj] = useState({ state: '', query: '' });
-  const { onOpen } = useDisclosure();
+  const [topInputObj, setTopInputObj] = useState({ state: '', query: '' });
   const { setCurrentPage } = useContext(CurrentPageContext);
+  const columnHelper = createColumnHelper();
+  const { isOpen, onClose, onOpen } = useDisclosure();
 
   const handleInputChange = (name, value) => {
     setTopInputObj((prevState) => ({
@@ -22,10 +24,9 @@ const Index = () => {
   };
 
   const topTableButtons = [
-    { name: '', onClick: onOpen, icon: <FaCog />, asButton: true },
+    { name: '', icon: <FaCog />, asButton: true },
     {
       name: '',
-      onClick: onOpen,
       icon: <Icon as={FaFileExcel} ml={2} boxSize={10} color="green" />,
       asButton: false,
     },
@@ -109,7 +110,7 @@ const Index = () => {
     columnHelper.accessor('action', {
       header: '',
       cell: () => (
-        <Button bgColor="blue" color="white">
+        <Button bgColor="blue" color="white" onClick={() => onOpen()}>
           Edit
         </Button>
       ),
@@ -132,6 +133,13 @@ const Index = () => {
         size="sm"
         title="Customer Admin"
       />
+      <Modal
+        isOpen={isOpen}
+        onClose={onClose}
+        size="6xl"
+      >
+        <EditForm onClose={onClose} />
+      </Modal>
     </>
   );
 };

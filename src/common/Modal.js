@@ -19,7 +19,7 @@ function ModalComponent(props) {
       <ModalOverlay />
       <ModalContent>
         <ModalHeader>{props.title}</ModalHeader>
-        <Divider/>
+        {props.title && <Divider />}
         <ModalBody maxH="70vh" overflow="auto">
           {props.children}
         </ModalBody>
