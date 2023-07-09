@@ -125,15 +125,3 @@ const MyForm = () => {
 };
 
 export default MyForm;
-
-const StyledBox = styled(Box)`
-  color: red;
-  text-align: center;
-  border: 2px solid red;
-  font-style: italic;
-`;
-
-const StyledInputLeftAddon = styled(InputLeftAddon)`
-  border: 1px solid #cbd5e0 !important;
-  border-radius: 0px !important;
-`;

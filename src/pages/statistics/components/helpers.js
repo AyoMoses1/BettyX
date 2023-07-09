@@ -280,3 +280,135 @@ export const accessors = [
 
   { id: 4, name: 'Order History', columns: orderColumns },
 ];
+
+
+export const selectMode = [
+  {
+    value: 'manual',
+    name: 'Manual Mode',
+  },
+  {
+    value: 'agent',
+    name: 'Agent Mode',
+  },
+];
+
+export const selectDates = [
+  {
+    value: 'previousweeks',
+    name: 'Previous Weeks',
+  },
+  {
+    value: '1',
+    name: '1 week ago',
+  },
+  {
+    value: '2',
+    name: '2 weeks ago',
+  },
+  {
+    value: '3',
+    name: '3 weeks ago',
+  },
+  {
+    value: '4',
+    name: '4 weeks ago',
+  },
+  {
+    value: '5',
+    name: '5 weeks ago',
+  },
+  {
+    value: '6',
+    name: '6 weeks ago',
+  },
+  {
+    value: '7',
+    name: '7 weeks ago',
+  },
+  {
+    value: '8',
+    name: '8 weeks ago',
+  },
+  {
+    value: '9',
+    name: '9 weeks ago',
+  },
+  {
+    value: '10',
+    name: '10 weeks ago',
+  },
+  {
+    value: '11',
+    name: '11 weeks ago',
+  },
+  {
+    value: '12',
+    name: '12 weeks ago',
+  },
+  {
+    value: '13',
+    name: '13 weeks ago',
+  },
+  {
+    value: '14',
+    name: '14 weeks ago',
+  },
+  {
+    value: '15',
+    name: '15 weeks ago',
+  },
+  {
+    value: '16',
+    name: '16 weeks ago',
+  },
+  {
+    value: '17',
+    name: '17 weeks ago',
+  },
+  {
+    value: '18',
+    name: '18 weeks ago',
+  },
+  {
+    value: '19',
+    name: '19 weeks ago',
+  },
+  {
+    value: '20',
+    name: '20 weeks ago',
+  },
+  {
+    value: '21',
+    name: '21 weeks ago',
+  },
+  {
+    value: '22',
+    name: '22 weeks ago',
+  },
+  {
+    value: '23',
+    name: '23 weeks ago',
+  },
+  {
+    value: '24',
+    name: '24 weeks ago',
+  },
+  {
+    value: '25',
+    name: '25 weeks ago',
+  },
+  {
+    value: '26',
+    name: '26 weeks ago',
+  },
+  {
+    value: '27',
+    name: '27 weeks ago',
+  },
+  {
+    value: '28',
+    name: '28 weeks ago',
+  },
+];
+
