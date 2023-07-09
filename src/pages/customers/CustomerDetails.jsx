@@ -5,7 +5,7 @@ import React from 'react';
 
 const CustomerDetails = () => {
   return (
-    <Container maxW="98%">
+    <Container maxW="100%" bg="gray3">
       <Bar />
       <Form />
     </Container>

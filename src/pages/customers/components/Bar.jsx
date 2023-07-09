@@ -13,16 +13,12 @@ import { BiArrowBack } from 'react-icons/bi';
 const Bar = () => {
   return (
     <>
-      <Box bg="blue" mt={4} px={4} py={2}>
+      <Box bg="white" mt={4} p={4}>
         <Flex align="center" justify="space-between">
           <Box>
             <VStack align="start">
-              <Heading variant="h1" color="#fff">
-                AMICH123 (ALEX123)
-              </Heading>
-              <Text variant="tableText" color="white">
-                Agent ALEX321
-              </Text>
+              <Heading variant="h1">AMICH123 (ALEX123)</Heading>
+              <Text variant="tableText">Agent ALEX321</Text>
               <Button
                 variant="primary"
                 size="xs"
@@ -34,7 +30,7 @@ const Bar = () => {
             </VStack>
           </Box>
           <Box>
-            <VStack align="start" color="#fff">
+            <VStack align="start">
               <Box>
                 <span>Balance: 0.00</span>
               </Box>
