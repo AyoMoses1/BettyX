@@ -1,5 +1,6 @@
 import {
   Box,
+  Button,
   Flex,
   FormControl,
   FormLabel,
@@ -104,6 +105,7 @@ const EditForm = () => {
         </StyledFormControl>
       </GridItem>
       <GridItem colSpan={1} bg="grey" p={4}>
+      {/* <Button variant="primary" ml="auto">Save</Button> */}
         <StyledFormControl mb={4}>
           <Flex mb={4} align="center">
             <FormLabel flex="1">Parlay Max Wager</FormLabel>

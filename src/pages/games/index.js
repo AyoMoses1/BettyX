@@ -233,15 +233,21 @@ const Index = () => {
                 <Td>Period: 1st 5 linnings</Td>
                 <Td>
                   <HStack>
-                    <StyledBox bgColor="red">$</StyledBox>
-                    <StyledBox bgColor="blue">R</StyledBox>
-                    <StyledBox bgColor="cyan">#</StyledBox>
+                    <StyledBox bgColor="blue" color="red">
+                      $
+                    </StyledBox>
+                    <StyledBox bgColor="blue" color="skyblue">
+                      R
+                    </StyledBox>
+                    <StyledBox bgColor="blue" color="white">
+                      #
+                    </StyledBox>
                   </HStack>
                 </Td>
                 <Td color={index % 2 === 0 ? 'red.500' : 'blue.500'}>
                   <HStack>
-                    <StyledBox bgColor="blue">+</StyledBox>
-                    <StyledBox bgColor="blue">-</StyledBox>
+                    <StyledBox bgColor="#06364d">+</StyledBox>
+                    <StyledBox bgColor="#06364d">-</StyledBox>
                   </HStack>
                 </Td>
                 <Td>
@@ -467,7 +473,7 @@ const StyledBox = styled(Box)`
 `;
 
 const StyledBoxTwo = styled(Box)`
-  background: red;
+  background: #06364d;
   color: white;
   margin-right: 10px;
   border-bottom: 1px solid white;
