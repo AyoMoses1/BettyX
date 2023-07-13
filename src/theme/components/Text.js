@@ -40,8 +40,8 @@ export const TextStyle = {
     }),
     cardText: (props) => ({
       fontWeight: '400',
-      fontSize: '14px',
       color: props.theme.colors.white,
+      fontSize: { base: '12px', md: '14px', lg: '1.1vw' },
     }),
     reviewText: (props) => ({
       fontWeight: '200',

@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import DynamicTable from '../../common/DynamicTable';
-import { selectDates, selectMode, summaryColumns } from './components/helpers';
+import { mobileDates, selectDates, selectMode, summaryColumns } from './components/helpers';
 import { summary as data } from './components/data';
 import {
   Tabs,
@@ -56,9 +56,22 @@ const Index = (props) => {
       name: 'time',
       label: '',
       type: 'select',
-      width: '200px',
+      width: '150px',
       variant: 'outline-select',
       options: selectDates.map((item) => ({
+        value: item.value,
+        name: item.name,
+      })),
+    },
+  ]);
+  const tableLeftMobileInput = useMemo(() => [
+    {
+      name: 'time',
+      label: '',
+      type: 'select',
+      width: '150px',
+      variant: 'outline-select',
+      options: mobileDates.map((item) => ({
         value: item.value,
         name: item.name,
       })),
@@ -70,10 +83,17 @@ const Index = (props) => {
       <Tabs variant="enclosed" isLazy>
         <Flex justifyContent="space-between" px={4}>
           <TabList>
-            <Tab>This Week</Tab>
-            <Tab>Last Week</Tab>
-            <Box mt={4}>
+            <Tab display={['none', 'block']}>This Week</Tab>
+            <Tab display={['none', 'block']}>Last Week</Tab>
+            <Box mt={4} display={['none', 'block']}>
               {tableLeftInput.map((input) =>
+                generateInputs({
+                  ...input,
+                })
+              )}
+            </Box>
+            <Box mt={4} display={['block', 'none']}>
+              {tableLeftMobileInput.map((input) =>
                 generateInputs({
                   ...input,
                 })
@@ -87,9 +107,15 @@ const Index = (props) => {
               <option>With a balance</option>
               <option>With a balance</option>
             </Select>
-            <AiOutlineSetting size={24} />
-            <FaPrint size={24} />
-            <FaFileExcel size={24} />
+            <Box>
+              <AiOutlineSetting size={24} />
+            </Box>
+            <Box display={['none', 'block']}>
+              <FaPrint size={24} />
+            </Box>
+            <Box display={['none', 'block']}>
+              <FaFileExcel size={24} />
+            </Box>
           </HStack>
         </Flex>
         <TabPanels>

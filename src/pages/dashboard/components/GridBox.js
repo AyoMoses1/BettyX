@@ -20,7 +20,7 @@ const GridBox = ({ data }) => {
   };
   return (
     <GridItem
-      colSpan={1}
+      colSpan={['2', '2', '2', '1']}
       bg="blue"
       py={4}
       borderRadius="md"

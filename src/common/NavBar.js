@@ -17,6 +17,7 @@ import {
   AiOutlineSetting,
 } from 'react-icons/ai';
 import { CurrentPageContext } from '../App';
+import { BiLogInCircle, BiPowerOff } from 'react-icons/bi';
 
 const Navbar = () => {
   const handleLogout = () => {
@@ -26,7 +27,7 @@ const Navbar = () => {
   const { setCurrentPage } = useContext(CurrentPageContext);
 
   return (
-    <Box bg="gray.800" color="white" py={4} h="12vh">
+    <Box bg="gray.800" color="white" py={['2', '4']} h={['8vh', '12vh']}>
       <Flex maxW="98%" mx="auto" align="center">
         <Box>
           <Flex spacing="10px">
@@ -34,20 +35,38 @@ const Navbar = () => {
               <AiOutlineHome size={24} />
             </Box>
             <Box p="4" mr={2} bg="blue">
-              <AiOutlineLineChart size={24} onClick={() => setCurrentPage('statistics')} />
+              <AiOutlineLineChart
+                size={24}
+                onClick={() => setCurrentPage('statistics')}
+              />
             </Box>
-            <Box p="4" mr={2} bg="blue" onClick={() => setCurrentPage('pending')}>
+            <Box
+              p="4"
+              mr={2}
+              bg="blue"
+              onClick={() => setCurrentPage('pending')}
+              display={['none', 'block']}
+            >
               <AiOutlineMessage size={24} />
             </Box>
-            <Box p="4" mr={2} bg="blue">
-              <AiOutlineCalendar size={24} onClick={() => setCurrentPage('messages')}/>
+            <Box p="4" mr={2} bg="blue" display={['none', 'block']}>
+              <AiOutlineCalendar
+                size={24}
+                onClick={() => setCurrentPage('messages')}
+              />
             </Box>
-            <Box p="4" mr={2} bg="blue">
-              <AiOutlineSetting size={24} onClick={() => setCurrentPage('settings')} />
+            <Box p="4" mr={2} bg="blue" display={['none', 'block']}>
+              <AiOutlineSetting
+                size={24}
+                onClick={() => setCurrentPage('settings')}
+              />
+            </Box>
+            <Box p="4" mr={2} bg="blue" display={['block', 'none']}>
+              <FiSearch size={24} onClick={() => setCurrentPage('settings')} />
             </Box>
           </Flex>
         </Box>
-        <InputGroup w="300px">
+        <InputGroup w="300px" display={['none', 'block']}>
           <InputLeftElement
             pointerEvents="none"
             children={<FiSearch color="gray" />}
@@ -60,15 +79,9 @@ const Navbar = () => {
           />
         </InputGroup>
         <Spacer />
-        <Button
-          colorScheme="blue"
-          variant="ghost"
-          leftIcon={<FiLogOut />}
-          onClick={handleLogout}
-          alignSelf="flex-end"
-        >
-          Logout
-        </Button>
+        <Box bg="red" onClick={handleLogout} borderRadius={4}>
+          <BiPowerOff size={48} />
+        </Box>
       </Flex>
     </Box>
   );
