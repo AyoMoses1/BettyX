@@ -29,12 +29,12 @@ export const ButtonStyle = {
     success: (props) => ({
       bg: props.theme.colors.green,
       color: props.theme.colors.white,
-      borderRadius: "none"
+      borderRadius: 'none',
     }),
     cancel: (props) => ({
-      bg: "red",
+      bg: 'red',
       color: props.theme.colors.white,
-      borderRadius: "none"
+      borderRadius: 'none',
     }),
     secondary: (props) => ({
       bg: props.theme.colors.buttonOne,

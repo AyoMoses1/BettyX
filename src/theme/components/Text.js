@@ -1,9 +1,7 @@
 export const TextStyle = {
   baseStyle: () => ({
-    fontSize: { base: '16px', lg: '1.2vw' },
+    fontSize: { base: '12px', lg: '1.2vw' },
   }),
-
-  size: {},
   variants: {
     mutedCenter: (props) => ({
       color: props.theme.colors.muted,

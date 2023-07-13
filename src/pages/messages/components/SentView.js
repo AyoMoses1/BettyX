@@ -9,7 +9,7 @@ const SentView = () => {
         <Text textTransform="uppercase">
           My Sent Messages
         </Text>
-        <Button variant="outline">
+        <Button variant="outline" size={['sm', 'md']}>
           Delete messages
         </Button>
       </Flex>

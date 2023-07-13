@@ -19,13 +19,14 @@ const MessagingComponent = () => {
   return (
     <Tabs isLazy orientation="vertical" defaultIndex={0} variant='unstyled'>
       <Grid templateColumns="repeat(6, 1fr)" width="100%" p={4}>
-        <GridItem colSpan={2}>
+        <GridItem colSpan={[6, 2]}>
           <TabList sx={{ borderRight: '2px solid #dfdfdf' }}>
             <Tab sx={{ borderBottom: '2px solid #dfdfdf' }} mb={8}>
               <Button
                 variant="secondary"
                 w="100%"
-                leftIcon={<MdMailOutline size={36} />}
+                size={['sm', 'md', 'lg']}
+                leftIcon={<MdMailOutline size={24} />}
               >
                 Compose
               </Button>
@@ -35,8 +36,9 @@ const MessagingComponent = () => {
                 variant="noBg"
                 w="100%"
                 display="flex"
+                size={['sm', 'md', 'lg']}
                 justifyContent="start"
-                leftIcon={<FiInbox size={36} />}
+                leftIcon={<FiInbox size={24} />}
               >
                 INBOX
               </Button>
@@ -45,7 +47,8 @@ const MessagingComponent = () => {
               <Button
                 variant="primary"
                 w="100%"
-                leftIcon={<FiSend size={36} />}
+                 size={['sm', 'md', 'lg']}
+                leftIcon={<FiSend size={24} />}
                 display="flex"
                 justifyContent="start"
               >
@@ -54,7 +57,7 @@ const MessagingComponent = () => {
             </Tab>
           </TabList>
         </GridItem>
-        <GridItem colSpan={4}>
+        <GridItem colSpan={[6, 4]}>
           <TabPanels>
             <TabPanel>
               <ComposeForm />

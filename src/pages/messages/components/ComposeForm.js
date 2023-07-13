@@ -14,6 +14,7 @@ import {
 } from '@chakra-ui/react';
 import { Spacer } from '@chakra-ui/react';
 import { FaPrint } from 'react-icons/fa';
+import styled from 'styled-components';
 
 const InboxView = () => {
   return (
@@ -25,13 +26,9 @@ const InboxView = () => {
       </Box>
       <Box mt={4}>
         <Flex align="center" p={2}>
-          <Box flex="1">
+          <Box flex="2">
             <InputGroup>
-              <InputLeftAddon
-                children="Search Accounts"
-                border="1px"
-                borderRadius="none"
-              />
+              <StyledInputLeftAddon children="Search Accounts" />
               <Input
                 type="tel"
                 placeholder="Search accounts..."
@@ -40,7 +37,7 @@ const InboxView = () => {
             </InputGroup>
           </Box>
           <Spacer />
-          <Box mx={2}>
+          <Box>
             <Select
               placeholder="Specific Account(S)"
               border="1px solid #dfdfdf"
@@ -78,10 +75,10 @@ const InboxView = () => {
           />
         </Box>
         <Flex justifyContent="space-between" alignItems="center" mb={2}>
-          <Button color="white" bg="red">
+          <Button color="white" bg="red" size={['sm', 'md']}>
             Cancel
           </Button>
-          <Button bg="green" color="white">
+          <Button bg="green" color="white" size={['sm', 'md']}>
             Send
           </Button>
         </Flex>
@@ -89,5 +86,10 @@ const InboxView = () => {
     </>
   );
 };
+
+const StyledInputLeftAddon = styled(InputLeftAddon)`
+  border: 1px solid #cbd5e0;
+  border-radius: 0px !important;
+`;
 
 export default InboxView;

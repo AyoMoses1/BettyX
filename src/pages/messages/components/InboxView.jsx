@@ -9,7 +9,7 @@ const InboxView = () => {
         <Text textTransform="uppercase">
           My inbox Messages
         </Text>
-        <Button variant="outline">
+        <Button variant="outline" size={['sm', 'md']}>
           Delete messages
         </Button>
       </Flex>
