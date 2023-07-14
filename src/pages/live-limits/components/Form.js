@@ -24,10 +24,10 @@ const MyForm = () => {
 
   return (
     <Box margin="auto" p={8} bg="blue" color="white" mt={1}>
-      <StyledBox mb={8} p={4}>
+      <StyledBox mb={8} p={[2, 4]}>
         {caption}
       </StyledBox>
-      <Box px={8}>
+      <Box px={[2, 8]}>
         <Select
           variant="unstyled"
           border="none"
@@ -46,14 +46,14 @@ const MyForm = () => {
         </Select>
       </Box>
       {selectedOption === 'option1' ? (
-        <Grid templateColumns="repeat(4, 1fr)" p={8} gap={4}>
-          <GridItem>
+        <Grid templateColumns="repeat(4, 1fr)"  px={[2, 8]} gap={4}>
+          <GridItem colSpan={[4, 1]}>
             <FormControl>
               <FormLabel>How many accounts to add?</FormLabel>
               <Input type="number" />
             </FormControl>
           </GridItem>
-          <GridItem>
+          <GridItem colSpan={[4, 1]}>
             <FormControl>
               <FormLabel>Under which agent?</FormLabel>
               <InputGroup>
@@ -62,13 +62,13 @@ const MyForm = () => {
               </InputGroup>
             </FormControl>
           </GridItem>
-          <GridItem>
+          <GridItem colSpan={[4, 1]}>
             <FormControl>
               <FormLabel>Starting Account # </FormLabel>
               <Input type="number" />
             </FormControl>
           </GridItem>
-          <GridItem alignSelf="center" mt={8}>
+          <GridItem alignSelf="center" mt={8} colSpan={[4, 1]}>
             <FormControl display="flex" alignItems="center">
               <Switch id="switch" colorScheme="whatsapp" size="md" mr={2} />
               <FormLabel htmlFor="switch" mr={2}>
@@ -79,11 +79,11 @@ const MyForm = () => {
         </Grid>
       ) : (
         <form>
-          <Grid templateColumns="repeat(4, 1fr)" gap={4} p={8}>
-            <GridItem colSpan={3}>
+          <Grid templateColumns="repeat(4, 1fr)" gap={4} p={[2, 8]}>
+            <GridItem colSpan={[4, 3]}>
               <Grid templateColumns="repeat(2, 1fr)" gap={8}>
                 {formData.map((item) => (
-                  <GridItem colSpan={1}>
+                  <GridItem colSpan={[2, 1]}>
                     <FormControl mb={3} key={item.name}>
                       <FormLabel htmlFor={item.name} mb={0}>
                         {item.label}
@@ -102,10 +102,10 @@ const MyForm = () => {
                 ))}
               </Grid>
             </GridItem>
-            <GridItem colSpan={1} justifySelf="end">
+            <GridItem colSpan={[4, 1]} justifySelf={["start","end"]}>
               {formSwitch.map((item) => (
                 <Box mb={8}>
-                  <FormControl display="flex" alignItems="center">
+                  <FormControl display="flex" alignItems="center" >
                     <FormLabel htmlFor="switch" mb={0} mr={2}>
                       {item.label}
                     </FormLabel>

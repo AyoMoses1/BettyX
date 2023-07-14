@@ -11,7 +11,7 @@ const Bar = () => {
           </HStack>
         </Box>
         <Box>
-          <Button variant="primary">Save</Button>
+          <Button variant="primary" size={['sm', 'md']}>Save</Button>
         </Box>
       </Flex>
     </Box>

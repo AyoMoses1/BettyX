@@ -8,12 +8,17 @@ const Bar = () => {
       <Flex align="center" justify="space-between">
         <Box>
           <HStack>
-            <AiOutlineSetting size={24} color="#fff"/>
-            <Heading variant="h1" color="#fff"> My Settings </Heading>
+            <AiOutlineSetting size={24} color="#fff" />
+            <Heading variant="h1" color="#fff">
+              {' '}
+              My Settings{' '}
+            </Heading>
           </HStack>
         </Box>
         <Box>
-          <Button variant="primary">Save</Button>
+          <Button variant="primary" size={['sm', 'md']}>
+            Save
+          </Button>
         </Box>
       </Flex>
     </Box>
