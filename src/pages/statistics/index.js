@@ -103,9 +103,10 @@ const Index = (props) => {
           <HStack bg="gray.200" spacing={4} px={4}>
             <Select>
               <option>With a balance</option>
-              <option>With a psalmist</option>
-              <option>With a balance</option>
-              <option>With a balance</option>
+              <option>Active for the week</option>
+              <option>Over Settle</option>
+              <option>Big Figures</option>
+              <option>Summary</option>
             </Select>
             <Box>
               <AiOutlineSetting size={24} />
