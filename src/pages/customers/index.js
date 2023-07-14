@@ -13,7 +13,7 @@ const Index = () => {
       title="Add Customer"
       isOpen={isModalOpen}
       onClose={handleCloseModal}
-      size="md"
+      size={["sm","md"]}
     >
       <ModalOptions onClose={handleCloseModal} />
     </Modal>

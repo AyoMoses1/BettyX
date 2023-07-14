@@ -21,11 +21,11 @@ const NewCustomer = () => {
         <Heading variant="h1" color="#fff">
           Add Player
         </Heading>
-        <Button variant="success" px={4} my={2}>
+        <Button variant="success" px={4} my={2} size={['sm','md']}>
           Continue
         </Button>
       </Flex>
-      <Grid templateColumns="repeat(4, 1fr)" p={8} gap={4}>
+      <Grid templateColumns="repeat(auto-fit, minmax(250px, 1fr))" p={8} gap={4}>
         <GridItem>
           <FormControl>
             <FormLabel>How many accounts to add?</FormLabel>
