@@ -110,7 +110,7 @@ const Index = () => {
     columnHelper.accessor('action', {
       header: '',
       cell: () => (
-        <Button bgColor="blue" color="white" onClick={() => onOpen()}>
+        <Button bgColor="blue" color="white" onClick={() => onOpen()} size={['sm', 'md']}>
           Edit
         </Button>
       ),
@@ -133,11 +133,7 @@ const Index = () => {
         size="sm"
         title="Customer Admin"
       />
-      <Modal
-        isOpen={isOpen}
-        onClose={onClose}
-        size="6xl"
-      >
+      <Modal isOpen={isOpen} onClose={onClose} size={["md","6xl"]}>
         <EditForm onClose={onClose} />
       </Modal>
     </>

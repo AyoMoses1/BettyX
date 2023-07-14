@@ -32,7 +32,7 @@ const TableTop = ({ inputObj, buttons, onChange, title, float }) => {
         <>
           <Box
             key={input.name}
-            display={['none', 'block']}
+            display={['block', 'block']}
             mr={2}
             flexBasis={`${
               inputObj.length > 3 ? '24' : 100 / inputObj.length - 2
@@ -49,7 +49,7 @@ const TableTop = ({ inputObj, buttons, onChange, title, float }) => {
               },
             })}
           </Box>
-          <Box
+          {/* <Box
             key={input.name}
             mr={2}
             display={['block', 'none']}
@@ -65,7 +65,7 @@ const TableTop = ({ inputObj, buttons, onChange, title, float }) => {
                 }
               },
             })}
-          </Box>
+          </Box> */}
         </>
       ))}
       <Box display="flex">

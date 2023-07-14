@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useMemo } from 'react';
 import {
   flexRender,
@@ -14,6 +13,7 @@ import {
   Tbody,
   Td,
   useColorMode,
+  Box,
 } from '@chakra-ui/react';
 import Pagination from './Pagination';
 import Loading from '../../common/Loading';
@@ -91,18 +91,16 @@ const Index = ({
   ));
 
   return (
-    <TableContainer width="100%">
+    <Box overflowX="auto">
       {isLoading && <Loading text="loading data" />}
-      <Table
-        variant={variant}
-        colorScheme={colorScheme}
-        size={size}
-      >
-        <Thead backgroundColor={colorMode === 'dark' ? 'black' : '#F0F2F5'}>
-          {tableHeadRows}
-        </Thead>
-        <Tbody>{tableBodyRows}</Tbody>
-      </Table>
+      <TableContainer width="100%">
+        <Table variant={variant} colorScheme={colorScheme} size={size}>
+          <Thead backgroundColor={colorMode === 'dark' ? 'black' : '#F0F2F5'}>
+            {tableHeadRows}
+          </Thead>
+          <Tbody>{tableBodyRows}</Tbody>
+        </Table>
+      </TableContainer>
       {/* {!hidePagination && (
         <Pagination
           previousPage={table.previousPage}
@@ -118,7 +116,7 @@ const Index = ({
           pageCount={totalPages ?? 0}
         />
       )} */}
-    </TableContainer>
+    </Box>
   );
 };
 

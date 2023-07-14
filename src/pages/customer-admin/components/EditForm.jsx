@@ -16,8 +16,8 @@ import styled from 'styled-components';
 
 const EditForm = () => {
   return (
-    <Grid templateColumns="repeat(3, 1fr)" gap={4} mb={8} px={4}>
-      <GridItem colSpan={1} bg="grey" p={4}>
+    <Grid templateColumns="repeat(3, 1fr)" gap={4} mb={8} px={[0,4]}>
+      <GridItem colSpan={[3, 1]} bg="grey" p={4}>
         <StyledFormControl mb={4}>
           <Flex mb={4} align="center">
             <FormLabel flex="1">Password</FormLabel>
@@ -60,7 +60,7 @@ const EditForm = () => {
           </Flex>
         </StyledFormControl>
       </GridItem>
-      <GridItem colSpan={1} bg="grey" p={4}>
+      <GridItem colSpan={[3, 1]} bg="grey" p={4}>
         <HStack mb={4} align="center">
           <Text variant="cardText" color="#000">
             Pending
@@ -104,7 +104,7 @@ const EditForm = () => {
           </Flex>
         </StyledFormControl>
       </GridItem>
-      <GridItem colSpan={1} bg="grey" p={4}>
+      <GridItem colSpan={[3, 1]} bg="grey" p={4}>
       {/* <Button variant="primary" ml="auto">Save</Button> */}
         <StyledFormControl mb={4}>
           <Flex mb={4} align="center">
