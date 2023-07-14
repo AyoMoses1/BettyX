@@ -12,6 +12,7 @@ import {
   Switch,
   FormLabel,
   FormControl,
+  useBreakpointValue,
 } from '@chakra-ui/react';
 import { FaSearch } from 'react-icons/fa';
 import styled from 'styled-components';
@@ -22,7 +23,6 @@ const Index = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [showResults, setShowResults] = useState(false);
   const [showTable, setShowTable] = useState(false);
-
 
   const handleInputChange = (event) => {
     const value = event.target.value;
@@ -36,13 +36,15 @@ const Index = () => {
   };
 
   const handleSearch = () => {
-    setShowTable(true)
+    setShowTable(true);
   };
+
+  const inputWidth = useBreakpointValue({ base: '100%', md: '300px' });
 
   return (
     <>
-      <Flex align="center" bg="grey" m={4} p={4} gap={4}>
-        <Box>
+      <Flex align="center" bg="grey" m={4} p={4} gap={4} flexWrap="wrap">
+        <Box width={inputWidth}>
           <InputGroup>
             <StyledInputLeftAddon children="Agents" />
             <Input
@@ -85,7 +87,7 @@ const Index = () => {
             </List>
           )}
         </Box>
-        <Box>
+        <Box width={inputWidth}>
           <InputGroup>
             <StyledInputLeftAddon children="Players" />
             <Input
@@ -98,7 +100,7 @@ const Index = () => {
             />
           </InputGroup>
         </Box>
-        <Box>
+        <Box width={inputWidth}>
           <Select defaultValue="today">
             <option value="today">Today</option>
             <option value="7">7 days</option>
@@ -106,7 +108,7 @@ const Index = () => {
             <option value="90">90 days</option>
           </Select>
         </Box>
-        <Box>
+        <Box width={inputWidth}>
           <FormControl display="flex" alignItems="center">
             <FormLabel htmlFor="switch" mr={2}>
               Show Buyouts

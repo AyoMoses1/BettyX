@@ -9,11 +9,9 @@ import {
   ListItem,
   Text,
   Select,
-  Switch,
-  FormLabel,
-  FormControl,
   Button,
   Icon,
+  useBreakpointValue,
 } from '@chakra-ui/react';
 import { FaFileExcel, FaSearch } from 'react-icons/fa';
 import styled from 'styled-components';
@@ -40,10 +38,12 @@ const Performance = () => {
     setShowTable(true);
   };
 
+  const inputWidth = useBreakpointValue({ base: '100%', md: '200px' });
+
   return (
     <>
-      <Flex align="center" bg="grey" m={4} p={4} gap={4}>
-        <Box>
+      <Flex align="center" bg="grey" m={4} p={4} gap={4} flexWrap="wrap">
+        <Box width={inputWidth}>
           <Select defaultValue="customer-performance">
             <option value="customer-performance">Customer Performance</option>
             <option value="sport-performance">Sport Performance</option>
@@ -51,7 +51,7 @@ const Performance = () => {
             <option value="graded-wagers">Graded Wagers</option>
           </Select>
         </Box>
-        <Box>
+        <Box width={inputWidth}>
           <InputGroup>
             <StyledInputLeftAddon children="Agents" />
             <Input
@@ -94,22 +94,22 @@ const Performance = () => {
             </List>
           )}
         </Box>
-        <Box>
-          <Select defaultValue="all" width="200px">
+        <Box width={inputWidth}>
+          <Select defaultValue="all" width="100%">
             <option value="all">All Action</option>
             <option value="sports">Sports only</option>
             <option value="casino">Casino only</option>
             <option value="poker">Poker only</option>
           </Select>
         </Box>
-        <Box>
-          <Select defaultValue="all" width="200px">
+        <Box width={inputWidth}>
+          <Select defaultValue="all" width="100%">
             <option value="all">Group agent</option>
             <option value="sports">Sorting Columns</option>
           </Select>
         </Box>
-        <Box>
-          <Select defaultValue="today" width="200px">
+        <Box width={inputWidth}>
+          <Select defaultValue="today" width="100%">
             <option value="today">Today</option>
             <option value="7">7 days</option>
             <option value="30">30 days</option>
@@ -117,10 +117,12 @@ const Performance = () => {
           </Select>
         </Box>
       </Flex>
-      <Flex p={4} gap={4} bg="grey">
-        <Button variant="primary"> + Filters</Button>
-        <Icon as={FaFileExcel} ml={2} boxSize={10} color="green" />
-        <Box p={4} bg="orange" borderRadius="50px" ml={12} width="50px">
+      <Flex p={4} gap={4} bg="grey" flexWrap="wrap">
+        <Button variant="primary" flex="1">
+          + Filters
+        </Button>
+        <Icon as={FaFileExcel} boxSize={10} color="green" />
+        <Box p={4} bg="orange" borderRadius="50px" ml={4} width="50px">
           <FaSearch color="white" size={20} onClick={handleSearch} />
         </Box>
       </Flex>

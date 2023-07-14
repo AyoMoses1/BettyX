@@ -29,7 +29,7 @@ const generateInputs = (inputObj) => {
           {inputObj.label}
         </FormLabel>
         <InputGroup maxW={["300px","400px"]} ml={inputObj.float ? 'auto' : ''}>
-          <StyledInputLeftAddon children={inputObj.name} />
+          <StyledInputLeftAddon children={inputObj.name} display={['none', 'block']}/>
           <Input
             id={inputObj.name}
             type={inputObj.type}
