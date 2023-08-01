@@ -29,6 +29,8 @@ import CustomerDetails from './pages/customers/CustomerDetails';
 import SignIn from './pages/auth';
 import Layout from './common/Layout';
 import './App.css';
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
+import paths from 'common/Paths';
 
 export const CurrentPageContext = createContext();
 
@@ -116,12 +118,31 @@ const App = () => {
           handleCloseDrawer,
         }}
       >
-        <Layout setCurrentPage={setCurrentPage}>{renderPage()}</Layout>
-        {currentPage === 'feedback' ? <Feedback /> : <AddCustomer />}
-        <Scores />
+        <Routes>
+          <Route path={paths.login} element={<SignIn />}></Route>
+        </Routes>
+        <RequireAuth>
+          <Layout setCurrentPage={setCurrentPage}>{renderPage()}</Layout>
+          {currentPage === 'feedback' ? <Feedback /> : <AddCustomer />}
+          <Scores />
+        </RequireAuth>
       </CurrentPageContext.Provider>
     </ChakraProvider>
   );
 };
 
 export default App;
+
+function RequireAuth({ children }) {
+  let location = useLocation();
+
+  if (!localStorage.bet_token) {
+    // Redirect them to the /login page, but save the current location they were
+    // trying to go to when they were redirected. This allows us to send them
+    // along to that page after they login, which is a nicer user experience
+    // than dropping them off on the home page.
+    return <Navigate to={paths.login} state={{ from: location }} replace />;
+  }
+
+  return <>{children}</>;
+}

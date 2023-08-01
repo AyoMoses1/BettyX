@@ -5,10 +5,10 @@ import {
   Input,
   InputGroup,
   InputLeftElement,
-  Button,
   Spacer,
+  Text,
 } from '@chakra-ui/react';
-import { FiSearch, FiLogOut } from 'react-icons/fi';
+import { FiSearch } from 'react-icons/fi';
 import {
   AiOutlineHome,
   AiOutlineMessage,
@@ -17,11 +17,21 @@ import {
   AiOutlineSetting,
 } from 'react-icons/ai';
 import { CurrentPageContext } from '../App';
-import { BiLogInCircle, BiPowerOff } from 'react-icons/bi';
+import { BiPowerOff } from 'react-icons/bi';
+import { useQueryClient } from '@tanstack/react-query';
+import { useNavigate } from 'react-router-dom';
+import paths from './Paths';
 
 const Navbar = () => {
+  const queryClient = useQueryClient();
+  const navigate = useNavigate();
+
   const handleLogout = () => {
-    console.log('Logout clicked');
+    localStorage.removeItem('bet_token');
+    localStorage.removeItem('accountId');
+    queryClient.cancelQueries();
+    queryClient.clear();
+    navigate(paths.login);
   };
 
   const { setCurrentPage } = useContext(CurrentPageContext);
@@ -79,7 +89,8 @@ const Navbar = () => {
           />
         </InputGroup>
         <Spacer />
-        <Box bg="red" onClick={handleLogout} borderRadius={4}>
+        <Text mr={4}>{localStorage.accountId}</Text>
+        <Box bg="red" onClick={handleLogout} borderRadius={4} cursor="pointer">
           <BiPowerOff size={48} />
         </Box>
       </Flex>
