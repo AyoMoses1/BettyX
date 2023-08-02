@@ -3,21 +3,21 @@ import { Flex, useDisclosure, Icon, Box, Button } from '@chakra-ui/react';
 import TableTop from '../../common/TableTop';
 import { FaCog, FaFileExcel } from 'react-icons/fa';
 import DynamicTable from '../../common/DynamicTable';
-import { data } from './helpers';
 import { createColumnHelper } from '@tanstack/react-table';
 import { Link } from 'react-router-dom';
 import { CurrentPageContext } from '../../App';
 import Modal from '../../common/Modal';
 import EditForm from './components/EditForm';
-import { useGetAllPlayers } from './queryHooks';
+import { useGetAllPlayers, useGetAllAgentsWithPlayers } from './queryHooks';
 
 const Index = () => {
   const [topInputObj, setTopInputObj] = useState({ state: '', query: '' });
   const { setCurrentPage } = useContext(CurrentPageContext);
   const columnHelper = createColumnHelper();
-  const {data: playersData, isLoading} = useGetAllPlayers()
+  const { data, isLoading } = useGetAllAgentsWithPlayers();
 
-  console.log(playersData, "shhshs")
+  console.log(data);
+
   const { isOpen, onClose, onOpen } = useDisclosure();
 
   const handleInputChange = (name, value) => {
@@ -99,28 +99,57 @@ const Index = () => {
     columnHelper.accessor('sportbook', {
       header: 'Sports Book',
       cell: (info) => {
-        const value = info.getValue()
-        return <Box sx={{ width: '20px', height: '20px', bgColor: value ? "green": "red" }}></Box>
+        const value = info.getValue();
+        return (
+          <Box
+            sx={{
+              width: '20px',
+              height: '20px',
+              bgColor: value ? 'green' : 'red',
+            }}
+          ></Box>
+        );
       },
     }),
     columnHelper.accessor('horses', {
       header: 'Horses',
       cell: (info) => {
-        const value = info.getValue()
-        return <Box sx={{ width: '20px', height: '20px', bgColor: value ? "green": "red" }}></Box>
+        const value = info.getValue();
+        return (
+          <Box
+            sx={{
+              width: '20px',
+              height: '20px',
+              bgColor: value ? 'green' : 'red',
+            }}
+          ></Box>
+        );
       },
     }),
     columnHelper.accessor('casino', {
       header: 'Casino',
       cell: (info) => {
-        const value = info.getValue()
-        return <Box sx={{ width: '20px', height: '20px', bgColor: value ? "green": "red" }}></Box>
+        const value = info.getValue();
+        return (
+          <Box
+            sx={{
+              width: '20px',
+              height: '20px',
+              bgColor: value ? 'green' : 'red',
+            }}
+          ></Box>
+        );
       },
     }),
     columnHelper.accessor('action', {
       header: '',
       cell: () => (
-        <Button bgColor="blue" color="white" onClick={() => onOpen()} size={['sm', 'md']}>
+        <Button
+          bgColor="blue"
+          color="white"
+          onClick={() => onOpen()}
+          size={['sm', 'md']}
+        >
           Edit
         </Button>
       ),
@@ -136,14 +165,21 @@ const Index = () => {
           title="Customer Admin"
         />
       </Flex>
-      <DynamicTable
-        totalCount={playersData?.length}
-        columns={columns}
-        data={playersData || []}
-        size="sm"
-        title="Customer Admin"
-      />
-      <Modal isOpen={isOpen} onClose={onClose} size={["md","6xl"]}>
+      {data?.map((item) => (
+        <>
+          <Box bgColor="blue" color="white" mb={2}>
+            {item.agent}
+          </Box>
+          <DynamicTable
+            totalCount={item?.players?.length}
+            columns={columns}
+            data={item.players || []}
+            size="sm"
+            title="Customer Admin"
+          />
+        </>
+      ))}
+      <Modal isOpen={isOpen} onClose={onClose} size={['md', '6xl']}>
         <EditForm onClose={onClose} />
       </Modal>
     </>

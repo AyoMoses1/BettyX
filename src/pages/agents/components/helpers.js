@@ -5,7 +5,7 @@ const columnHelper = createColumnHelper();
 
 export const agentColumns = (onTransaction) => {
   return [
-    columnHelper.accessor('agent', {
+    columnHelper.accessor('accountId', {
       header: 'Agents',
       cell: (info) => <Text variant="normalBold">{info.getValue()}</Text>,
     }),
@@ -24,7 +24,7 @@ export const agentColumns = (onTransaction) => {
         >{`$${info.getValue()}`}</Text>
       ),
     }),
-    columnHelper.accessor('settle', {
+    columnHelper.accessor('settleFigure', {
       header: 'Settle',
       cell: (info) => <Text variant="tableText">{`$${info.getValue()}`}</Text>,
     }),

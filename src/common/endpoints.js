@@ -4,7 +4,8 @@ const endpoints = {
   projects: '/projects',
   clients: '/clients',
   tasks: '/tasks',
-  players: '/player?sort=accountId',
+  agentsWithPlayers: '/agent/allAgentsWithPlayers?sort=date',
+  agents: '/agent',
   timelogs: '/timelogs',
 };
 

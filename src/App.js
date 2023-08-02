@@ -56,7 +56,7 @@ const App = () => {
   const renderPage = () => {
     switch (currentPage) {
       case 'home':
-        return <Dashboard />;
+        return <CustomerAdmin />;
       case 'game-admin':
         return <Games />;
       case 'messages':

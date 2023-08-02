@@ -10,13 +10,14 @@ import React from 'react';
 import { Info } from '../../common/Info';
 import PageScaffold from '../../common/PageScaffold';
 import DynamicTable from '../../common/DynamicTable';
-import { data } from './components/data';
 import { agentColumns } from './components/helpers';
 import Modal from '../../common/Modal';
 import NewTransaction from './components/NewTransaction';
+import { useGetAllAgents } from './queryHooks';
 
 const Index = () => {
   const { isOpen, onClose, onOpen } = useDisclosure();
+  const {data, isLoading} = useGetAllAgents()
 
   const onTransaction = () => {
     onOpen();
@@ -39,7 +40,7 @@ const Index = () => {
       </Info>
       <DynamicTable
         columns={agentColumns(onTransaction)}
-        data={data}
+        data={data || []}
         totalCount={data?.length}
         totalPages={0}
         size="md"
