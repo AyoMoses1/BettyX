@@ -5,15 +5,16 @@ import {
   FormErrorMessage,
   Input,
   Text,
-} from "@chakra-ui/react";
-import { InputGroup, InputRightElement, IconButton } from "@chakra-ui/react";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
-import bgImage from "assets/images/new-bg.jpeg"
-import { yupResolver } from "@hookform/resolvers/yup";
-import { useForm } from "react-hook-form";
-import * as yup from "yup";
-import { useSignIn } from "./queryHooks";
-import { useState } from "react";
+} from '@chakra-ui/react';
+import { InputGroup, InputRightElement, IconButton } from '@chakra-ui/react';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import bgImage from 'assets/images/new-bg.jpeg';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useForm } from 'react-hook-form';
+import * as yup from 'yup';
+import { useSignIn } from './queryHooks';
+import { useState } from 'react';
+import styled from 'styled-components';
 
 const schema = yup
   .object()
@@ -40,8 +41,7 @@ const SignIn = () => {
     mutate({ data });
   };
   return (
-    <Box
-      minH="100vh"
+    <StyledBox
       display="flex"
       justifyContent="center"
       alignItems="center"
@@ -60,13 +60,18 @@ const SignIn = () => {
       />
 
       <Box
-        p={{ base: "4", md: "8" }}
-        maxWidth={["100%", "90%", "60vw", "40vw"]}
+        p={{ base: '4', md: '8' }}
+        maxWidth={['100%', '90%', '60vw', '40vw']}
         width="90%"
         position="relative"
         zIndex="1"
       >
-        <Text fontSize={{ base: "xl", md: "2xl" }} fontWeight="bold" mb="6" color="white">
+        <Text
+          fontSize={{ base: 'xl', md: '2xl' }}
+          fontWeight="bold"
+          mb="6"
+          color="white"
+        >
           Login into your account
         </Text>
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -77,7 +82,7 @@ const SignIn = () => {
               mb="4"
               bgColor="transparent"
               borderRadius="none"
-              {...register("accountId")}
+              {...register('accountId')}
             />
             {errors?.accountId && (
               <FormErrorMessage>Enter a valid player ID</FormErrorMessage>
@@ -87,19 +92,23 @@ const SignIn = () => {
             <InputGroup>
               <Input
                 pr="4.5rem" // To accommodate the eye icon button
-                type={showPassword ? "text" : "password"}
+                type={showPassword ? 'text' : 'password'}
                 placeholder="*****"
                 size="lg"
                 mb="6"
                 borderRadius="none"
                 focusBorderColor="purple.400"
-                {...register("password")}
+                {...register('password')}
               />
-              <InputRightElement width="4.5rem" top="30%" transform="translateY(-50%)">
+              <InputRightElement
+                width="4.5rem"
+                top="30%"
+                transform="translateY(-50%)"
+              >
                 <IconButton
                   h="1.75rem"
                   size="sm"
-                  aria-label={showPassword ? "Hide password" : "Show password"}
+                  aria-label={showPassword ? 'Hide password' : 'Show password'}
                   icon={showPassword ? <FaEyeSlash /> : <FaEye />}
                   onClick={handleTogglePassword}
                 />
@@ -122,8 +131,14 @@ const SignIn = () => {
           </Button>
         </form>
       </Box>
-    </Box>
+    </StyledBox>
   );
 };
 
 export default SignIn;
+
+const StyledBox = styled(Box)`
+  height: 100vh;
+  height: 100dvh;
+  height: 100svh;
+`;

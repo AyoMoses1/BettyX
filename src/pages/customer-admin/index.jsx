@@ -9,11 +9,15 @@ import { Link } from 'react-router-dom';
 import { CurrentPageContext } from '../../App';
 import Modal from '../../common/Modal';
 import EditForm from './components/EditForm';
+import { useGetAllPlayers } from './queryHooks';
 
 const Index = () => {
   const [topInputObj, setTopInputObj] = useState({ state: '', query: '' });
   const { setCurrentPage } = useContext(CurrentPageContext);
   const columnHelper = createColumnHelper();
+  const {data: playersData, isLoading} = useGetAllPlayers()
+
+  console.log(playersData, "shhshs")
   const { isOpen, onClose, onOpen } = useDisclosure();
 
   const handleInputChange = (name, value) => {
@@ -47,7 +51,7 @@ const Index = () => {
   );
 
   const columns = [
-    columnHelper.accessor('agent', {
+    columnHelper.accessor('agentId', {
       header: 'Agent',
       cell: (info) => {
         const value = info.getValue();
@@ -77,35 +81,41 @@ const Index = () => {
       header: 'Balance',
       cell: (info) => `$${info.getValue()}`,
     }),
-    columnHelper.accessor('pMaxBet', {
+    columnHelper.accessor('parlayMaxWager', {
       header: 'P. Max Bet',
       cell: (info) => `$${info.getValue()}`,
     }),
-    columnHelper.accessor('tMaxBet', {
+    columnHelper.accessor('teaserMaxWager', {
       header: 'T. Max Bet',
       cell: (info) => `$${info.getValue()}`,
     }),
-    columnHelper.accessor('status', {
+    columnHelper.accessor('accountStatus', {
       header: 'Status',
-      cell: (info) => info.getValue(),
+      cell: (info) => {
+        const value = info.getValue();
+        return value.charAt(0).toUpperCase() + value.slice(1).toLowerCase();
+      },
     }),
-    columnHelper.accessor('sportsBook', {
+    columnHelper.accessor('sportbook', {
       header: 'Sports Book',
-      cell: (info) => (
-        <Box sx={{ width: '20px', height: '20px', bgColor: 'green' }}></Box>
-      ),
+      cell: (info) => {
+        const value = info.getValue()
+        return <Box sx={{ width: '20px', height: '20px', bgColor: value ? "green": "red" }}></Box>
+      },
     }),
     columnHelper.accessor('horses', {
       header: 'Horses',
-      cell: (info) => (
-        <Box sx={{ width: '20px', height: '20px', bgColor: 'green' }}></Box>
-      ),
+      cell: (info) => {
+        const value = info.getValue()
+        return <Box sx={{ width: '20px', height: '20px', bgColor: value ? "green": "red" }}></Box>
+      },
     }),
     columnHelper.accessor('casino', {
-      header: 'Status',
-      cell: (info) => (
-        <Box sx={{ width: '20px', height: '20px', bgColor: 'green' }}></Box>
-      ),
+      header: 'Casino',
+      cell: (info) => {
+        const value = info.getValue()
+        return <Box sx={{ width: '20px', height: '20px', bgColor: value ? "green": "red" }}></Box>
+      },
     }),
     columnHelper.accessor('action', {
       header: '',
@@ -127,9 +137,9 @@ const Index = () => {
         />
       </Flex>
       <DynamicTable
-        totalCount={data?.length}
+        totalCount={playersData?.length}
         columns={columns}
-        data={data}
+        data={playersData || []}
         size="sm"
         title="Customer Admin"
       />
