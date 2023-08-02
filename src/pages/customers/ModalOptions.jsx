@@ -18,8 +18,8 @@ const ModalOptions = ({ onClose }) => {
   const { setCurrentPage } =
   useContext(CurrentPageContext);
 
-  const handleClick = () => {
-    setCurrentPage("new-customer")
+  const handleClick = (link) => {
+    setCurrentPage(link)
     onClose()
   };
   return (
@@ -31,7 +31,7 @@ const ModalOptions = ({ onClose }) => {
           borderRadius="md"
           p={4}
           width="100%"
-          onClick={handleClick}
+          onClick={() => handleClick(item.link)}
           cursor="pointer"
         >
           <Grid templateColumns="repeat(5, 1fr)">

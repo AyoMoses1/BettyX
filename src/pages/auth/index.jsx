@@ -118,15 +118,7 @@ const SignIn = () => {
               <FormErrorMessage>Password is required</FormErrorMessage>
             )}
           </FormControl>
-          <Button
-            type="submit"
-            size="lg"
-            bgColor="blue2"
-            width="full"
-            borderRadius="none"
-            variant="secondary"
-            isLoading={isLoading}
-          >
+          <Button variant="primary" type="submit" width="100%">
             Log in
           </Button>
         </form>

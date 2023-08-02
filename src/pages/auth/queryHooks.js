@@ -13,7 +13,6 @@ export const useSignIn = () => {
 
   return useMutation(services.signin, {
     onError: (data) => {
-      console.log(data, 'failed');
       toast({
         title: 'message',
         description: `${data?.response?.data?.message}`,

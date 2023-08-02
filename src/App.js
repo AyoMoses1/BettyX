@@ -31,6 +31,7 @@ import Layout from './common/Layout';
 import './App.css';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import paths from 'common/Paths';
+import NewAgent from 'pages/agents/NewAgent';
 
 export const CurrentPageContext = createContext();
 
@@ -56,7 +57,7 @@ const App = () => {
   const renderPage = () => {
     switch (currentPage) {
       case 'home':
-        return <CustomerAdmin />;
+        return <Dashboard />;
       case 'game-admin':
         return <Games />;
       case 'messages':
@@ -91,6 +92,8 @@ const App = () => {
         return <LiveLimits />;
       case 'new-customer':
         return <NewCustomer />;
+      case 'new-agent':
+        return <NewAgent />;
       case 'agents-performance':
         return <AgentPerformance />;
       case 'analysis':
