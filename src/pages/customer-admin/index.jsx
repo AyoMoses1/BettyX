@@ -167,7 +167,7 @@ const Index = () => {
       </Flex>
       {data?.map((item) => (
         <>
-          <Box bgColor="blue" color="white" mb={2}>
+          <Box bgColor="blue" color="white" my={8}>
             {item.agent}
           </Box>
           <DynamicTable

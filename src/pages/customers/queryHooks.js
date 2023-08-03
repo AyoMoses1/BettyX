@@ -1,6 +1,6 @@
 import { useQuery, useMutation } from '@tanstack/react-query';
 import Services from './services';
-import { useToast } from '@chakra-ui/react';
+import { Box, useToast } from '@chakra-ui/react';
 
 export const useGetAllAgents = () => {
   return useQuery(['allPlayers'], () => Services.getAllAgents());
@@ -25,12 +25,21 @@ export const useCreatePlayers = () => {
     onSuccess: (data) => {
       console.log(data, 'success');
       toast({
-        title: 'Players account created.',
-        description: "We've created the accounts for you successfully",
-        status: 'success',
-        duration: 9000,
-        isClosable: true,
         position: 'bottom-left',
+        render: () => (
+          <Box
+            position="relative"
+            bgColor="green"
+            color="white"
+            borderRadius="lg"
+            p={3}
+            maxWidth="300px"
+          >
+            <Box fontWeight="bold" fontSize="lg" marginBottom="2">
+              Agent Account Created Successfully!
+            </Box>
+          </Box>
+        ),
       });
     },
   });

@@ -1,23 +1,14 @@
 import {
   Box,
   Grid,
-  GridItem,
-  FormControl,
-  FormLabel,
-  Input,
   Heading,
   Flex,
   Button,
-  InputGroup,
-  InputLeftAddon,
-  Switch,
-  FormErrorMessage,
   useDisclosure,
 } from '@chakra-ui/react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
-import styled from 'styled-components';
 import ActionModal from './components/ActionModal';
 import { useState } from 'react';
 import { useCreateAgent } from './queryHooks';

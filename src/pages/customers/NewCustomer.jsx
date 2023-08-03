@@ -4,11 +4,9 @@ import {
   GridItem,
   FormControl,
   FormLabel,
-  Input,
   Heading,
   Flex,
   Button,
-  InputGroup,
   InputLeftAddon,
   Switch,
   useDisclosure,
@@ -50,7 +48,7 @@ const NewCustomer = () => {
   const [state, setState] = useState(initialState);
   const { data: agents } = useGetAllAgents();
   const [data, setData] = useState([])
-  const { mutate, isLoading } = useCreatePlayers();
+  const { mutate } = useCreatePlayers();
   const [agentDetails, setAgentDetails] = useState(initialAgentState);
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -132,9 +130,7 @@ const NewCustomer = () => {
         title="Create Players"
         isOpen={isOpen}
         onClose={onClose}
-        // isLoading={isLoading}
         handleSubmit={() => {
-          // setActionModalConfirmed(true);
           onClose();
           onSubmit();
         }}
@@ -144,9 +140,4 @@ const NewCustomer = () => {
 };
 
 export default NewCustomer;
-
-const StyledInputLeftAddon = styled(InputLeftAddon)`
-  border: 1px solid #cbd5e0 !important;
-  border-radius: 0px !important;
-`;
 
