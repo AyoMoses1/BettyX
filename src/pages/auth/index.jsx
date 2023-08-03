@@ -77,7 +77,7 @@ const SignIn = () => {
         <form onSubmit={handleSubmit(onSubmit)}>
           <FormControl id="email">
             <Input
-              placeholder="Player ID"
+              placeholder="Account ID"
               size="lg"
               mb="4"
               bgColor="transparent"
