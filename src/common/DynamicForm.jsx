@@ -52,17 +52,6 @@ const generateInputs = (inputObj) => {
             );
           })}
         </InputGroup>
-        {/* <Input
-          id={inputObj.name}
-          type={inputObj.type}
-          {...inputObj.register}
-          size={inputObj.size ?? 'md'}
-          placeholder={inputObj?.placeholder}
-          onChange={inputObj?.onChange}
-          defaultValue={inputObj?.defaultValue}
-          disabled={inputObj?.disabled}
-          key={inputObj.type}
-        /> */}
         {inputObj.error && (
           <FormErrorMessage>{inputObj.error.message}</FormErrorMessage>
         )}

@@ -51,12 +51,16 @@ export const agentColumns = (onTransaction) => {
 
 export const inputObjList = (
   register,
+  handleChange,
+  state,
   errors
 ) => [
   {
     name: "accountId",
     label: "Agent Name",
     type: "text",
+    value: state.accountId,
+    onChange: handleChange,
     register: register("accountId", {
       required: "Please enter a valid name",
     }),
@@ -67,6 +71,8 @@ export const inputObjList = (
     name: "password",
     label: "Agent Password",
     type: "text",
+    onChange: handleChange,
+    value: state.password,
     register: register("password", {
       required: "Please enter a valid password",
     }),
@@ -77,6 +83,8 @@ export const inputObjList = (
     name: "prefix",
     label: "Agent Prefix",
     type: "text",
+    onChange: handleChange,
+    value: state.prefix,
     register: register("prefix", {
       required: "Please enter a valid prefix",
     }),
@@ -87,6 +95,7 @@ export const inputObjList = (
     name: "nextAccountStart",
     label: "Next Account Start",
     type: "number",
+    value: state.nextAccountStart,
     register: register("nextAccountStart"),
   },
 ];

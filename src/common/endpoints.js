@@ -6,7 +6,7 @@ const endpoints = {
   tasks: '/tasks',
   agentsWithPlayers: '/agent/allAgentsWithPlayers?sort=date',
   agents: '/agent',
-  timelogs: '/timelogs',
+  players: '/player',
 };
 
 export default endpoints;

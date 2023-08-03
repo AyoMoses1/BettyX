@@ -21,6 +21,8 @@ import styled from 'styled-components';
 import ActionModal from './components/ActionModal';
 import { useState } from 'react';
 import { useCreateAgent } from './queryHooks';
+import { inputObjList } from './components/helpers';
+import generateGridInputs from 'common/DynamicGridForm';
 
 const schema = yup
   .object()
@@ -36,8 +38,8 @@ const initialState = {
   accountId: '',
   password: '',
   prefix: '',
-  nextAccountStart: 1
-}
+  nextAccountStart: 1,
+};
 
 const NewAgent = () => {
   const { mutate, isLoading } = useCreateAgent();
@@ -53,7 +55,7 @@ const NewAgent = () => {
 
   const onSubmit = () => {
     mutate({ data });
-    setData(initialState)
+    setData(initialState);
   };
 
   const onSubmitWithConfirmation = (data) => {
@@ -87,51 +89,17 @@ const NewAgent = () => {
               Continue
             </Button>
           </Flex>
-          <Grid
-            templateColumns="repeat(auto-fit, minmax(250px, 1fr))"
-            p={8}
-            gap={4}
-          >
-            <GridItem>
-              <FormControl id="name">
-                <FormLabel>Agent Name</FormLabel>
-                <Input type="text" {...register('accountId')} value={data.name} onChange={handleChange}/>
-                {errors?.accountId && (
-                  <FormErrorMessage>Enter a valid player ID</FormErrorMessage>
-                )}
-              </FormControl>
-            </GridItem>
-            <GridItem>
-              <FormControl id="password">
-                <FormLabel>Agent Password</FormLabel>
-                <Input type="text" {...register('password')} value={data.password} onChange={handleChange}/>
-                {errors?.password && (
-                  <FormErrorMessage>Enter a valid password</FormErrorMessage>
-                )}
-              </FormControl>
-            </GridItem>
-            <GridItem>
-              <FormControl id="prefix">
-                <FormLabel>Agent Prefix</FormLabel>
-                <Input type="text" {...register('prefix')} value={data.prefix} onChange={handleChange}/>
-                {errors?.prefix && (
-                  <FormErrorMessage>
-                    Enter a valid Agent Prefix
-                  </FormErrorMessage>
-                )}
-              </FormControl>
-            </GridItem>
-            <GridItem>
-              <FormControl id="nextAccountStart">
-                <FormLabel>Next Account Starts #</FormLabel>
-                <Input
-                  type="text"
-                  {...register('nextAccountStart')}
-                  value={data.nextAccountStart}
-                />
-              </FormControl>
-            </GridItem>
-          </Grid>
+          <form>
+            <Grid
+              templateColumns="repeat(auto-fit, minmax(250px, 1fr))"
+              p={8}
+              gap={4}
+            >
+              {inputObjList(register, handleChange, data, errors).map((input) =>
+                generateGridInputs(input)
+              )}
+            </Grid>
+          </form>
         </Box>
       </form>
       <ActionModal

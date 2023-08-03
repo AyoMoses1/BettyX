@@ -1,8 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import App from './App';
+import { ChakraProvider } from '@chakra-ui/react';
+import theme from 'theme';
 import reportWebVitals from './reportWebVitals';
 import { setupAuthAxios, setupPublicAxios } from 'setup/auth/axios';
 
@@ -15,7 +17,9 @@ root.render(
   <QueryClientProvider client={queryClient}>
     <React.StrictMode>
       <BrowserRouter>
-        <App />
+        <ChakraProvider theme={theme}>
+          <App />
+        </ChakraProvider>
       </BrowserRouter>
     </React.StrictMode>
   </QueryClientProvider>
