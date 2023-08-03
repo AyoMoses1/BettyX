@@ -23,6 +23,7 @@ export const useSignIn = () => {
       });
     },
     onSuccess: (data) => {
+      console.log(data, "token data here")
       localStorage.setItem('bet_token', data.data.token);
       localStorage.setItem('accountId', data.data.user.accountId);
       setCurrentPage(paths.home);
