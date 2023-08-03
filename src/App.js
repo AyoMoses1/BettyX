@@ -32,12 +32,15 @@ import './App.css';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import paths from 'common/Paths';
 import NewAgent from 'pages/agents/NewAgent';
+import { useEffect } from 'react';
+import { setupAuthAxios, setupPublicAxios } from 'setup/auth/axios';
 
 export const CurrentPageContext = createContext();
 
 const App = () => {
   const [currentPage, setCurrentPage] = useState('home');
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [accessToken, setAccessToken] = useState('');
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   const handleOpenDrawer = () => {
@@ -53,6 +56,11 @@ const App = () => {
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
+
+  useEffect(() => {
+    setupPublicAxios(process.env.REACT_APP_BASE_URL);
+    setupAuthAxios(process.env.REACT_APP_BASE_URL, accessToken);
+  }, [accessToken]);
 
   const renderPage = () => {
     switch (currentPage) {
@@ -113,6 +121,8 @@ const App = () => {
         value={{
           currentPage,
           setCurrentPage,
+          accessToken,
+          setAccessToken,
           isModalOpen,
           isDrawerOpen,
           handleCloseModal,

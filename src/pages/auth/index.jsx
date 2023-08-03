@@ -81,6 +81,7 @@ const SignIn = () => {
               size="lg"
               mb="4"
               bgColor="transparent"
+              color="white"
               borderRadius="none"
               {...register('accountId')}
             />
