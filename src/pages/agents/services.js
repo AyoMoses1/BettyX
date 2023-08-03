@@ -11,6 +11,15 @@ class Services {
     });
     return response?.data?.agents
   };
+
+  async createAgent(payload) {
+    const response = await  axios({
+      method: "POST",
+      url: `${endpoints.agents}`,
+      data: payload.data
+    });
+    return response?.data
+  };
 }
 
 export default new Services(); //eslint-disable-line

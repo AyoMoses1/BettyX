@@ -48,3 +48,45 @@ export const agentColumns = (onTransaction) => {
     }),
   ];
 };
+
+export const inputObjList = (
+  register,
+  errors
+) => [
+  {
+    name: "accountId",
+    label: "Agent Name",
+    type: "text",
+    register: register("accountId", {
+      required: "Please enter a valid name",
+    }),
+    isInvalid: !!errors.accountId,
+    error: errors?.accountId,
+  },
+  {
+    name: "password",
+    label: "Agent Password",
+    type: "text",
+    register: register("password", {
+      required: "Please enter a valid password",
+    }),
+    isInvalid: !!errors.pasword,
+    error: errors?.password,
+  },
+  {
+    name: "prefix",
+    label: "Agent Prefix",
+    type: "text",
+    register: register("prefix", {
+      required: "Please enter a valid prefix",
+    }),
+    isInvalid: !!errors.prefix,
+    error: errors?.prefix,
+  },
+  {
+    name: "nextAccountStart",
+    label: "Next Account Start",
+    type: "number",
+    register: register("nextAccountStart"),
+  },
+];

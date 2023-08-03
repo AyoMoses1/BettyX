@@ -5,6 +5,7 @@ import {
   ModalHeader,
   ModalBody,
   Divider,
+  ModalFooter,
 } from '@chakra-ui/react';
 
 function ModalComponent(props) {
@@ -21,6 +22,7 @@ function ModalComponent(props) {
         <ModalBody maxH="70vh" overflow="auto">
           {props.children}
         </ModalBody>
+        {props.button ?? <ModalFooter>{props.button}</ModalFooter>}
       </ModalContent>
     </Modal>
   );

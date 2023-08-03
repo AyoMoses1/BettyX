@@ -10,26 +10,3 @@ export const useGetAllAgentsWithPlayers = () => {
   return useQuery(['allPlayers'], () => Services.getAllAgentsWithPlayers());
 };
 
-export const useCreateAgent = () => {
-  const { setCurrentPage } = useContext(CurrentPageContext);
-  const toast = useToast();
-
-  return useMutation(Services.createAgent, {
-    onError: (data) => {
-      console.log(data, 'failed');
-      const errObj = data.response;
-      toast({
-        title: 'Error',
-        description: errObj?.message,
-        status: 'error',
-        duration: 9000,
-        isClosable: true,
-        position: 'top',
-      });
-    },
-    onSuccess: (data) => {
-      console.log(data, 'success');
-      setCurrentPage(paths.agents)
-    },
-  });
-};

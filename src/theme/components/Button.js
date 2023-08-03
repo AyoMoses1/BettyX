@@ -11,19 +11,19 @@ export const ButtonStyle = {
   variants: {
     primary: (props) => ({
       bg: props.theme.colors.blue2,
-      color: "#fff",
-      fontWeight: "600",
-      borderRadius: "none",
-      _active: { bg: "blue2" },
-      ":focus": {
+      color: '#fff',
+      fontWeight: '600',
+      borderRadius: 'none',
+      _active: { bg: 'blue2' },
+      ':focus': {
         bg: props.theme.colors.blue2,
-        boxShadow: "md",
+        boxShadow: 'md',
       },
-      ":disabled": {
+      ':disabled': {
         bg: props.theme.colors.muted,
-        ":hover": {
+        ':hover': {
           bg: props.theme.colors.secondary,
-          boxShadow: "md",
+          boxShadow: 'md',
         },
       },
     }),
