@@ -37,7 +37,7 @@ export const useCreateAgent = () => {
             maxWidth="300px"
           >
             <Box fontWeight="bold" fontSize="lg" marginBottom="2">
-              Player Account Created Successfully!
+              Agent Account Created Successfully!
             </Box>
           </Box>
         ),

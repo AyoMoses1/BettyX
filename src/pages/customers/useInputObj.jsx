@@ -57,8 +57,6 @@ const useInputObj = () => {
       register: register('prefix', {
         required: 'Please enter a valid prefix',
       }),
-      // isInvalid: !!errors.prefix,
-      // error: errors?.prefix,
     },
     {
       name: 'nextAccountStart',
