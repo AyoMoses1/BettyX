@@ -51,8 +51,8 @@ const Index = () => {
   );
 
   const columns = [
-    columnHelper.accessor('agentId', {
-      header: 'Agent',
+    columnHelper.accessor('accountId', {
+      header: 'Player',
       cell: (info) => {
         const value = info.getValue();
         return (

@@ -23,9 +23,13 @@ import {
 } from '../helpers';
 import styled from 'styled-components';
 import { useState } from 'react';
+import { useGetPlayerDetails } from '../queryHooks copy';
 
 const MyForm = () => {
   const [selectedOption, setSelectedOption] = useState('');
+  const {data, isLoading} = useGetPlayerDetails('Win939')
+
+  console.log({data}, "here is the data!!!")
 
   const handleSelectChange = (event) => {
     setSelectedOption(event.target.value);

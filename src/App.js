@@ -135,7 +135,46 @@ const App = () => {
           <Route path={paths.login} element={<SignIn />}></Route>
         </Routes>
         <RequireAuth>
-          <Layout setCurrentPage={setCurrentPage}>{renderPage()}</Layout>
+          {/* <Layout setCurrentPage={setCurrentPage}>{renderPage()}</Layout> */}
+          <Routes>
+            <Route
+              path={paths.home}
+              element={
+                <RequireAuth>
+                  <Layout />
+                </RequireAuth>
+              }
+            >
+              <Route path={paths.home} element={<Dashboard />} />
+              <Route path={paths.games} element={<Games />} />
+              <Route path={paths.messages} element={<Messages />} />
+              <Route path={paths.rules} element={<Rules />} />
+              <Route path={paths.statistics} element={<Statistics />} />
+              <Route path={paths.agents} element={<Agents />} />
+              <Route path={paths.settings} element={<Settings />} />
+              <Route path={paths.collections} element={<Collections />} />
+              <Route path={paths.billing} element={<Billing />} />
+              <Route path={paths.ticketWriter} element={<TicketWriter />} />
+              <Route path={paths.deletedWagers} element={<DeletedWagers />} />
+              <Route path={paths.pending} element={<Pending />} />
+              <Route path={paths.customerAdmin} element={<CustomerAdmin />} />
+              <Route
+                path={paths.CustomerDetails}
+                element={<CustomerDetails />}
+              />
+              <Route path={paths.cashier} element={<Cashier />} />
+              <Route path={paths.liveLimits} element={<LiveLimits />} />
+              <Route path={paths.addCustomer} element={<NewCustomer />} />
+              <Route path={paths.addAgent} element={<NewAgent />} />
+              <Route
+                path={paths.agentPerformance}
+                element={<AgentPerformance />}
+              />
+              <Route path={paths.analysis} element={<Analysis />} />
+              <Route path={paths.ipTracker} element={<IPTracker />} />
+              <Route path={paths.transactions} element={<Transactions />} />
+            </Route>
+          </Routes>
           {currentPage === 'feedback' ? <Feedback /> : <AddCustomer />}
           <Scores />
         </RequireAuth>

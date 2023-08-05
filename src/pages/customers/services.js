@@ -2,10 +2,10 @@ import endpoints from 'common/endpoints';
 import { authAxios as axios } from 'setup/auth/axios';
 
 class Services {
-  async getAllAgents(param) {
+  async getPlayerDetails(param) {
     const response = await axios({
       method: 'GET',
-      url: `${endpoints.agents}`,
+      url: `${endpoints.players}/${param}`,
     });
     return response?.data?.agents;
   }
