@@ -59,61 +59,10 @@ const App = () => {
 
   useEffect(() => {
     setupPublicAxios(process.env.REACT_APP_BASE_URL);
-    setupAuthAxios(process.env.REACT_APP_BASE_URL, accessToken);
+    setupAuthAxios(process.env.REACT_APP_BASE_URL, localStorage.bet_token);
   }, [accessToken]);
 
-  const renderPage = () => {
-    switch (currentPage) {
-      case 'home':
-        return <Dashboard />;
-      case 'game-admin':
-        return <Games />;
-      case 'messages':
-        return <Messages />;
-      case 'rules':
-        return <Rules />;
-      case 'statistics':
-        return <Statistics />;
-      case 'agents':
-        return <Agents />;
-      case 'settings':
-        return <Settings />;
-      case 'collections':
-        return <Collections />;
-      case 'billing':
-        return <Billing />;
-      case 'agent-admin':
-        return <Agents />;
-      case 'ticket-writer':
-        return <TicketWriter />;
-      case 'deleted-wagers':
-        return <DeletedWagers />;
-      case 'pending':
-        return <Pending />;
-      case 'customer-admin':
-        return <CustomerAdmin />;
-      case 'customer-details':
-        return <CustomerDetails />;
-      case 'cashier':
-        return <Cashier />;
-      case 'live-limits':
-        return <LiveLimits />;
-      case 'new-customer':
-        return <NewCustomer />;
-      case 'new-agent':
-        return <NewAgent />;
-      case 'agents-performance':
-        return <AgentPerformance />;
-      case 'analysis':
-        return <Analysis />;
-      case 'ip-tracker':
-        return <IPTracker />;
-      case 'transactions':
-        return <Transactions />;
-      default:
-        return <Dashboard />;
-    }
-  };
+  console.log({ accessToken });
 
   return (
     <ChakraProvider theme={theme}>
@@ -135,7 +84,6 @@ const App = () => {
           <Route path={paths.login} element={<SignIn />}></Route>
         </Routes>
         <RequireAuth>
-          {/* <Layout setCurrentPage={setCurrentPage}>{renderPage()}</Layout> */}
           <Routes>
             <Route
               path={paths.home}
@@ -145,7 +93,7 @@ const App = () => {
                 </RequireAuth>
               }
             >
-              <Route path={paths.home} element={<Dashboard />} />
+              <Route index element={<Dashboard />} />
               <Route path={paths.games} element={<Games />} />
               <Route path={paths.messages} element={<Messages />} />
               <Route path={paths.rules} element={<Rules />} />
@@ -157,11 +105,11 @@ const App = () => {
               <Route path={paths.ticketWriter} element={<TicketWriter />} />
               <Route path={paths.deletedWagers} element={<DeletedWagers />} />
               <Route path={paths.pending} element={<Pending />} />
-              <Route path={paths.customerAdmin} element={<CustomerAdmin />} />
-              <Route
-                path={paths.CustomerDetails}
-                element={<CustomerDetails />}
-              />
+              <Route path={paths.agentAdmin} element={<Agents />} />
+              <Route path={paths.customers}>
+                <Route index  element={<CustomerAdmin />} />
+                <Route path=":customerId" element={<CustomerDetails />} />
+              </Route>
               <Route path={paths.cashier} element={<Cashier />} />
               <Route path={paths.liveLimits} element={<LiveLimits />} />
               <Route path={paths.addCustomer} element={<NewCustomer />} />

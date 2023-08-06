@@ -58,7 +58,7 @@ const Index = () => {
         return (
           <Link
             style={{ color: 'blue', textDecoration: 'underline' }}
-            onClick={() => setCurrentPage('customer-details')}
+            to={`/customers/${info.getValue()}`}
           >
             {value}
           </Link>

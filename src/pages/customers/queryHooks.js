@@ -44,3 +44,20 @@ export const useCreatePlayers = () => {
     },
   });
 };
+
+export const useGetPlayerDetails = (accountId) => {
+  return useQuery(['playerDetails'], () => Services.getPlayerDetails(accountId));
+};
+
+export const useUpdatePlayer = () => {
+  const toast = useToast();
+  return useMutation(Services.updatePlayer, {
+    onError: (data) => {
+      const errObj = data?.message;
+       toast({ description: errObj.errorMsg, status: 'error', title: "Invalid Credential" })
+    },
+    onSuccess: (data, variables) => {
+      toast({ description:  `Player's data has been updated successfully`, status: 'success', title: "Player data updated" })
+    },
+  });
+};

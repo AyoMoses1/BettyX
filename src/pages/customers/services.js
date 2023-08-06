@@ -7,7 +7,7 @@ class Services {
       method: 'GET',
       url: `${endpoints.players}/${param}`,
     });
-    return response?.data?.agents;
+    return response?.data?.player;
   }
 
   async createPlayers(payload) {
@@ -19,6 +19,25 @@ class Services {
     });
     return response?.data;
   }
+
+  async updatePlayer(payload) {
+    const { accountId, ...rest } = payload;
+    const response = await axios({
+      method: 'PUT',
+      url: `${endpoints.players}/${accountId}`,
+      data: rest,
+    });
+    console.log(accountId, response, "check heere~~~")
+    return response?.data;
+  }
+
+  async getAllAgentsWithPlayers(param) {
+    const response = await  axios({
+      method: "GET",
+      url: `${endpoints.agentsWithPlayers}`,
+    });
+    return response?.data
+  };
 }
 
 export default new Services(); //eslint-disable-line
