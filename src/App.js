@@ -62,8 +62,6 @@ const App = () => {
     setupAuthAxios(process.env.REACT_APP_BASE_URL, localStorage.bet_token);
   }, [accessToken]);
 
-  console.log({ accessToken });
-
   return (
     <ChakraProvider theme={theme}>
       <CurrentPageContext.Provider

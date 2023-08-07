@@ -23,7 +23,7 @@ class Services {
   async updatePlayer(payload) {
     const { accountId, ...rest } = payload;
     const response = await axios({
-      method: 'PUT',
+      method: 'PATCH',
       url: `${endpoints.players}/${accountId}`,
       data: rest,
     });
