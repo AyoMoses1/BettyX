@@ -19,7 +19,7 @@ class Services {
     });
     return response?.data;
   }
-
+  
   async updatePlayer(payload) {
     const { accountId, ...rest } = payload;
     const response = await axios({
