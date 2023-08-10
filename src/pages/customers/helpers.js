@@ -3,18 +3,21 @@ export const data = [
     title: 'Add one or more players to an agent',
     link: '/add-customer',
     caption: 'Player',
+    allowedRoles: ['admin', 'agent', 'super-admin'], // Roles allowed to see this item
   },
   {
     title:
       'Add a new agent account. Agents have players under them(not agents)',
     link: '/add-agent',
     caption: 'Agent',
+    allowedRoles: ['admin', 'super-admin'], // Roles allowed to see this item
   },
   {
     title:
-      'Add a new master agent account. Master agents have agents under them(not players)',
-    link: '/new-customer',
-    caption: 'Master',
+      'Add a new admin account. Admins have agents and players under them',
+    link: '/add-admin',
+    caption: 'Admin',
+    allowedRoles: ['super-admin'], // Roles allowed to see this item
   },
 ];
 

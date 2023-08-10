@@ -2,7 +2,6 @@ import React, { createContext, useState } from 'react';
 import { ChakraProvider } from '@chakra-ui/react';
 import theme from './theme';
 import Agents from './pages/agents';
-import Customers from './pages/customers';
 import Dashboard from './pages/dashboard';
 import Games from './pages/games';
 import Messages from './pages/messages';

@@ -8,13 +8,15 @@ import {
   GridItem,
 } from '@chakra-ui/react';
 import { IoPersonAddSharp } from 'react-icons/io5';
+import { filterDataByRole } from 'utils/filterDataByRole';
 import { data } from './helpers';
 
 const ModalOptions = ({ handleClick }) => {
+  const filteredData = filterDataByRole(data)
   return (
     <VStack spacing={4}>
       <ModalCloseButton />
-      {data.map((item, idx) => (
+      {filteredData.map((item, idx) => (
         <Box
           key={idx}
           borderWidth="1px"
