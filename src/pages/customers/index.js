@@ -4,9 +4,16 @@ import Modal from '../../common/Modal';
 import { CurrentPageContext } from '../../App';
 import styled from 'styled-components';
 import ModalOptions from './ModalOptions';
+import { useNavigate } from 'react-router-dom';
 
 const Index = () => {
   const { isModalOpen, handleCloseModal } = useContext(CurrentPageContext);
+  const navigate = useNavigate()
+
+  const handleClick = (link) => {
+    navigate(link)
+    handleCloseModal()
+  }
 
   return (
     <Modal
@@ -15,14 +22,9 @@ const Index = () => {
       onClose={handleCloseModal}
       size={["sm","md"]}
     >
-      <ModalOptions onClose={handleCloseModal} />
+      <ModalOptions handleClick={handleClick} />
     </Modal>
   );
 };
-
-const StyledButton = styled(Button)`
-  text-decoration: underline;
-  color: red;
-`;
 
 export default Index;

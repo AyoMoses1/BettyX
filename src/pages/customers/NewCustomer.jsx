@@ -47,7 +47,7 @@ const NewCustomer = () => {
   const { inputObjList } = useInputObj();
   const [state, setState] = useState(initialState);
   const { data: agents } = useGetAllAgents();
-  const [data, setData] = useState([])
+  const [data, setData] = useState([]);
   const { mutate } = useCreatePlayers();
   const [agentDetails, setAgentDetails] = useState(initialAgentState);
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -79,19 +79,17 @@ const NewCustomer = () => {
     }));
   };
 
-
   const onSubmitWithConfirmation = (data) => {
     onOpen();
     setData(data);
   };
 
   const onSubmit = () => {
-    const data = handleCustomerPayload({ ...state, ...agentDetails })
-    mutate({data: { data, agent: agentDetails.agent} });
+    const data = handleCustomerPayload({ ...state, ...agentDetails });
+    mutate({ data: { data, agent: agentDetails.agent } });
     setState(initialState);
-    setAgentDetails(initialAgentState)
+    setAgentDetails(initialAgentState);
   };
-
 
   return (
     <Box m={4} bg="#ececec">
@@ -99,7 +97,13 @@ const NewCustomer = () => {
         <Heading variant="h1" color="#fff">
           Add Player
         </Heading>
-        <Button variant="success" px={4} my={2} size={['sm', 'md']} onClick={onOpen}>
+        <Button
+          variant="success"
+          px={4}
+          my={2}
+          size={['sm', 'md']}
+          onClick={onOpen}
+        >
           Continue
         </Button>
       </Flex>
@@ -115,7 +119,9 @@ const NewCustomer = () => {
             state,
             agentDetails,
             errors
-          ).map((input) => generateGridInputs(input))}
+          ).map((input, idx) => (
+            <Box key={idx}>{generateGridInputs(input)}</Box>
+          ))}
           <GridItem alignSelf="center" mt={8}>
             <FormControl display="flex" alignItems="center">
               <Switch id="switch" colorScheme="whatsapp" size="md" mr={2} />
@@ -140,4 +146,3 @@ const NewCustomer = () => {
 };
 
 export default NewCustomer;
-

@@ -1,32 +1,22 @@
 import {
   Box,
   VStack,
-  Flex,
   Icon,
-  Heading,
   Text,
   ModalCloseButton,
   Grid,
   GridItem,
 } from '@chakra-ui/react';
-import { useContext } from 'react';
 import { IoPersonAddSharp } from 'react-icons/io5';
-import { CurrentPageContext } from '../../App';
 import { data } from './helpers';
 
-const ModalOptions = ({ onClose }) => {
-  const { setCurrentPage } =
-  useContext(CurrentPageContext);
-
-  const handleClick = (link) => {
-    setCurrentPage(link)
-    onClose()
-  };
+const ModalOptions = ({ handleClick }) => {
   return (
     <VStack spacing={4}>
       <ModalCloseButton />
-      {data.map((item) => (
+      {data.map((item, idx) => (
         <Box
+          key={idx}
           borderWidth="1px"
           borderRadius="md"
           p={4}

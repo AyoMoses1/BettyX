@@ -10,16 +10,43 @@ const GridBox = ({ data }) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    if (data.route === 'feedback' || data.route === 'add-customer') {
+    if (data.route === '/feedback' || data.route === '/add-customer') {
       setCurrentPage(data.route);
       handleOpenModal();
-    } else if (data.route === 'scores') {
+    } else if (data.route === '/scores') {
       setCurrentPage(data.route);
       handleOpenDrawer();
-    } else {
-      setCurrentPage(data.route);
     }
   };
+
+  if (
+    data.route === '/feedback' ||
+    data.route === '/add-customer' ||
+    data.route === '/scores'
+  ) {
+    return (
+      <GridItem
+        colSpan={['2', '2', '2', '1']}
+        bg="blue"
+        py={4}
+        borderRadius="md"
+        cursor="pointer"
+        onClick={handleClick}
+      >
+        <Flex
+          justifyContent="space-between"
+          align="center"
+          height="100%"
+          flexDirection="column"
+        >
+          <Icon as={data.icon} boxSize={8} color={data.color} />
+          <Text variant="cardText" color={data.color}>
+            {data.name}
+          </Text>
+        </Flex>
+      </GridItem>
+    );
+  }
   return (
     <GridItem
       colSpan={['2', '2', '2', '1']}
@@ -27,7 +54,6 @@ const GridBox = ({ data }) => {
       py={4}
       borderRadius="md"
       cursor="pointer"
-      // onClick={handleClick}
     >
       <Link to={data.route}>
         <Flex

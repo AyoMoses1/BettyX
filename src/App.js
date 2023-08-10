@@ -121,7 +121,7 @@ const App = () => {
               <Route path={paths.transactions} element={<Transactions />} />
             </Route>
           </Routes>
-          {currentPage === 'feedback' ? <Feedback /> : <AddCustomer />}
+          {currentPage === '/feedback' ? <Feedback /> : <AddCustomer />}
           <Scores />
         </RequireAuth>
       </CurrentPageContext.Provider>

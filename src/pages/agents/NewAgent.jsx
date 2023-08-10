@@ -86,8 +86,10 @@ const NewAgent = () => {
               p={8}
               gap={4}
             >
-              {inputObjList(register, handleChange, data, errors).map((input) =>
-                generateGridInputs(input)
+              {inputObjList(register, handleChange, data, errors).map(
+                (input, idx) => (
+                  <Box key={idx}>{generateGridInputs(input)}</Box>
+                )
               )}
             </Grid>
           </form>
