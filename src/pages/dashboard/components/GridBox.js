@@ -1,13 +1,12 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { GridItem, Flex, Text } from '@chakra-ui/react';
 import { Icon } from '@chakra-ui/react';
 import { CurrentPageContext } from '../../../App';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const GridBox = ({ data }) => {
   const { setCurrentPage, handleOpenModal, handleOpenDrawer } =
     useContext(CurrentPageContext);
-  const navigate = useNavigate();
 
   const handleClick = () => {
     if (data.route === '/feedback' || data.route === '/add-customer') {

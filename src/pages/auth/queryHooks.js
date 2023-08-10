@@ -27,6 +27,7 @@ export const useSignIn = () => {
       setAccessToken(data.data.token)
       localStorage.setItem('bet_token', data.data.token);
       localStorage.setItem('accountId', data.data.user.accountId);
+      localStorage.setItem('user_role', data.data.user.role);
       setCurrentPage(paths.home);
       navigate(paths.home);
     },

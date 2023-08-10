@@ -30,6 +30,7 @@ const Navbar = () => {
   const handleLogout = () => {
     localStorage.removeItem('bet_token');
     localStorage.removeItem('accountId');
+    localStorage.removeItem('user_role');
     setAccessToken('');
     queryClient.cancelQueries();
     queryClient.clear();

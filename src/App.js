@@ -34,6 +34,8 @@ import paths from 'common/Paths';
 import NewAgent from 'pages/agents/NewAgent';
 import { useEffect } from 'react';
 import { setupAuthAxios, setupPublicAxios } from 'setup/auth/axios';
+import UnAuthorized from 'pages/auth/UnAuthorized';
+import AuthGuard from 'setup/auth/AuthGuard';
 
 export const CurrentPageContext = createContext();
 
@@ -104,7 +106,7 @@ const App = () => {
               <Route path={paths.deletedWagers} element={<DeletedWagers />} />
               <Route path={paths.pending} element={<Pending />} />
               <Route path={paths.agentAdmin} element={<Agents />} />
-              <Route path={paths.customers}>
+              <Route path={paths.customers} element={<AuthGuard authRoles="agent admin"/>}>
                 <Route index  element={<CustomerAdmin />} />
                 <Route path=":customerId" element={<CustomerDetails />} />
               </Route>
@@ -119,6 +121,7 @@ const App = () => {
               <Route path={paths.analysis} element={<Analysis />} />
               <Route path={paths.ipTracker} element={<IPTracker />} />
               <Route path={paths.transactions} element={<Transactions />} />
+              <Route path={paths.unauthorized} element={<UnAuthorized />} />
             </Route>
           </Routes>
           {currentPage === '/feedback' ? <Feedback /> : <AddCustomer />}

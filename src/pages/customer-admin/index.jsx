@@ -165,8 +165,8 @@ const Index = () => {
           title="Customer Admin"
         />
       </Flex>
-      {data?.map((item) => (
-        <>
+      {data?.map((item, idx) => (
+        <Box key={idx}>
           <Box bgColor="blue" color="white" my={8}>
             {item.agent}
           </Box>
@@ -177,7 +177,7 @@ const Index = () => {
             size="sm"
             title="Customer Admin"
           />
-        </>
+        </Box>
       ))}
       <Modal isOpen={isOpen} onClose={onClose} size={['md', '6xl']}>
         <EditForm onClose={onClose} />
