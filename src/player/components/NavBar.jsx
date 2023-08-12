@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext } from 'react';
 import {
   Box,
   Flex,
@@ -13,35 +13,45 @@ import {
   Icon,
   HStack,
   useMediaQuery,
-} from "@chakra-ui/react";
-import { FiSearch } from "react-icons/fi";
-import { AiOutlineHome } from "react-icons/ai";
-import { FaAddressCard, FaChevronDown, FaTh, FaTv } from "react-icons/fa";
-import { CgProfile } from "react-icons/cg";
-import { menuItems } from "./utils/helpers";
-import { BiBasketball, BiPowerOff } from "react-icons/bi";
-import { useQueryClient } from "@tanstack/react-query";
-import paths from "./utils/paths";
-import { useNavigate } from "react-router-dom";
-import styled from 'styled-components'
+} from '@chakra-ui/react';
+import { FiSearch } from 'react-icons/fi';
+import { AiOutlineHome } from 'react-icons/ai';
+import { FaAddressCard, FaChevronDown, FaTh, FaTv } from 'react-icons/fa';
+import { CgProfile } from 'react-icons/cg';
+import { menuItems } from './utils/helpers';
+import { BiBasketball, BiPowerOff } from 'react-icons/bi';
+import { useQueryClient } from '@tanstack/react-query';
+import paths from './utils/paths';
+import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+import MobileNav from './MobileNav';
 
 const Navbar = () => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
-  const [isMobile] = useMediaQuery("(max-width: 1020px)"); // Check for mobile screens
+  const [isMobile] = useMediaQuery('(max-width: 1020px)'); // Check for mobile screens
 
   const handleLogout = (e) => {
     e.preventDefault();
-    localStorage.removeItem("bet_token");
-    localStorage.removeItem("accountId");
+    localStorage.removeItem('bet_token');
+    localStorage.removeItem('accountId');
     queryClient.cancelQueries();
     queryClient.clear();
     navigate(paths.login);
   };
   return (
-    <StyledBox bg="playerBlue" color="white" py={["2"]} height="100%" zIndex="800">
+    <StyledBox
+      bg="playerBlue"
+      color="white"
+      py={['2']}
+      height="100%"
+      zIndex="800"
+    >
       <Flex maxW="98%" mx="auto" align="center">
-        <Box>
+        <Box display={{ base: 'block', lg: 'none' }}>
+          <MobileNav />
+        </Box>
+        <Box display={{ base: 'none', lg: 'block' }}>
           <Flex>
             <VStack mr={12}>
               <Text variant="nav">SPORTS</Text>
@@ -59,13 +69,13 @@ const Navbar = () => {
               <Text variant="nav">MORE</Text>
               <FaTh size={isMobile ? 24 : 32} />
             </VStack>
-            <Box p="4" mr={12} bg="blue" display={["block", "none"]}>
+            <Box p="4" mr={12} bg="blue" display={['block', 'none']}>
               <FiSearch size={isMobile ? 24 : 32} />
             </Box>
           </Flex>
         </Box>
         <Spacer />
-        <Box>
+        <Box display={{ base: 'none', lg: 'block' }}>
           <Flex>
             <VStack mr={12} alignItems="end">
               <Text variant="navBold">Balance</Text>
@@ -79,7 +89,7 @@ const Navbar = () => {
               <Text variant="navBold">Available</Text>
               <Text>$100</Text>
             </VStack>
-            <Box p="4" mr={12} bg="blue" display={["block", "none"]}>
+            <Box p="4" mr={12} bg="blue" display={['block', 'none']}>
               <FiSearch size={24} />
             </Box>
           </Flex>
@@ -101,7 +111,7 @@ const Navbar = () => {
               <MenuItem
                 minH="48px"
                 bgColor="black"
-                _hover={{ bgColor: "blue" }}
+                _hover={{ bgColor: 'blue' }}
               >
                 <Icon
                   boxSize="2rem"
@@ -117,7 +127,7 @@ const Navbar = () => {
             <MenuItem
               minH="48px"
               bgColor="black"
-              _hover={{ bgColor: "blue" }}
+              _hover={{ bgColor: 'blue' }}
               onClick={handleLogout}
             >
               <Icon boxSize="2rem" mr="12px" as={BiPowerOff} />
@@ -138,5 +148,4 @@ const StyledBox = styled(Box)`
   // right: 0;
   // left: 0;
   // height: 12vh !important;
-
-`
+`;
