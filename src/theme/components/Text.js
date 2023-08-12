@@ -21,7 +21,7 @@ export const TextStyle = {
       fontSize: '1.15vw',
     }),
     nav: (props) => ({
-      fontSize: { base: '16px', lg: '1.1vw' },
+      fontSize: { base: '8px', lg: '1.1vw' },
     }),
     whiteBoldNormal: (props) => ({
       fontWeight: 'bold',

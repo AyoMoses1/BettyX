@@ -119,7 +119,12 @@ const SignIn = () => {
               <FormErrorMessage>Password is required</FormErrorMessage>
             )}
           </FormControl>
-          <Button variant="primary" type="submit" width="100%">
+          <Button
+            variant="primary"
+            type="submit"
+            width="100%"
+            size={['sm', 'md']}
+          >
             Log in
           </Button>
         </form>

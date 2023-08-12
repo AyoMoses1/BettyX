@@ -42,20 +42,20 @@ const Navbar = () => {
       <Flex maxW="98%" mx="auto" align="center">
         <Box>
           <Flex spacing="10px">
-            <Box p={4} mr={2} bg="green" onClick={() => navigate('')}>
+            <Box p={4} mr={2} bg="green" onClick={() => navigate('/dashboard')}>
               <AiOutlineHome size={24} />
             </Box>
             <Box p="4" mr={2} bg="blue">
               <AiOutlineLineChart
                 size={24}
-                onClick={() => navigate('statistics')}
+                onClick={() => navigate('/statistics')}
               />
             </Box>
             <Box
               p="4"
               mr={2}
               bg="blue"
-              onClick={() => navigate('pending')}
+              onClick={() => navigate('/pending')}
               display={['none', 'block']}
             >
               <AiOutlineMessage size={24} />
@@ -63,13 +63,13 @@ const Navbar = () => {
             <Box p="4" mr={2} bg="blue" display={['none', 'block']}>
               <AiOutlineCalendar
                 size={24}
-                onClick={() => navigate('messages')}
+                onClick={() => navigate('/messages')}
               />
             </Box>
             <Box p="4" mr={2} bg="blue" display={['none', 'block']}>
               <AiOutlineSetting
                 size={24}
-                onClick={() => navigate('settings')}
+                onClick={() => navigate('/settings')}
               />
             </Box>
             <Box p="4" mr={2} bg="blue" display={['block', 'none']}>

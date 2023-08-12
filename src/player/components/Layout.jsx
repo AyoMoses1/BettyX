@@ -29,11 +29,13 @@ const Layout = () => {
         templateColumns="repeat(5, 1fr)"
         overflow={'hidden'}
       >
-        <GridItem height="100%" colSpan={[5, 1]} overflow="auto">
+        <GridItem height="100%" colSpan={[5, 5, 5, 1]} overflow="auto">
           <SideBar />
         </GridItem>
         <GridItem colSpan={[5, 4]}>
-          <NavBarMain />
+          <Box display={{ base: "none", lg: "block" }}>
+             <NavBarMain />
+          </Box>
           <Outlet />
         </GridItem>
       </Grid>
