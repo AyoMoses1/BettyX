@@ -54,6 +54,21 @@ export const paths = {
   faq: '/faq',
   userManual: '/manual',
   unauthorized: '/unauthorized',
+  player: '/player',
+  upNext: "/up-next",
+  featured: "/feaured",
+  liveStreaming: "/live-streaming",
+  commercialLive: "/commercial-live",
+  baseball: "/baseball",
+  football: "/football",
+  basketball: "/basketball",
+  soccer: "/soccer",
+  golf: "/golf",
+  martialArts: "/martial-arts",
+  boxing: "/boxing",
+  tennis: "/tennis",
+  autoRacing: "/auto-racing",
+  cricket: "/cricket",
 };
 
 export const pageTitles = {
@@ -192,7 +207,7 @@ export const pathObject = [
   {
     icon: RiBookLine,
     name: NavNames.sportsbookLines,
-    route: paths.sportsbookLines,
+    route: process.env.REACT_PLAYER_BASE_URL,
     color: 'turquoise',
     allowedRoles: ['admin', 'super-admin', 'agent'],
   },

@@ -25,7 +25,7 @@ const schema = yup
   .required();
 
 const SignIn = () => {
-  const { mutate, isLoading } = useSignIn();
+  const { mutate } = useSignIn();
   const [showPassword, setShowPassword] = useState(false);
 
   const handleTogglePassword = () => {
@@ -92,7 +92,7 @@ const SignIn = () => {
           <FormControl id="password">
             <InputGroup>
               <Input
-                pr="4.5rem" // To accommodate the eye icon button
+                pr="4.5rem"
                 type={showPassword ? 'text' : 'password'}
                 placeholder="*****"
                 size="lg"

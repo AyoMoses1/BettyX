@@ -10,9 +10,9 @@ import { setupAuthAxios, setupPublicAxios } from 'setup/auth/axios';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const queryClient = new QueryClient();
-// const accessToken = localStorage.getItem('bet_token');
-// setupPublicAxios(process.env.REACT_APP_BASE_URL);
-// setupAuthAxios(process.env.REACT_APP_BASE_URL, accessToken);
+const accessToken = localStorage.getItem('bet_token');
+setupPublicAxios(process.env.REACT_APP_BASE_URL);
+setupAuthAxios(process.env.REACT_APP_BASE_URL, accessToken);
 
 root.render(
   <QueryClientProvider client={queryClient}>

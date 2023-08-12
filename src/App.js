@@ -25,8 +25,9 @@ import NewCustomer from './pages/customers/NewCustomer';
 import Transactions from './pages/transactions';
 import IPTracker from './pages/ip-tracker';
 import CustomerDetails from './pages/customers/CustomerDetails';
-import SignIn from './pages/auth';
 import Layout from './common/Layout';
+import PlayerLayout from 'player/components/Layout';
+import Player from './player/index';
 import './App.css';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import paths from 'common/Paths';
@@ -35,6 +36,20 @@ import { useEffect } from 'react';
 import { setupAuthAxios, setupPublicAxios } from 'setup/auth/axios';
 import UnAuthorized from 'pages/auth/UnAuthorized';
 import AuthGuard from 'setup/auth/AuthGuard';
+import SignIn from 'pages/auth';
+import UpNext from 'player/pages/up-next';
+import Featured from 'player/pages/featured';
+import LiveStreaming from 'player/pages/live-streaming';
+import Baseball from 'player/pages/baseball';
+import Basketball from 'player/pages/basketball';
+import Football from 'player/pages/football';
+import Soccer from 'player/pages/soccer';
+import Golf from 'player/pages/golf';
+import MartialArts from 'player/pages/martial-arts';
+import Boxing from 'player/pages/boxing';
+import Tennis from 'player/pages/tennis';
+import AutoRacing from 'player/pages/auto-racing';
+import Cricket from 'player/pages/cricket';
 
 export const CurrentPageContext = createContext();
 
@@ -63,6 +78,8 @@ const App = () => {
     setupAuthAxios(process.env.REACT_APP_BASE_URL, localStorage.bet_token);
   }, [accessToken]);
 
+  console.log(process.env.PLAYER_URL);
+
   return (
     <ChakraProvider theme={theme}>
       <CurrentPageContext.Provider
@@ -80,52 +97,74 @@ const App = () => {
         }}
       >
         <Routes>
-          <Route path={paths.login} element={<SignIn />}></Route>
-        </Routes>
-        <RequireAuth>
-          <Routes>
+          <Route path={paths.login} element={<SignIn />} />
+          <Route
+            path={paths.player}
+            element={
+              <RequireAuth>
+                <PlayerLayout />
+              </RequireAuth>
+            }
+          >
+            <Route index element={<Player />} />
+            <Route path="up-next" element={<UpNext />} />
+            <Route path="featured" element={<Featured />} />
+            <Route path="live-streaming" element={<LiveStreaming />} />
+            <Route path="baseball" element={<Baseball />} />
+            <Route path="football" element={<Football />} />
+            <Route path="basketball" element={<Basketball />} />
+            <Route path="soccer" element={<Soccer />} />
+            <Route path="golf" element={<Golf />} />
+            <Route path="martial-arts" element={<MartialArts />} />
+            <Route path="boxing" element={<Boxing />} />
+            <Route path="tennis" element={<Tennis />} />
+            <Route path="auto-racing" element={<AutoRacing />} />
+            <Route path="cricket" element={<Cricket />} />
+          </Route>
+          <Route
+            path={paths.home}
+            element={
+              <RequireAuth>
+                <Layout />
+              </RequireAuth>
+            }
+          >
+            <Route index element={<Dashboard />} />
+            <Route path={paths.games} element={<Games />} />
+            <Route path={paths.messages} element={<Messages />} />
+            <Route path={paths.rules} element={<Rules />} />
+            <Route path={paths.statistics} element={<Statistics />} />
+            <Route path={paths.agents} element={<Agents />} />
+            <Route path={paths.settings} element={<Settings />} />
+            <Route path={paths.collections} element={<Collections />} />
+            <Route path={paths.billing} element={<Billing />} />
+            <Route path={paths.ticketWriter} element={<TicketWriter />} />
+            <Route path={paths.deletedWagers} element={<DeletedWagers />} />
+            <Route path={paths.pending} element={<Pending />} />
+            <Route path={paths.agentAdmin} element={<Agents />} />
             <Route
-              path={paths.home}
-              element={
-                <RequireAuth>
-                  <Layout />
-                </RequireAuth>
-              }
+              path={paths.customers}
+              element={<AuthGuard authRoles="agent admin" />}
             >
-              <Route index element={<Dashboard />} />
-              <Route path={paths.games} element={<Games />} />
-              <Route path={paths.messages} element={<Messages />} />
-              <Route path={paths.rules} element={<Rules />} />
-              <Route path={paths.statistics} element={<Statistics />} />
-              <Route path={paths.agents} element={<Agents />} />
-              <Route path={paths.settings} element={<Settings />} />
-              <Route path={paths.collections} element={<Collections />} />
-              <Route path={paths.billing} element={<Billing />} />
-              <Route path={paths.ticketWriter} element={<TicketWriter />} />
-              <Route path={paths.deletedWagers} element={<DeletedWagers />} />
-              <Route path={paths.pending} element={<Pending />} />
-              <Route path={paths.agentAdmin} element={<Agents />} />
-              <Route path={paths.customers} element={<AuthGuard authRoles="agent admin"/>}>
-                <Route index  element={<CustomerAdmin />} />
-                <Route path=":customerId" element={<CustomerDetails />} />
-              </Route>
-              <Route path={paths.cashier} element={<Cashier />} />
-              <Route path={paths.liveLimits} element={<LiveLimits />} />
-              <Route path={paths.addCustomer} element={<NewCustomer />} />
-              <Route path={paths.addAgent} element={<NewAgent />} />
-              <Route
-                path={paths.agentPerformance}
-                element={<AgentPerformance />}
-              />
-              <Route path={paths.analysis} element={<Analysis />} />
-              <Route path={paths.ipTracker} element={<IPTracker />} />
-              <Route path={paths.transactions} element={<Transactions />} />
-              <Route path={paths.unauthorized} element={<UnAuthorized />} />
+              <Route index element={<CustomerAdmin />} />
+              <Route path=":customerId" element={<CustomerDetails />} />
             </Route>
-          </Routes>
-          {currentPage === '/feedback' ? <Feedback /> : <AddCustomer />}
-          <Scores />
-        </RequireAuth>
+            <Route path={paths.cashier} element={<Cashier />} />
+            <Route path={paths.liveLimits} element={<LiveLimits />} />
+            <Route path={paths.addCustomer} element={<NewCustomer />} />
+            <Route path={paths.addAgent} element={<NewAgent />} />
+            <Route
+              path={paths.agentPerformance}
+              element={<AgentPerformance />}
+            />
+            <Route path={paths.analysis} element={<Analysis />} />
+            <Route path={paths.ipTracker} element={<IPTracker />} />
+            <Route path={paths.transactions} element={<Transactions />} />
+            <Route path={paths.unauthorized} element={<UnAuthorized />} />
+          </Route>
+        </Routes>
+        {currentPage === '/feedback' ? <Feedback /> : <AddCustomer />}
+        <Scores />
       </CurrentPageContext.Provider>
     </ChakraProvider>
   );
