@@ -44,7 +44,7 @@ export const paths = {
   transactions: '/transactions',
   collections: '/collections',
   deletedWagers: '/deleted-wagers',
-  sportsbookLines: '/sportsbook',
+  sportsbookLines: '/player',
   betTicker: '/bet-ticker',
   ticketWriter: '/ticket-writer',
   scores: '/scores',
@@ -207,7 +207,7 @@ export const pathObject = [
   {
     icon: RiBookLine,
     name: NavNames.sportsbookLines,
-    route: process.env.REACT_PLAYER_BASE_URL,
+    route: paths.sportsbookLines,
     color: 'turquoise',
     allowedRoles: ['admin', 'super-admin', 'agent'],
   },

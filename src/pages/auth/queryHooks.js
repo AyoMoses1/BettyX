@@ -23,13 +23,12 @@ export const useSignIn = () => {
       });
     },
     onSuccess: (data) => {
-      console.log(data, "token data here")
-      setAccessToken(data.data.token)
+      setAccessToken(data.data.token);
       localStorage.setItem('bet_token', data.data.token);
       localStorage.setItem('accountId', data.data.user.accountId);
       localStorage.setItem('user_role', data.data.user.role);
       setCurrentPage(paths.home);
-      navigate(paths.home);
+      navigate(data.data.user.role === 'player' ? paths.player : paths.home);
     },
   });
 };
