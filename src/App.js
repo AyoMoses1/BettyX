@@ -78,8 +78,6 @@ const App = () => {
     setupAuthAxios(process.env.REACT_APP_BASE_URL, localStorage.bet_token);
   }, [accessToken]);
 
-  console.log(process.env.PLAYER_URL);
-
   return (
     <ChakraProvider theme={theme}>
       <CurrentPageContext.Provider
