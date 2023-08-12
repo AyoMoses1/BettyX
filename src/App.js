@@ -121,7 +121,7 @@ const App = () => {
             <Route path="cricket" element={<Cricket />} />
           </Route>
           <Route
-            path={paths.dashboard}
+            // path={paths.dashboard}
             element={
               <RequireAuth>
                 <Layout />
@@ -129,7 +129,7 @@ const App = () => {
             }
           >
             <Route element={<AuthGuard authRoles="agent admin super-admin" />}>
-              <Route index element={<Dashboard />} />
+              <Route path={paths.dashboard} element={<Dashboard />} />
               <Route path={paths.games} element={<Games />} />
               <Route path={paths.messages} element={<Messages />} />
               <Route path={paths.rules} element={<Rules />} />
