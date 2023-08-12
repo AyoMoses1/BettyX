@@ -91,7 +91,7 @@ const Navbar = () => {
               <CgProfile size={24} />
               <Spacer />
               <HStack>
-                <span>R1524</span>
+                <span>{localStorage.accountId}</span>
                 <FaChevronDown />
               </HStack>
             </Flex>

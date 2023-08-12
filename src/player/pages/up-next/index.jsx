@@ -1,11 +1,11 @@
-import DynamicTable from "common/DynamicTable";
-import { Box, Grid, Text } from "@chakra-ui/react";
-import { useState } from "react";
-import { data } from "./data";
-import { columns } from "./helpers";
-import PageHeader from "player/components/PageHeader";
-import { FaClock } from "react-icons/fa";
-import HeadingTable from "common/HeadingTable";
+import DynamicTable from 'common/DynamicTable/Player';
+import { Box } from '@chakra-ui/react';
+import { useState } from 'react';
+import { data } from './data';
+import { columns } from './helpers';
+import PageHeader from 'player/components/PageHeader';
+import { FaClock } from 'react-icons/fa';
+import HeadingTable from 'common/HeadingTable';
 
 const Index = () => {
   const [pageProps, setPageProps] = useState({

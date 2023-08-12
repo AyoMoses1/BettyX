@@ -96,8 +96,9 @@ const App = () => {
       >
         <Routes>
           <Route path={paths.login} element={<SignIn />} />
+          <Route path={paths.unauthorized} element={<UnAuthorized />} />
           <Route
-            path={paths.player}
+            path={paths.home}
             element={
               <RequireAuth>
                 <PlayerLayout />
@@ -120,26 +121,31 @@ const App = () => {
             <Route path="cricket" element={<Cricket />} />
           </Route>
           <Route
-            path={paths.home}
+            path={paths.dashboard}
             element={
               <RequireAuth>
                 <Layout />
               </RequireAuth>
             }
           >
-            <Route index element={<Dashboard />} />
-            <Route path={paths.games} element={<Games />} />
-            <Route path={paths.messages} element={<Messages />} />
-            <Route path={paths.rules} element={<Rules />} />
-            <Route path={paths.statistics} element={<Statistics />} />
-            <Route path={paths.agents} element={<Agents />} />
-            <Route path={paths.settings} element={<Settings />} />
-            <Route path={paths.collections} element={<Collections />} />
-            <Route path={paths.billing} element={<Billing />} />
-            <Route path={paths.ticketWriter} element={<TicketWriter />} />
-            <Route path={paths.deletedWagers} element={<DeletedWagers />} />
-            <Route path={paths.pending} element={<Pending />} />
-            <Route path={paths.agentAdmin} element={<Agents />} />
+            <Route element={<AuthGuard authRoles="agent admin super-admin" />}>
+              <Route index element={<Dashboard />} />
+              <Route path={paths.games} element={<Games />} />
+              <Route path={paths.messages} element={<Messages />} />
+              <Route path={paths.rules} element={<Rules />} />
+              <Route path={paths.statistics} element={<Statistics />} />
+              <Route path={paths.agents} element={<Agents />} />
+              <Route path={paths.settings} element={<Settings />} />
+              <Route path={paths.collections} element={<Collections />} />
+              <Route path={paths.billing} element={<Billing />} />
+              <Route path={paths.ticketWriter} element={<TicketWriter />} />
+              <Route path={paths.deletedWagers} element={<DeletedWagers />} />
+              <Route path={paths.pending} element={<Pending />} />
+              <Route path={paths.agentAdmin} element={<Agents />} />
+              <Route path={paths.analysis} element={<Analysis />} />
+              <Route path={paths.ipTracker} element={<IPTracker />} />
+              <Route path={paths.transactions} element={<Transactions />} />
+            </Route>
             <Route
               path={paths.customers}
               element={<AuthGuard authRoles="agent admin" />}
@@ -155,10 +161,6 @@ const App = () => {
               path={paths.agentPerformance}
               element={<AgentPerformance />}
             />
-            <Route path={paths.analysis} element={<Analysis />} />
-            <Route path={paths.ipTracker} element={<IPTracker />} />
-            <Route path={paths.transactions} element={<Transactions />} />
-            <Route path={paths.unauthorized} element={<UnAuthorized />} />
           </Route>
         </Routes>
         {currentPage === '/feedback' ? <Feedback /> : <AddCustomer />}

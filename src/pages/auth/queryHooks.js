@@ -28,7 +28,7 @@ export const useSignIn = () => {
       localStorage.setItem('accountId', data.data.user.accountId);
       localStorage.setItem('user_role', data.data.user.role);
       setCurrentPage(paths.home);
-      navigate(data.data.user.role === 'player' ? paths.player : paths.home);
+      navigate(data.data.user.role === 'player' ? paths.home : paths.dashboard);
     },
   });
 };
