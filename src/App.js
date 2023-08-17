@@ -157,22 +157,12 @@ const App = () => {
             <Route path={paths.cashier} element={<Cashier />} />
             <Route path={paths.liveLimits} element={<LiveLimits />} />
             <Route path={paths.addCustomer} element={<NewCustomer />} />
-            <Route
-              path={paths.addAgent}
-              element={
-                <AuthGuard authRoles="admin super-admin">
-                  <NewAgent />
-                </AuthGuard>
-              }
-            />
-            <Route
-              path={paths.addAdmin}
-              element={
-                <AuthGuard authRoles="super-admin">
-                  <NewAdmin />
-                </AuthGuard>
-              }
-            />
+            <Route element={<AuthGuard authRoles="admin super-admin" />}>
+              <Route path={paths.addAgent} element={<NewAgent />}></Route>
+            </Route>
+            <Route element={<AuthGuard authRoles="super-admin" />}>
+              <Route path={paths.addAdmin} element={<NewAdmin />}></Route>
+            </Route>
             <Route
               path={paths.agentPerformance}
               element={<AgentPerformance />}

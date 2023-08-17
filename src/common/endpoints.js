@@ -7,6 +7,7 @@ const endpoints = {
   agentsWithPlayers: '/agent/allAgentsWithPlayers?sort=date',
   agents: '/agent',
   players: '/player',
+  admin: '/admin'
 };
 
 export default endpoints;

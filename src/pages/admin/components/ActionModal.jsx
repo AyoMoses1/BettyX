@@ -27,7 +27,7 @@ function ActionModal(props) {
         </Stack>
       }
     >
-      Are you sure you want to create this agent?{' '}
+      Are you sure you want to create this admin?{' '}
     </ModalComponent>
   );
 }

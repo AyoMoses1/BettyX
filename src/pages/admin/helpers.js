@@ -57,7 +57,7 @@ export const inputObjList = (
 ) => [
   {
     name: "accountId",
-    label: "Agent Name",
+    label: "Account ID",
     type: "text",
     value: state.accountId,
     onChange: handleChange,
@@ -69,7 +69,7 @@ export const inputObjList = (
   },
   {
     name: "password",
-    label: "Agent Password",
+    label: "Admin Password",
     type: "text",
     onChange: handleChange,
     value: state.password,
@@ -78,24 +78,5 @@ export const inputObjList = (
     }),
     isInvalid: !!errors.pasword,
     error: errors?.password,
-  },
-  {
-    name: "prefix",
-    label: "Agent Prefix",
-    type: "text",
-    onChange: handleChange,
-    value: state.prefix,
-    register: register("prefix", {
-      required: "Please enter a valid prefix",
-    }),
-    isInvalid: !!errors.prefix,
-    error: errors?.prefix,
-  },
-  {
-    name: "nextAccountStart",
-    label: "Next Account Start",
-    type: "number",
-    value: state.nextAccountStart,
-    register: register("nextAccountStart"),
   },
 ];

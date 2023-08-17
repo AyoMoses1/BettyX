@@ -12,10 +12,10 @@ class Services {
     return response?.data?.agents
   };
 
-  async createAgent(payload) {
+  async createAdmin(payload) {
     const response = await  axios({
       method: "POST",
-      url: `${endpoints.agents}`,
+      url: `${endpoints.admin}`,
       data: payload.data
     });
     return response?.data

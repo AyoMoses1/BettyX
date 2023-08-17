@@ -80,19 +80,18 @@ const NewAgent = () => {
               Continue
             </Button>
           </Flex>
-          <form>
-            <Grid
-              templateColumns="repeat(auto-fit, minmax(250px, 1fr))"
-              p={8}
-              gap={4}
-            >
-              {inputObjList(register, handleChange, data, errors).map(
-                (input, idx) => (
-                  <Box key={idx}>{generateGridInputs(input)}</Box>
-                )
-              )}
-            </Grid>
-          </form>
+
+          <Grid
+            templateColumns="repeat(auto-fit, minmax(250px, 1fr))"
+            p={8}
+            gap={4}
+          >
+            {inputObjList(register, handleChange, data, errors).map(
+              (input, idx) => (
+                <Box key={idx}>{generateGridInputs(input)}</Box>
+              )
+            )}
+          </Grid>
         </Box>
       </form>
       <ActionModal

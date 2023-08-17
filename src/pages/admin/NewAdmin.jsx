@@ -11,7 +11,7 @@ import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import ActionModal from './components/ActionModal';
 import { useState } from 'react';
-import { useCreateAgent } from './queryHooks';
+import { useCreateAdmin } from './queryHooks';
 import { inputObjList } from './helpers';
 import generateGridInputs from 'common/DynamicGridForm';
 
@@ -20,20 +20,16 @@ const schema = yup
   .shape({
     accountId: yup.string().required(),
     password: yup.string().required(),
-    prefix: yup.string().required(),
-    nextAccountStart: yup.number().required(),
   })
   .required();
 
 const initialState = {
   accountId: '',
   password: '',
-  prefix: '',
-  nextAccountStart: 1,
 };
 
 const NewAdmin = () => {
-  const { mutate, isLoading } = useCreateAgent();
+  const { mutate, isLoading } = useCreateAdmin();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [isActionModalConfirmed, setActionModalConfirmed] = useState(false);
   const [data, setData] = useState(initialState);
@@ -45,6 +41,7 @@ const NewAdmin = () => {
   } = useForm({ resolver: yupResolver(schema) });
 
   const onSubmit = () => {
+    console.log({data})
     mutate({ data });
     setData(initialState);
   };
@@ -68,7 +65,7 @@ const NewAdmin = () => {
         <Box m={4} bg="#ececec">
           <Flex justify="space-between" bg="blue" align="center" px={4}>
             <Heading variant="h1" color="#fff">
-              Add Agent
+              Add Admin
             </Heading>
             <Button
               variant="success"
@@ -76,11 +73,11 @@ const NewAdmin = () => {
               my={2}
               size={['sm', 'md']}
               type="submit"
+
             >
               Continue
             </Button>
           </Flex>
-          <form>
             <Grid
               templateColumns="repeat(auto-fit, minmax(250px, 1fr))"
               p={8}
@@ -92,11 +89,10 @@ const NewAdmin = () => {
                 )
               )}
             </Grid>
-          </form>
         </Box>
       </form>
       <ActionModal
-        title="Create Agent"
+        title="Create Admin"
         isOpen={isOpen}
         onClose={onClose}
         isLoading={isLoading}

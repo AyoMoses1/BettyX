@@ -1,16 +1,15 @@
 import { useQuery, useMutation } from '@tanstack/react-query';
 import Services from './services';
-import { AxiosError, AxiosResponse } from 'axios';
 import { Box, useToast } from '@chakra-ui/react';
 
 export const useGetAllAgents = () => {
   return useQuery(['allPlayers'], () => Services.getAllAgents());
 };
 
-export const useCreateAgent = () => {
+export const useCreateAdmin = () => {
   const toast = useToast();
 
-  return useMutation(Services.createAgent, {
+  return useMutation(Services.createAdmin, {
     onError: (data) => {
       console.log(data, 'failed');
       const errObj = data.response;
@@ -37,7 +36,7 @@ export const useCreateAgent = () => {
             maxWidth="300px"
           >
             <Box fontWeight="bold" fontSize="lg" marginBottom="2">
-              Agent Account Created Successfully!
+              Admin Account Created Successfully!
             </Box>
           </Box>
         ),
