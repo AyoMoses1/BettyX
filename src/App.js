@@ -32,6 +32,7 @@ import './App.css';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import paths from 'common/Paths';
 import NewAgent from 'pages/agents/NewAgent';
+import NewAdmin from 'pages/admin/NewAdmin';
 import { useEffect } from 'react';
 import { setupAuthAxios, setupPublicAxios } from 'setup/auth/axios';
 import UnAuthorized from 'pages/auth/UnAuthorized';
@@ -156,7 +157,22 @@ const App = () => {
             <Route path={paths.cashier} element={<Cashier />} />
             <Route path={paths.liveLimits} element={<LiveLimits />} />
             <Route path={paths.addCustomer} element={<NewCustomer />} />
-            <Route path={paths.addAgent} element={<NewAgent />} />
+            <Route
+              path={paths.addAgent}
+              element={
+                <AuthGuard authRoles="admin super-admin">
+                  <NewAgent />
+                </AuthGuard>
+              }
+            />
+            <Route
+              path={paths.addAdmin}
+              element={
+                <AuthGuard authRoles="super-admin">
+                  <NewAdmin />
+                </AuthGuard>
+              }
+            />
             <Route
               path={paths.agentPerformance}
               element={<AgentPerformance />}

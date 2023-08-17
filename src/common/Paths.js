@@ -38,6 +38,7 @@ export const paths = {
   cashier: '/cashier',
   addCustomer: '/add-customer',
   addAgent: '/add-agent',
+  addAdmin: '/add-admin',
   liveLimits: '/live-limits',
   agentPerformance: '/agents-performance',
   analysis: '/analysis',
