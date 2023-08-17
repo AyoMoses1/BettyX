@@ -4,7 +4,7 @@ import { AxiosError, AxiosResponse } from 'axios';
 import { Box, useToast } from '@chakra-ui/react';
 
 export const useGetAllAgents = () => {
-  return useQuery(['allPlayers'], () => Services.getAllAgents());
+  return useQuery(['allAgents'], () => Services.getAllAgents());
 };
 
 export const useCreateAgent = () => {

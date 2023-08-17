@@ -38,9 +38,9 @@ const initialState = {
 };
 
 const initialAgentState = {
-  agent: '',
-  prefix: '',
-  nextAccountStart: 1,
+  agent: localStorage.user_role === "agent" ? localStorage.accountId : "",
+  prefix: localStorage.user_role === "agent" ? localStorage.user_prefix : "",
+  nextAccountStart: localStorage.user_role === "agent" ? localStorage.nextAccountStart : 1,
 };
 
 const NewCustomer = () => {
@@ -60,7 +60,8 @@ const NewCustomer = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    if (name === 'agent') {
+    console.log(name, value)
+    if (name === 'agent' && localStorage.user_role !== 'agent') {
       const selectedOptionObject = agents.find(
         (option) => option.accountId === value
       );

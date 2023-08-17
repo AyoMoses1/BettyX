@@ -41,7 +41,6 @@ const NewAdmin = () => {
   } = useForm({ resolver: yupResolver(schema) });
 
   const onSubmit = () => {
-    console.log({data})
     mutate({ data });
     setData(initialState);
   };

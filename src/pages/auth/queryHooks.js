@@ -27,6 +27,8 @@ export const useSignIn = () => {
       localStorage.setItem('bet_token', data.data.token);
       localStorage.setItem('accountId', data.data.user.accountId);
       localStorage.setItem('user_role', data.data.user.role);
+      localStorage.setItem('user_prefix', data.data.user.prefix);
+      localStorage.setItem('nextAccountStart', data.data.user.nextAccountStart);
       setCurrentPage(paths.home);
       navigate(data.data.user.role === 'player' ? paths.home : paths.dashboard);
     },
