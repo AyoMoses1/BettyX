@@ -6,6 +6,7 @@ import { columns } from './helpers';
 import PageHeader from 'player/components/PageHeader';
 import { FaClock } from 'react-icons/fa';
 import HeadingTable from 'common/HeadingTable';
+import FixturesTable from 'common/FixTuresTable';
 
 const Index = () => {
   const [pageProps, setPageProps] = useState({
@@ -15,17 +16,18 @@ const Index = () => {
 
   return (
     <>
-      <PageHeader title="Up Next" icon={<FaClock />} />
+      <PageHeader title="Other Baseball" icon={<FaClock />} />
       <HeadingTable />
-      <Box mt={8}>
-        <DynamicTable
+      <Box>
+        {/* <DynamicTable
           setPageProps={setPageProps}
           pageProps={pageProps}
           totalCount={data?.totalElements}
           columns={columns}
           data={data ?? []}
           totalPages={data?.totalPages}
-        />
+        /> */}
+        <FixturesTable />
       </Box>
     </>
   );

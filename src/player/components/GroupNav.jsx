@@ -2,14 +2,15 @@ import {
   useDisclosure,
   Text,
   // Link,
+  Icon,
   Collapse,
   Box,
   HStack,
-} from "@chakra-ui/react";
-import Clickable from "./Clickable";
-import NavMole from "./NavMole";
-import { NavLink } from "react-router-dom";
-import { VscTriangleDown, VscTriangleRight } from "react-icons/vsc";
+} from '@chakra-ui/react';
+import Clickable from './Clickable';
+import NavMole from './NavMole';
+import { NavLink } from 'react-router-dom';
+import { VscTriangleDown, VscTriangleRight } from 'react-icons/vsc';
 
 const GroupNav = (props) => {
   const { isOpen, onToggle } = useDisclosure();
@@ -18,12 +19,12 @@ const GroupNav = (props) => {
   return (
     <Box mb={3} pl="4">
       <Clickable height="auto" onClick={onToggle}>
-        <HStack mb={2} ml={6}>
-          <Text variant="navLink">{props.main.name}</Text>
-          {isOpen ? <VscTriangleDown /> : <VscTriangleRight />}
+        <HStack mb={2}>
+          <Icon as={props.main?.icon} color="white" />
+          <Text variant="nav">{props.main.name}</Text>
         </HStack>
       </Clickable>
-      <HStack ml={2}>
+      <HStack>
         <Collapse in={isOpen} animateOpacity>
           {navs}
         </Collapse>
@@ -32,10 +33,10 @@ const GroupNav = (props) => {
   );
 };
 
-export const SingleNav = ({ path, name, icon }) => {
+export const SingleNav = ({ path, name, icon, isSub }) => {
   return (
     <NavLink to={path}>
-      <NavMole name={name} icon={icon} />
+      <NavMole name={name} icon={icon} isSub={isSub} />
     </NavLink>
   );
 };

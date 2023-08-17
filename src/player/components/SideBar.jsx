@@ -39,6 +39,7 @@ const Index = (props) => {
         name={item.main.name}
         icon={item.main.icon}
         key={item.main.name}
+        isSub={true}
       />
     )
   );

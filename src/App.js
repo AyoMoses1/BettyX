@@ -148,7 +148,7 @@ const App = () => {
             </Route>
             <Route
               path={paths.customers}
-              element={<AuthGuard authRoles="agent admin" />}
+              element={<AuthGuard authRoles="agent admin super-admin" />}
             >
               <Route index element={<CustomerAdmin />} />
               <Route path=":customerId" element={<CustomerDetails />} />

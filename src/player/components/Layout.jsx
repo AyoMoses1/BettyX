@@ -32,7 +32,7 @@ const Layout = () => {
         <GridItem height="100%" colSpan={[5, 5, 5, 1]} overflow="auto">
           <SideBar />
         </GridItem>
-        <GridItem colSpan={[5, 4]}>
+        <GridItem colSpan={[5, 5, 5, 4]}>
           <Box display={{ base: "none", lg: "block" }}>
              <NavBarMain />
           </Box>

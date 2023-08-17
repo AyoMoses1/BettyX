@@ -78,6 +78,14 @@ export const PageTitles = {
   cricket: 'Cricket',
 };
 
+export const soccerNavs = {
+  epl: 'English Premier League',
+  fwwc: 'FIFA Women World Cup',
+  uefa: 'UEFA Europa Conference League',
+  laliga: 'Spain La Liga',
+  bundesliga: 'German Bundesliga',
+};
+
 export const pathObject = [
   {
     main: { name: NavNames.upNext, path: paths.upNext, icon: FiClock },
@@ -90,6 +98,16 @@ export const pathObject = [
       icon: BiStar,
     },
     sub: [],
+  },
+  {
+    main: { name: NavNames.soccer, icon: BiFootball },
+    sub: [
+      { name: soccerNavs.fwwc, path: paths.bdaOrders, icon: CgProfile },
+      { name: soccerNavs.uefa, path: paths.bdaOrders, icon: CgProfile },
+      { name: soccerNavs.laliga, path: paths.bdaOrders, icon: CgProfile },
+      { name: soccerNavs.bundesliga, path: paths.bdaOrders, icon: CgProfile },
+      { name: soccerNavs.epl, path: paths.bdaOrders, icon: CgProfile },
+    ],
   },
   {
     main: {
