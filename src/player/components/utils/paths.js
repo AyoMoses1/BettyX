@@ -26,6 +26,7 @@ import {
 } from 'react-icons/bi';
 import { CgProfile } from 'react-icons/cg';
 import { MdSportsMartialArts } from 'react-icons/md';
+import useGetAllLeagues from 'common/useGetAllLeagues';
 
 const paths = {
   home: '/',
@@ -35,9 +36,9 @@ const paths = {
   liveStreaming: 'live-streaming',
   commercialLive: 'commercial-live',
   baseball: 'baseball',
-  football: 'football',
+  football: '/football',
   basketball: 'basketball',
-  soccer: 'soccer',
+  soccer: '/soccer',
   golf: 'golf',
   martialArts: 'martial-arts',
   boxing: 'boxing',
@@ -86,125 +87,157 @@ export const soccerNavs = {
   bundesliga: 'German Bundesliga',
 };
 
-export const pathObject = [
-  {
-    main: { name: NavNames.upNext, path: paths.upNext, icon: FiClock },
-    sub: [],
-  },
-  {
-    main: {
-      name: NavNames.featured,
-      path: paths.featured,
-      icon: BiStar,
+export const useNav = () => {
+  const { footballLeagues, soccerLeagues } = useGetAllLeagues();
+  const pathObject = [
+    {
+      main: {
+        name: NavNames.upNext,
+        path: paths.upNext,
+        icon: FiClock,
+        sport_id: 1,
+      },
+      sub: [],
     },
-    sub: [],
-  },
-  {
-    main: { name: NavNames.soccer, icon: BiFootball },
-    sub: [
-      { name: soccerNavs.fwwc, path: paths.bdaOrders, icon: CgProfile },
-      { name: soccerNavs.uefa, path: paths.bdaOrders, icon: CgProfile },
-      { name: soccerNavs.laliga, path: paths.bdaOrders, icon: CgProfile },
-      { name: soccerNavs.bundesliga, path: paths.bdaOrders, icon: CgProfile },
-      { name: soccerNavs.epl, path: paths.bdaOrders, icon: CgProfile },
-    ],
-  },
-  {
-    main: {
-      name: NavNames.liveStreaming,
-      path: paths.liveStreaming,
-      icon: BiTv,
+    {
+      main: {
+        name: NavNames.featured,
+        path: paths.featured,
+        icon: BiStar,
+      },
+      sub: [],
     },
-    sub: [],
-  },
-  {
-    main: {
-      name: NavNames.commercialLive,
-      path: paths.commercialLive,
-      icon: BiSolidCameraMovie,
+    {
+      main: { name: NavNames.soccer, icon: BiFootball, sport_id: 1 },
+      sub: soccerLeagues
+        ? soccerLeagues?.results?.map((item) => {
+            return {
+              name: item.name,
+              path: paths.soccer,
+              icon: CgProfile,
+              leagueId: item.id,
+              sport_id: 1,
+            };
+          })
+        : [],
     },
-    sub: [],
-  },
-  {
-    main: {
-      name: NavNames.basketball,
-      path: paths.basketball,
-      icon: BiBasketball,
+    {
+      main: {
+        name: NavNames.liveStreaming,
+        path: paths.liveStreaming,
+        icon: BiTv,
+        sport_id: 2,
+      },
+      sub: [],
     },
-    sub: [],
-  },
-  {
-    main: {
-      name: NavNames.baseball,
-      path: paths.baseball,
-      icon: BiBaseball,
+    {
+      main: {
+        name: NavNames.commercialLive,
+        path: paths.commercialLive,
+        icon: BiSolidCameraMovie,
+        sport_id: 2,
+      },
+      sub: [],
     },
-    sub: [],
-  },
-  {
-    main: {
-      name: NavNames.football,
-      path: paths.football,
-      icon: FaFootballBall,
+    {
+      main: {
+        name: NavNames.basketball,
+        path: paths.basketball,
+        icon: BiBasketball,
+        sport_id: 2,
+      },
+      sub: [],
     },
-    sub: [],
-  },
-  {
-    main: {
-      name: NavNames.soccer,
-      path: paths.soccer,
-      icon: BiFootball,
+    {
+      main: {
+        name: NavNames.baseball,
+        path: paths.baseball,
+        icon: BiBaseball,
+        sport_id: 1,
+      },
+      sub: [],
     },
-    sub: [],
-  },
-  {
-    main: {
-      name: NavNames.golf,
-      path: paths.golf,
-      icon: FaGolfBall,
+    {
+      main: { name: NavNames.football, icon: FaFootballBall },
+      sub: footballLeagues
+        ? footballLeagues?.results?.map((item) => {
+            return {
+              name: item.name,
+              path: paths.football,
+              icon: CgProfile,
+              leagueId: item.id,
+              sport_id: 12,
+            };
+          })
+        : [],
     },
-    sub: [],
-  },
-  {
-    main: {
-      name: NavNames.martialArts,
-      path: paths.martialArts,
-      icon: MdSportsMartialArts,
+    {
+      main: {
+        name: NavNames.soccer,
+        path: paths.soccer,
+        icon: BiFootball,
+        sport_id: 1,
+      },
+      sub: [],
     },
-    sub: [],
-  },
-  {
-    main: {
-      name: NavNames.boxing,
-      path: paths.boxing,
-      icon: FiGlobe,
+    {
+      main: {
+        name: NavNames.golf,
+        path: paths.golf,
+        icon: FaGolfBall,
+        sport_id: 2,
+      },
+      sub: [],
     },
-    sub: [],
-  },
-  {
-    main: {
-      name: NavNames.tennis,
-      path: paths.tennis,
-      icon: BiTennisBall,
+    {
+      main: {
+        name: NavNames.martialArts,
+        path: paths.martialArts,
+        icon: MdSportsMartialArts,
+        sport_id: 2,
+      },
+      sub: [],
     },
-    sub: [],
-  },
-  {
-    main: {
-      name: NavNames.autoRacing,
-      path: paths.autoRacing,
-      icon: FaCar,
+    {
+      main: {
+        name: NavNames.boxing,
+        path: paths.boxing,
+        icon: FiGlobe,
+        sport_id: 2,
+      },
+      sub: [],
     },
-    sub: [],
-  },
-  {
-    main: {
-      name: NavNames.cricket,
-      path: paths.cricket,
-      icon: BiCricketBall,
+    {
+      main: {
+        name: NavNames.tennis,
+        path: paths.tennis,
+        icon: BiTennisBall,
+        sport_id: 2,
+      },
+      sub: [],
     },
-    sub: [],
-  },
-];
+    {
+      main: {
+        name: NavNames.autoRacing,
+        path: paths.autoRacing,
+        icon: FaCar,
+        sport_id: 2,
+      },
+      sub: [],
+    },
+    {
+      main: {
+        name: NavNames.cricket,
+        path: paths.cricket,
+        icon: BiCricketBall,
+        sport_id: 2,
+      },
+      sub: [],
+    },
+  ];
+  return {
+    pathObject,
+  };
+};
 
 export default paths;

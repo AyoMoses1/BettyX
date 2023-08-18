@@ -1,6 +1,7 @@
-import { HStack, Text, Icon, Checkbox } from '@chakra-ui/react';
+import { HStack, Text, Icon, Link } from '@chakra-ui/react';
+import { Link as ReactRouterLink } from 'react-router-dom';
 
-const NavMole = ({ name, icon, isLogout, isSub }) => {
+const NavMole = ({ name, icon, isLogout, isSub, path, id, sportId }) => {
   if (isSub) {
     return (
       <HStack py={3} borderBottom="1px solid" borderColor="#393838" pl="4">
@@ -14,10 +15,18 @@ const NavMole = ({ name, icon, isLogout, isSub }) => {
 
   return (
     <HStack py={3} borderBottom="1px solid" borderColor="#393838">
-      <Checkbox>{name}</Checkbox>
-      {/* <Text fontSize="sm" variant="nav">
-        {name}
-      </Text> */}
+      <Link
+        as={ReactRouterLink}
+        to={{
+          pathname: path,
+        }}
+        state={{
+          sportId,
+          id,
+        }}
+      >
+        <Text>{name}</Text>
+      </Link>
     </HStack>
   );
 };

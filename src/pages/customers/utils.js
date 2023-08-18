@@ -31,5 +31,16 @@ export const handleCustomerPayload = (data) => {
     data.nextAccountStart,
     data.prefix
   );
-  return array
+  return array;
+};
+
+export const formatDateAndTime = (timestamp) => {
+  const timestampInMilliseconds = timestamp * 1000;
+  const date = new Date(timestampInMilliseconds);
+  const formattedTime = date.toLocaleTimeString('en-US', {
+    hour: '2-digit',
+    minute: '2-digit',
+    timeZoneName: 'short',
+  });
+  return formattedTime;
 };

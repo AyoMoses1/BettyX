@@ -17,19 +17,14 @@ import _ from 'lodash';
 
 import GroupNav, { SingleNav } from './GroupNav';
 import NavMole from './NavMole';
-import pagePaths, { pathObject } from './utils/paths';
+import pagePaths, { useNav } from './utils/paths';
 import NavBarMain from './NavBarMain';
 
 // import { useUserDetailsContext } from '../context/userDetailsContext';
 
 const Index = (props) => {
-  // const { userDetails } = useUserDetailsContext();
-  const userDetails = {
-    firstName: 'ayo',
-    lastName: 'moses',
-  };
-  const queryClient = useQueryClient();
-  const navigate = useNavigate();
+  const { pathObject } = useNav();
+  
   const navs = pathObject.map((item) =>
     item.sub.length ? (
       <GroupNav {...item} key={item.main.name} />
@@ -60,7 +55,7 @@ const Index = (props) => {
               borderRadius="none"
             />
           </InputGroup>
-          <Box display={{ base: "block", lg: "none" }} width="100%">
+          <Box display={{ base: 'block', lg: 'none' }} width="100%">
             <NavBarMain />
           </Box>
           <Box

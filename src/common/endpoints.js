@@ -7,7 +7,9 @@ const endpoints = {
   agentsWithPlayers: '/agent/allAgentsWithPlayers?sort=date',
   agents: '/agent',
   players: '/player',
-  admin: '/admin'
+  admin: '/admin',
+  leagues: '/events/view-leagues',
+  eventsByLeague: '/events/league-events'
 };
 
 export default endpoints;

@@ -4,7 +4,7 @@ import { HeadingStyle as Heading } from './components/Heading';
 import { InputStyle as Input } from './components/Input';
 import { TextStyle as Text } from './components/Text';
 import { LinkStyle as Link } from './components/Link';
-import { tokens as colors }from './styles';
+import { tokens as colors } from './styles';
 
 const theme = extendTheme({
   breakpoints: {
@@ -48,7 +48,10 @@ const theme = extendTheme({
         color: props.theme.colors.gray[600],
         lineHeight: 'tall',
         backgroundColor: 'gray2',
-        fontFamily: 'Poppins, sans-serif'
+        fontFamily: 'Exo 2, sans-serif',
+      },
+      p: {
+        fontFamily: 'Exo 2, sans-serif',
       },
       button: {
         fontFamily: 'Inter, sans-serif',

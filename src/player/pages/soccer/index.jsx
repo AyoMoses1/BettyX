@@ -1,9 +1,22 @@
-import React from 'react'
+import { Box } from '@chakra-ui/react';
+import SoccerBox from 'common/SoccerBox';
+import { results } from 'pages/agents/components/data';
+import { useLocation } from 'react-router-dom';
+import { useGetAllEventsBySportsAndLeague } from './queryHooks';
 
-const index = () => {
+const Index = () => {
+  const location = useLocation();
+  const { data } = useGetAllEventsBySportsAndLeague({
+    sport_id: location?.state?.sportId,
+    league_id: location?.state?.id,
+  });
   return (
-    <div>index</div>
-  )
-}
+    <Box>
+      {data?.results?.map((item) => (
+        <SoccerBox data={item} key={item.id} />
+      ))}
+    </Box>
+  );
+};
 
-export default index
+export default Index;
