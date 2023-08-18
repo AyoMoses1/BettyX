@@ -9,7 +9,8 @@ const endpoints = {
   players: '/player',
   admin: '/admin',
   leagues: '/events/view-leagues',
-  eventsByLeague: '/events/league-events'
+  eventsByLeague: '/events/league-events',
+  agentPlayers: `/player/findPlayersByAgent/${localStorage.accountId}?sort=accountId`
 };
 
 export default endpoints;

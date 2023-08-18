@@ -15,8 +15,7 @@ const Index = () => {
   const { setCurrentPage } = useContext(CurrentPageContext);
   const columnHelper = createColumnHelper();
   const { data, isLoading } = useGetAllAgentsWithPlayers();
-
-  console.log(data);
+  console.log(data, "DDDDDd")
 
   const { isOpen, onClose, onOpen } = useDisclosure();
 
@@ -165,20 +164,35 @@ const Index = () => {
           title="Customer Admin"
         />
       </Flex>
-      {data?.map((item, idx) => (
-        <Box key={idx}>
+      {localStorage.user_role !== 'agent' ? (
+        data?.map((item, idx) => (
+          <Box key={idx}>
+            <Box bgColor="blue" color="white" my={8}>
+              {item.agent}
+            </Box>
+            <DynamicTable
+              totalCount={item?.players?.length}
+              columns={columns}
+              data={item.players || []}
+              size="sm"
+              title="Customer Admin"
+            />
+          </Box>
+        ))
+      ) : (
+        <Box>
           <Box bgColor="blue" color="white" my={8}>
-            {item.agent}
+            {localStorage.accountId}
           </Box>
           <DynamicTable
-            totalCount={item?.players?.length}
+            totalCount={data?.players?.length}
             columns={columns}
-            data={item.players || []}
+            data={data?.players || []}
             size="sm"
             title="Customer Admin"
           />
         </Box>
-      ))}
+      )}
       <Modal isOpen={isOpen} onClose={onClose} size={['md', '6xl']}>
         <EditForm onClose={onClose} />
       </Modal>
