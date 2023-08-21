@@ -10,6 +10,7 @@ export const useGetAllAgentsWithPlayers = () => {
   return useQuery(['allPlayers'], () => Services.getAllAgentsWithPlayers());
 };
 
+
 export const useGetAllAgentPlayers = () => {
   return useQuery(['allPlayers'], () => Services.getAllAgentPlayers());
 };
