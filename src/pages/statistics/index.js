@@ -1,6 +1,11 @@
 import React, { useMemo, useState } from 'react';
 import DynamicTable from '../../common/DynamicTable';
-import { mobileDates, selectDates, selectMode, summaryColumns } from './components/helpers';
+import {
+  mobileDates,
+  selectDates,
+  selectMode,
+  summaryColumns,
+} from './components/helpers';
 import { summary as data } from './components/data';
 import {
   Tabs,
@@ -17,9 +22,11 @@ import TableTop from '../../common/TableTop';
 import generateInputs from '../../common/DynamicForm';
 import { AiOutlineSetting } from 'react-icons/ai';
 import { FaFileExcel, FaPrint } from 'react-icons/fa';
+import { useGetAdminWeeklyFigures } from './queryHooks';
 
 const Index = (props) => {
   const [topInputObj, setTopInputObj] = useState({ state: '', query: '' });
+  const { data } = useGetAdminWeeklyFigures();
 
   const handleInputChange = (name, value) => {
     setTopInputObj((prevState) => ({
@@ -121,12 +128,26 @@ const Index = (props) => {
         </Flex>
         <TabPanels>
           <TabPanel>
-            <DynamicTable
+            {data?.reportsArray?.map((item, idx) => (
+              <Box key={idx}>
+                <Box bgColor="blue" color="white" my={8}>
+                  {item.agent}
+                </Box>
+                <DynamicTable
+                  totalCount={item?.reports?.length}
+                  columns={summaryColumns(item?.reports)}
+                  data={item.reports || []}
+                  size="sm"
+                  title="Customer Admin"
+                />
+              </Box>
+            ))}
+            {/* <DynamicTable
               columns={summaryColumns}
               data={data}
               totalCount={data?.length}
               totalPages={0}
-            />
+            /> */}
           </TabPanel>
           <TabPanel>
             <DynamicTable
@@ -138,18 +159,6 @@ const Index = (props) => {
           </TabPanel>
         </TabPanels>
       </Tabs>
-      <DynamicTable
-        columns={summaryColumns}
-        data={data}
-        totalCount={data?.length}
-        totalPages={0}
-      />
-      <DynamicTable
-        columns={summaryColumns}
-        data={data}
-        totalCount={data?.length}
-        totalPages={0}
-      />
     </Box>
   );
 };

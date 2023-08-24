@@ -10,6 +10,7 @@ import {
   Text,
   Tag,
 } from '@chakra-ui/react';
+import { Link } from 'react-router-dom';
 
 const columnHelper = createColumnHelper();
 
@@ -26,6 +27,30 @@ const statusTypes = [
   { name: 'ON_HOLD', color: 'cyan' },
   { name: 'PENDING', color: 'cyan' },
 ];
+
+const formatDate = (dateString) => {
+  const months = [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
+  ];
+
+  const date = new Date(dateString);
+  const dayOfWeek = date.toLocaleString('en-US', { weekday: 'short' });
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+
+  return `${dayOfWeek} (${month}/${day})`;
+};
 
 const getStatusTag = (name) => {
   let color;
@@ -174,64 +199,99 @@ export const refundColumns = [
   }),
 ];
 
-export const summaryColumns = [
-  columnHelper.accessor('customer', {
-    header: 'Customer',
-    cell: (info) => info.getValue(),
-  }),
-  columnHelper.accessor('name', {
-    header: 'Name',
-    cell: (info) => info.getValue(),
-  }),
-  columnHelper.accessor('password', {
-    header: 'Password',
-    cell: (info) => info.getValue(),
-  }),
-  columnHelper.accessor('carry', {
-    header: 'Carry',
-    cell: (info) => info.getValue(),
-  }),
-  columnHelper.accessor('monday', {
-    header: 'Monday',
-    cell: (info) => info.getValue(),
-  }),
-  columnHelper.accessor('tuesday', {
-    header: 'Tuesday',
-    cell: (info) => info.getValue(),
-  }),
-  columnHelper.accessor('wednesday', {
-    header: 'Wednesday',
-    cell: (info) => info.getValue(),
-  }),
-  columnHelper.accessor('thursday', {
-    header: 'Thursday',
-    cell: (info) => info.getValue(),
-  }),
-  columnHelper.accessor('friday', {
-    header: 'Friday',
-    cell: (info) => info.getValue(),
-  }),
-  columnHelper.accessor('saturday', {
-    header: 'Saturday',
-    cell: (info) => info.getValue(),
-  }),
-  columnHelper.accessor('sunday', {
-    header: 'Sunday',
-    cell: (info) => info.getValue(),
-  }),
-  columnHelper.accessor('week', {
-    header: 'Sunday',
-    cell: (info) => info.getValue(),
-  }),
-  columnHelper.accessor('pending', {
-    header: 'Sunday',
-    cell: (info) => info.getValue(),
-  }),
-  columnHelper.accessor('balance', {
-    header: 'Sunday',
-    cell: (info) => info.getValue(),
-  }),
-];
+export const summaryColumns = (reports) => {
+  const weeks = reports ? reports[0].dailyReport : [];
+  console.log(weeks);
+  return [
+    columnHelper.accessor('accountId', {
+      header: 'Customer',
+      cell: (info) => {
+        const value = info.getValue();
+        return (
+          <Link
+            style={{ color: 'blue', textDecoration: 'underline' }}
+            to={`/customers/${info.getValue()}`}
+          >
+            {value}
+          </Link>
+        );
+      },
+    }),
+    columnHelper.accessor('name', {
+      header: 'Name',
+      cell: (info) => info.getValue(),
+    }),
+    columnHelper.accessor('password', {
+      header: 'Password',
+      cell: (info) => info.getValue(),
+    }),
+    columnHelper.accessor('carry', {
+      header: 'Carry',
+      cell: (info) => info.getValue(),
+    }),
+    columnHelper.accessor('dailyReport', {
+      header: formatDate(weeks[6]?.date),
+      cell: (info) => {
+        const value = info.getValue();
+        return value[6]?.figure;
+      },
+    }),
+    columnHelper.accessor('dailyReport', {
+      header: formatDate(weeks[0]?.date),
+      cell: (info) => {
+        const value = info.getValue();
+        return value[0]?.figure;
+      },
+    }),
+    columnHelper.accessor('dailyReport', {
+      header: formatDate(weeks[1]?.date),
+      cell: (info) => {
+        const value = info.getValue();
+        return value[1]?.figure;
+      },
+    }),
+    columnHelper.accessor('dailyReport', {
+      header: formatDate(weeks[2]?.date),
+      cell: (info) => {
+        const value = info.getValue();
+        return value[2]?.figure;
+      },
+    }),
+    columnHelper.accessor('dailyReport', {
+      header: formatDate(weeks[3]?.date),
+      cell: (info) => {
+        const value = info.getValue();
+        return value[3]?.figure;
+      },
+    }),
+    columnHelper.accessor('dailyReport', {
+      header: formatDate(weeks[4]?.date),
+      cell: (info) => {
+        const value = info.getValue();
+        return value[4]?.figure;
+      },
+    }),
+    columnHelper.accessor('dailyReport', {
+      header: formatDate(weeks[5]?.date),
+      cell: (info) => {
+        const value = info.getValue();
+        return value[5]?.figure;
+      },
+    }),
+    columnHelper.accessor('week', {
+      header: 'Week',
+      cell: (info) => info.getValue(),
+    }),
+    columnHelper.accessor('balance', {
+      header: 'Balance',
+      cell: (info) => info.getValue(),
+    }),
+    columnHelper.accessor('pending', {
+      header: 'Pending',
+      cell: (info) => info.getValue(),
+    }),
+  ];
+};
 
 export const orderColumns = [
   columnHelper.accessor('referenceNo', {
@@ -280,7 +340,6 @@ export const accessors = [
 
   { id: 4, name: 'Order History', columns: orderColumns },
 ];
-
 
 export const selectMode = [
   {
@@ -412,7 +471,6 @@ export const selectDates = [
   },
 ];
 
-
 export const mobileDates = [
   {
     value: 'thisweek',
@@ -531,4 +589,3 @@ export const mobileDates = [
     name: '28 weeks ago',
   },
 ];
-

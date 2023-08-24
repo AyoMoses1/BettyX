@@ -5,6 +5,7 @@ const endpoints = {
   clients: '/clients',
   tasks: '/tasks',
   agentsWithPlayers: '/agent/allAgentsWithPlayers?sort=date',
+  adminWeeklyFigures: '/analytics/getAdminWeeklyFigures',
   agents: '/agent',
   players: '/player',
   admin: '/admin',
