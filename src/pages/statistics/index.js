@@ -128,20 +128,32 @@ const Index = (props) => {
         </Flex>
         <TabPanels>
           <TabPanel>
-            {data?.reportsArray?.map((item, idx) => (
-              <Box key={idx}>
-                <Box bgColor="blue" color="white" my={8}>
-                  {item.agent}
+            {localStorage.user_role !== 'agent' ? (
+              data?.reportsArray?.map((item, idx) => (
+                <Box key={idx}>
+                  <Box bgColor="blue" color="white" my={8}>
+                    {item.agent}
+                  </Box>
+                  <DynamicTable
+                    totalCount={item?.reports?.length}
+                    columns={summaryColumns(item?.reports)}
+                    data={item.reports || []}
+                    size="sm"
+                    title="Customer Admin"
+                  />
                 </Box>
+              ))
+            ) : (
+              <Box>
                 <DynamicTable
-                  totalCount={item?.reports?.length}
-                  columns={summaryColumns(item?.reports)}
-                  data={item.reports || []}
+                  totalCount={data?.reports?.length}
+                  columns={summaryColumns(data?.reports)}
+                  data={data?.reports || []}
                   size="sm"
                   title="Customer Admin"
                 />
               </Box>
-            ))}
+            )}
             {/* <DynamicTable
               columns={summaryColumns}
               data={data}

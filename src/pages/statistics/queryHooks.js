@@ -10,8 +10,3 @@ export const useGetAdminWeeklyFigures = () => {
   return useQuery(['adminWeeklyFigures'], () => Services.getAdminWeeklyFigures());
 };
 
-
-export const useGetAllAgentPlayers = () => {
-  return useQuery(['allPlayers'], () => Services.getAllAgentPlayers());
-};
-

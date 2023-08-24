@@ -7,7 +7,10 @@ class Services {
   async getAdminWeeklyFigures(param) {
     const response = await  axios({
       method: "GET",
-      url: `${endpoints.adminWeeklyFigures}`,
+      url:
+      localStorage.user_role !== 'agent'
+        ? `${endpoints.adminWeeklyFigures}`
+        : `${endpoints.agentWeeklyFigures}`,
     });
     return response?.data
   };
