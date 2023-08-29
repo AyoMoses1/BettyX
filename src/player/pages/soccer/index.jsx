@@ -1,10 +1,11 @@
-import { Box, Flex } from '@chakra-ui/react';
+import { Box, Flex, Grid, GridItem, Text } from '@chakra-ui/react';
 import SoccerBox from 'common/SoccerBox';
 import { results } from 'pages/agents/components/data';
 import { AiOutlineInbox } from 'react-icons/ai';
 import { useLocation } from 'react-router-dom';
 import { useGetAllEventsBySportsAndLeague } from './queryHooks';
-import { Text } from '@chakra-ui/react';
+import styled from 'styled-components';
+import Heading from './Heading';
 
 const NoDataBox = () => {
   return (
@@ -32,15 +33,16 @@ const Index = () => {
     sport_id: location?.state?.sportId,
     league_id: location?.state?.id,
   });
+
   return (
     <Box>
-      {data?.results.length ? (
-        data?.results?.map((item) => <SoccerBox data={item} key={item.id} />)
+      <Heading />
+      {data?.length ? (
+        data?.map((item) => <SoccerBox data={item} key={item.id} />)
       ) : (
         <NoDataBox />
       )}
     </Box>
   );
 };
-
 export default Index;

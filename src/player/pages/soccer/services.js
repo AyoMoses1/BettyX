@@ -4,7 +4,7 @@ import getURLParams from 'utils/getUrlParams';
 
 class Services {
   async getAllLeagues(data) {
-    console.log(data)
+    console.log(data);
     const param = getURLParams(data);
     const response = await axios({
       method: 'GET',

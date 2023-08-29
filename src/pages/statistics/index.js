@@ -34,29 +34,6 @@ const Index = (props) => {
       [name]: value,
     }));
   };
-  const tableTopInput = useMemo(
-    () => [
-      {
-        name: 'Agents',
-        label: '',
-        placeholder: 'Search...',
-        type: 'text',
-        float: false,
-      },
-      {
-        name: 'time',
-        type: 'select',
-        float: true,
-        size: 'sm',
-        width: '200px',
-        options: selectMode.map((item) => ({
-          value: item.value,
-          name: item.name,
-        })),
-      },
-    ],
-    []
-  );
 
   const tableLeftInput = useMemo(() => [
     {

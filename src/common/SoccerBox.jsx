@@ -18,7 +18,7 @@ const SoccerBox = ({ data }) => {
             </Flex>
           </GridItem>
           <GridItem>
-            <Flex justifyContent="space-between">
+            <Flex justifyContent="space-between" ml={8}>
               <StyledText>$1000</StyledText>
               <StyledText>$1000</StyledText>
               <StyledText>$1000</StyledText>

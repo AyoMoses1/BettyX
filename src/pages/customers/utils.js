@@ -44,3 +44,17 @@ export const formatDateAndTime = (timestamp) => {
   });
   return formattedTime;
 };
+
+
+
+export const callApi = () => {
+  fetch('https://habibet-ag.onrender.com/api/events/view-leagues?sport_id=1&page=2')
+    .then(response => response.json())
+    .then(data => {
+      console.log("continous data!!!", data)
+      return data
+    })
+    .catch(error => {
+      console.error('API call error:', error);
+    });
+}

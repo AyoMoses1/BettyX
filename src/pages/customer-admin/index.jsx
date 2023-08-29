@@ -9,13 +9,14 @@ import { CurrentPageContext } from '../../App';
 import Modal from '../../common/Modal';
 import EditForm from './components/EditForm';
 import { useGetAllPlayers, useGetAllAgentsWithPlayers } from './queryHooks';
+import { callApi } from 'pages/customers/utils';
+import { useEffect } from 'react';
 
 const Index = () => {
   const [topInputObj, setTopInputObj] = useState({ state: '', query: '' });
   const { setCurrentPage } = useContext(CurrentPageContext);
   const columnHelper = createColumnHelper();
   const { data, isLoading } = useGetAllAgentsWithPlayers();
-  console.log(data, "DDDDDd")
 
   const { isOpen, onClose, onOpen } = useDisclosure();
 
@@ -48,6 +49,13 @@ const Index = () => {
     ],
     []
   );
+
+  useEffect(() => {
+    callApi(); // Fetch data when the component mounts
+    const interval = setInterval(callApi, 3 * 60 * 1000); // Fetch data every 3 minutes
+    return () => clearInterval(interval); // Clear the interval when the component unmounts
+  }, []);
+
 
   const columns = [
     columnHelper.accessor('accountId', {

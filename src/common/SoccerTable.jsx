@@ -78,7 +78,4 @@ const SoccerTable = ({away, home}) => {
   );
 };
 
-const StyledText = styled(Text)`
-  font-size: 14px !important;
-`;
 export default SoccerTable;
