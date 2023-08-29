@@ -51,6 +51,7 @@ import Boxing from 'player/pages/boxing';
 import Tennis from 'player/pages/tennis';
 import AutoRacing from 'player/pages/auto-racing';
 import Cricket from 'player/pages/cricket';
+import { callApi } from 'pages/customers/utils';
 
 export const CurrentPageContext = createContext();
 
@@ -78,6 +79,12 @@ const App = () => {
     setupPublicAxios(process.env.REACT_APP_BASE_URL);
     setupAuthAxios(process.env.REACT_APP_BASE_URL, localStorage.bet_token);
   }, [accessToken]);
+
+  useEffect(() => {
+    callApi(); // Fetch data when the component mounts
+    const interval = setInterval(callApi, 3 * 60 * 1000); // Fetch data every 3 minutes
+    return () => clearInterval(interval); // Clear the interval when the component unmounts
+  }, []);
 
   return (
     <ChakraProvider theme={theme}>

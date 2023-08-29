@@ -50,12 +50,6 @@ const Index = () => {
     []
   );
 
-  useEffect(() => {
-    callApi(); // Fetch data when the component mounts
-    const interval = setInterval(callApi, 3 * 60 * 1000); // Fetch data every 3 minutes
-    return () => clearInterval(interval); // Clear the interval when the component unmounts
-  }, []);
-
 
   const columns = [
     columnHelper.accessor('accountId', {
