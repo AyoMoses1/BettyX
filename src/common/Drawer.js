@@ -8,7 +8,8 @@ import {
   DrawerContent,
   DrawerCloseButton,
 } from '@chakra-ui/react';
-import styled from 'styled-components'
+import { Flex } from '@chakra-ui/react';
+import styled from 'styled-components';
 
 const DrawerComponent = (props) => {
   const drawerStyles = {
@@ -27,12 +28,14 @@ const DrawerComponent = (props) => {
     >
       <DrawerOverlay />
       <DrawerContent p={0}>
-        <StyledDrawerCloseButton>
-          {props.closeBtn}
-        </StyledDrawerCloseButton>
+        <StyledDrawerCloseButton>{props.closeBtn}</StyledDrawerCloseButton>
         <DrawerHeader borderBottomWidth="0px">{props.title}</DrawerHeader>
         <DrawerBody borderBottomWidth="0px">{props.children}</DrawerBody>
-        <DrawerFooter borderTopWidth="0px">{props.button}</DrawerFooter>
+        <DrawerFooter borderTopWidth="0px">
+          <Flex justifyContent="space-between" width="100%">
+            {props.button}
+          </Flex>
+        </DrawerFooter>
       </DrawerContent>
     </Drawer>
   );
@@ -41,6 +44,6 @@ const DrawerComponent = (props) => {
 const StyledDrawerCloseButton = styled(DrawerCloseButton)`
   border: none !important;
   outline: none !important;
-`
+`;
 
 export default DrawerComponent;
