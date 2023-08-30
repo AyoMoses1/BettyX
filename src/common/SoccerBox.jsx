@@ -1,12 +1,13 @@
 import { Box, Flex, Grid, GridItem, Heading, Text } from '@chakra-ui/react';
 import { formatDateAndTime } from 'pages/customers/utils';
 import styled from 'styled-components';
+import BetBox from './BetBox';
 import SoccerTable from './SoccerTable';
 
 const SoccerBox = ({ data }) => {
-  const { league, home, away, time } = data;
+  const { league, home, away, time, odds } = data;
 
-  const formatTime = formatDateAndTime(time)
+  const formatTime = formatDateAndTime(time);
   return (
     <StyledBox my={8}>
       <Header bgColor="black" px={4}>
@@ -33,7 +34,7 @@ const SoccerBox = ({ data }) => {
         <Title>
           <span style={{ color: 'green' }}>{formatTime}</span> - {league?.name}
         </Title>
-        <SoccerTable away={away} home ={home}/>
+        <BetBox away={away} home={home} odds={odds} />
       </Body>
     </StyledBox>
   );
