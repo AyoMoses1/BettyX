@@ -1,7 +1,5 @@
 import {
-  Grid,
-  GridItem,
-  Image,
+  Avatar,
   Text,
   Accordion,
   AccordionItem,
@@ -10,23 +8,14 @@ import {
   Box,
   AccordionIcon,
   HStack,
+  Button,
+  Flex,
+  FormLabel,
+  Input,
 } from '@chakra-ui/react';
 import styled from 'styled-components';
+import { wagerData } from './data';
 import WagerHeader from './WagerHeader';
-const wagerData = [
-  {
-    title: 'Scheduled',
-    value: 'September 1, 2023 12:00 PM PST',
-  },
-  {
-    title: 'Selection',
-    value: '200121 - Spread',
-  },
-  {
-    title: 'Game Notes',
-    value: 'English Premier League',
-  },
-];
 
 const FootballMatchesGrid = () => {
   return (
@@ -47,8 +36,23 @@ const FootballMatchesGrid = () => {
             <AccordionIcon />
           </AccordionButton>
         </h2>
-        <AccordionPanel pb={4}>
-          {wagerData.map((item) => (
+        <Flex my={2} justifyContent="space-between" width="100%">
+          <HStack>
+            <Avatar
+              src={`https://assets.b365api.com/images/team/m/${37}.png`}
+              size="sm"
+            />
+            <Text>West Ham</Text>
+          </HStack>
+
+          <Input
+            type="number"
+            value={111.299}
+            sx={{ borderRadius: '0px', width: '100px' }}
+          />
+        </Flex>
+        <AccordionPanel pb={4} px={0}>
+          {wagerData?.map((item) => (
             <StyledText>
               <StyledSpan>{item?.title} :</StyledSpan>
               {item?.value}
@@ -56,6 +60,20 @@ const FootballMatchesGrid = () => {
             </StyledText>
           ))}
         </AccordionPanel>
+        <Flex justifyContent="space-between" alignItems="center">
+          <Button variant="noBg" color="red" p={0}>Delete</Button>
+          <Input
+            type="number"
+            value={111.299}
+            sx={{ borderRadius: '0px', width: '100px' }}
+          />
+          TO WIN
+          <Input
+            type="number"
+            value={111.299}
+            sx={{ borderRadius: '0px', width: '100px' }}
+          />
+        </Flex>
       </AccordionItem>
     </Accordion>
   );

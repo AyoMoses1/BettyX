@@ -167,8 +167,3 @@ const generateGridInputs = (inputObj) => {
 };
 
 export default generateGridInputs;
-
-const StyledInputLeftAddon = styled(InputLeftAddon)`
-  border: 1px solid #cbd5e0;
-  border-radius: 0px !important;
-`;
