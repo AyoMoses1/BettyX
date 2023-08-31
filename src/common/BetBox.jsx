@@ -4,7 +4,6 @@ import DrawGrid from './DrawGrid';
 
 const BetBox = ({ away, home, odds }) => {
   const { '1_1': odds_1_1, '1_2': odds_1_2, '1_3': odds_1_3 } = odds;
-  console.log({odds_1_1},{ odds_1_2}, {odds_1_3})
   return (
     <Box>
       <BetGrid
