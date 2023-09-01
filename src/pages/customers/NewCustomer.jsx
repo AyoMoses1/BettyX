@@ -60,7 +60,6 @@ const NewCustomer = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    console.log(name, value)
     if (name === 'agent' && localStorage.user_role !== 'agent') {
       const selectedOptionObject = agents.find(
         (option) => option.accountId === value

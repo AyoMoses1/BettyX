@@ -201,7 +201,6 @@ export const refundColumns = [
 
 export const summaryColumns = (reports) => {
   const weeks = reports ? reports[0].dailyReport : [];
-  console.log(weeks);
   return [
     columnHelper.accessor('accountId', {
       header: 'Customer',

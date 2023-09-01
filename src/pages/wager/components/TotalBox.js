@@ -2,7 +2,7 @@ import { Box, Flex, Text } from '@chakra-ui/react';
 
 const TotalBox = () => {
   return (
-    <Box border="1px solid grey" p={4} sx={{ marginTop: '70%' }}>
+    <Box border="1px solid grey" p={4}>
       <Flex justifyContent="space-between">
         <Text>Total Wagered:</Text>
         <Text>$2.10</Text>

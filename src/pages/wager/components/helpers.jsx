@@ -17,10 +17,9 @@ import styled from 'styled-components';
 import { wagerData } from './data';
 import WagerHeader from './WagerHeader';
 
-const FootballMatchesGrid = () => {
+const FootballMatchesGrid = ({ data }) => {
   return (
     <Accordion allowToggle p={0}>
-      <WagerHeader />
       <AccordionItem>
         <h2>
           <AccordionButton
@@ -39,15 +38,15 @@ const FootballMatchesGrid = () => {
         <Flex my={2} justifyContent="space-between" width="100%">
           <HStack>
             <Avatar
-              src={`https://assets.b365api.com/images/team/m/${37}.png`}
+              src={`https://assets.b365api.com/images/team/m/${data?.predictedLogo}.png`}
               size="sm"
             />
-            <Text>West Ham</Text>
+            <Text>{data?.prediction === 'home' ? data.home : data.away}</Text>
           </HStack>
 
           <Input
             type="number"
-            value={111.299}
+            value={data?.odd}
             sx={{ borderRadius: '0px', width: '100px' }}
           />
         </Flex>
@@ -61,7 +60,9 @@ const FootballMatchesGrid = () => {
           ))}
         </AccordionPanel>
         <Flex justifyContent="space-between" alignItems="center">
-          <Button variant="noBg" color="red" p={0}>Delete</Button>
+          <Button variant="noBg" color="red" p={0}>
+            Delete
+          </Button>
           <Input
             type="number"
             value={111.299}

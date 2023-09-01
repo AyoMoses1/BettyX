@@ -24,7 +24,7 @@ const Index = () => {
   };
 
   const handleSubmit = () => {
-    console.log('form submitted...');
+    return null
   };
 
   return (

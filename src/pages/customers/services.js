@@ -27,7 +27,6 @@ class Services {
       url: `${endpoints.players}/${accountId}`,
       data: rest,
     });
-    console.log(accountId, response, "check heere~~~")
     return response?.data;
   }
 

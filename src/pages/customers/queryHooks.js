@@ -11,7 +11,6 @@ export const useCreatePlayers = () => {
 
   return useMutation(Services.createPlayers, {
     onError: (data) => {
-      console.log(data, 'failed');
       const errObj = data.response;
       toast({
         title: 'Error',
@@ -23,7 +22,6 @@ export const useCreatePlayers = () => {
       });
     },
     onSuccess: (data) => {
-      console.log(data, 'success');
       toast({
         position: 'bottom-left',
         render: () => (

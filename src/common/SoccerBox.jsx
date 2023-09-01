@@ -5,7 +5,7 @@ import BetBox from './BetBox';
 import SoccerTable from './SoccerTable';
 
 const SoccerBox = ({ data }) => {
-  const { league, home, away, time, odds } = data;
+  const { league, home, away, time, odds, sport_id, id } = data;
 
   const formatTime = formatDateAndTime(time);
   return (
@@ -34,7 +34,13 @@ const SoccerBox = ({ data }) => {
         <Title>
           <span style={{ color: 'green' }}>{formatTime}</span> - {league?.name}
         </Title>
-        <BetBox away={away} home={home} odds={odds} />
+        <BetBox
+          away={away}
+          home={home}
+          odds={odds}
+          sportId={sport_id}
+          eventId={id}
+        />
       </Body>
     </StyledBox>
   );

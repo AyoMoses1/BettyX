@@ -4,6 +4,7 @@ const endpoints = {
   projects: '/projects',
   clients: '/clients',
   tasks: '/tasks',
+  placeBet: '/bet/createBet',
   agentsWithPlayers: '/agent/allAgentsWithPlayers?sort=date',
   adminWeeklyFigures: '/analytics/getAdminWeeklyFigures',
   agentWeeklyFigures: `/analytics/agentWeeklyFigures/${localStorage.accountId}`,

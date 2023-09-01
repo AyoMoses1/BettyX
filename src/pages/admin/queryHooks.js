@@ -11,7 +11,6 @@ export const useCreateAdmin = () => {
 
   return useMutation(Services.createAdmin, {
     onError: (data) => {
-      console.log(data, 'failed');
       const errObj = data.response;
       toast({
         title: 'Error',
@@ -23,7 +22,6 @@ export const useCreateAdmin = () => {
       });
     },
     onSuccess: (data) => {
-      console.log(data, 'success');
       toast({
         position: 'bottom-left',
         render: () => (

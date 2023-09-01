@@ -11,7 +11,6 @@ const useForm = () => {
   const handleChange = (e, section) => {
     if (section === 'switch') {
       const { name, checked } = e.target;
-      console.log(checked, name);
       setState((prev) => ({ ...prev, [name]: checked }));
     } else {
       const { name, value } = e.target;
