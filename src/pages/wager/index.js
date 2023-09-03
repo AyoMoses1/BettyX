@@ -1,5 +1,6 @@
 import { Button } from '@chakra-ui/react';
 import Drawer from 'common/Drawer';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { placeWager } from 'store/wagers/wagerSlice';
 import FootballMatchesGrid from './components/helpers';
@@ -12,8 +13,8 @@ const Index = ({ isOpen, handleClose }) => {
 
   const handlePlaceBet = () => {
     const toWin = wager.games[0].odd * wager.stake - wager.stake;
-    const {predictedLogo, ...gameData} = wager.games[0]
-    const newPayload = {...wager, games: [gameData]}
+    const { predictedLogo, ...gameData } = wager.games[0];
+    const newPayload = { ...wager, games: [gameData] };
     const data = { ...newPayload, toWin, accumulatedOdds: wager.games[0].odd };
     mutate({ data });
   };
@@ -41,9 +42,11 @@ const Index = ({ isOpen, handleClose }) => {
     >
       <wagerHeader />
       {wager?.games?.map((item) => (
-        <FootballMatchesGrid data={item} />
+        <FootballMatchesGrid
+          data={item}
+          stake={wager?.stake}
+        />
       ))}
-      {/* <FootballMatchesGrid /> */}
       <TotalBox />
     </Drawer>
   );

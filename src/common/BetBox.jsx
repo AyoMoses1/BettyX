@@ -28,7 +28,13 @@ const BetBox = ({ away, home, odds, sportId, eventId }) => {
         odd_2={odds_1_2 && odds_1_2[0]?.away_od}
         odd_3={odds_1_3 && odds_1_3[0]?.under_od}
       />
-      <DrawGrid odd={odds_1_1 && odds_1_1[0]?.draw_od} eventData={eventData} />
+      <DrawGrid
+        odd={odds_1_1 && odds_1_1[0]?.draw_od}
+        eventData={eventData}
+        prediction="draw"
+        home={home.name}
+        away={away.name}
+      />
     </Box>
   );
 };

@@ -64,11 +64,9 @@ const BetForm = ({
     },
   ];
 
-
-
   const handleChange = (e, odd, market) => {
     const stake = parseInt(e.target.value);
-    const payload = {
+    const game = {
       ...eventData,
       odd,
       market,
@@ -76,13 +74,14 @@ const BetForm = ({
       away,
       prediction,
       predictedLogo,
+      handicap: market === 1 ? null : '2.5',
     };
-    setState({ state, ...payload });
+    setState({ state, ...game });
     dispatch(
       addToGames({
-        game: { ...eventData, odd, market, home, away, prediction, predictedLogo },
+        game,
         stake,
-        predictedLogo
+        predictedLogo,
       })
     );
   };

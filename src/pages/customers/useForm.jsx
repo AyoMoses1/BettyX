@@ -43,6 +43,16 @@ const useForm = () => {
       label: 'accountStatus',
       value: state?.accountStatus,
     },
+    {
+      name: 'available',
+      label: 'Available',
+      value: state?.available,
+    },
+    {
+      name: 'balance',
+      label: 'Balance',
+      value: state?.balance,
+    },
   ];
 
   const formDataTwo = [

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Box,
   FormControl,
@@ -8,8 +8,18 @@ import {
   Flex,
   GridItem,
 } from '@chakra-ui/react';
+import { useDispatch } from 'react-redux';
+import { addToGames } from 'store/wagers/wagerSlice';
 
-const FormElements = ({ item }) => {
+const initialState = {
+  home: '',
+  away: '',
+  odd: null,
+  market: null,
+  prediction: '',
+};
+
+const FormElements = ({ item, handleChange, odd, market }) => {
   return (
     <Box>
       <FormControl>
@@ -18,6 +28,7 @@ const FormElements = ({ item }) => {
           <Input
             type={item.type}
             sx={{ borderRadius: '0px', width: '100px' }}
+            onChange={(e) => handleChange(e, odd, market)}
           />
         </Flex>
       </FormControl>
@@ -25,10 +36,32 @@ const FormElements = ({ item }) => {
   );
 };
 
-const DrawForm = ({ odd }) => {
+const DrawForm = ({ odd, eventData, prediction, home, away }) => {
+  const [state, setState] = useState(initialState);
+  const dispatch = useDispatch();
+  const handleChange = (e, odd, market) => {
+    const stake = parseInt(e.target.value);
+    const game = {
+      ...eventData,
+      odd,
+      market,
+      home,
+      away,
+      prediction,
+      handicap: market === 1 ? null : '2.5',
+    };
+    console.log({ game });
+    setState({ state, ...game });
+    dispatch(
+      addToGames({
+        game,
+        stake,
+      })
+    );
+  };
   const inputElements = [
     {
-      name: 'Market 1',
+      name: 1,
       type: 'number',
       label: odd,
     },
@@ -39,7 +72,13 @@ const DrawForm = ({ odd }) => {
         <form>
           <HStack spacing={4} justifyContent="center">
             {inputElements.map((item, idx) => (
-              <FormElements item={item} key={idx} />
+              <FormElements
+                item={item}
+                key={idx}
+                handleChange={handleChange}
+                odd={parseFloat(item.label)}
+                market={item.name}
+              />
             ))}
           </HStack>
         </form>

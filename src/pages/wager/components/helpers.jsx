@@ -17,7 +17,8 @@ import styled from 'styled-components';
 import { wagerData } from './data';
 import WagerHeader from './WagerHeader';
 
-const FootballMatchesGrid = ({ data }) => {
+const FootballMatchesGrid = ({ data, stake }) => {
+  const toWin = data.odd * stake - stake;
   return (
     <Accordion allowToggle p={0}>
       <AccordionItem>
@@ -37,11 +38,19 @@ const FootballMatchesGrid = ({ data }) => {
         </h2>
         <Flex my={2} justifyContent="space-between" width="100%">
           <HStack>
-            <Avatar
-              src={`https://assets.b365api.com/images/team/m/${data?.predictedLogo}.png`}
-              size="sm"
-            />
-            <Text>{data?.prediction === 'home' ? data.home : data.away}</Text>
+            {data?.prediction !== 'draw' && (
+              <Avatar
+                src={`https://assets.b365api.com/images/team/m/${data?.predictedLogo}.png`}
+                size="sm"
+              />
+            )}
+            <Text>
+              {data?.prediction === 'home'
+                ? data.home
+                : data?.prediction === 'away'
+                ? data.away
+                : `Draw(${data?.home} vs ${data?.away})`}
+            </Text>
           </HStack>
 
           <Input
@@ -54,8 +63,7 @@ const FootballMatchesGrid = ({ data }) => {
           {wagerData?.map((item) => (
             <StyledText>
               <StyledSpan>{item?.title} :</StyledSpan>
-              {item?.value}
-              PST
+              {`${item?.value} PST`}
             </StyledText>
           ))}
         </AccordionPanel>
@@ -65,13 +73,13 @@ const FootballMatchesGrid = ({ data }) => {
           </Button>
           <Input
             type="number"
-            value={111.299}
+            value={stake}
             sx={{ borderRadius: '0px', width: '100px' }}
           />
           TO WIN
           <Input
             type="number"
-            value={111.299}
+            value={toWin}
             sx={{ borderRadius: '0px', width: '100px' }}
           />
         </Flex>
