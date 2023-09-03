@@ -12,7 +12,9 @@ const Index = ({ isOpen, handleClose }) => {
 
   const handlePlaceBet = () => {
     const toWin = wager.games[0].odd * wager.stake - wager.stake;
-    const data = { ...wager, toWin, accumulatedOdds: wager.games[0].odd };
+    const {predictedLogo, ...gameData} = wager.games[0]
+    const newPayload = {...wager, games: [gameData]}
+    const data = { ...newPayload, toWin, accumulatedOdds: wager.games[0].odd };
     mutate({ data });
   };
 

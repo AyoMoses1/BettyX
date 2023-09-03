@@ -10,7 +10,23 @@ export const usePlaceBet = () => {
        toast({ description: errObj.errorMsg, status: 'error', title: "Invalid Credential" })
     },
     onSuccess: (data, variables) => {
-      toast({ description:  `Player's data has been updated successfully`, status: 'success', title: "Player data updated" })
+      toast({
+        position: 'bottom-left',
+        render: () => (
+          <Box
+            position="relative"
+            bgColor="green"
+            color="white"
+            borderRadius="lg"
+            p={3}
+            maxWidth="300px"
+          >
+            <Box fontWeight="bold" fontSize="lg" marginBottom="2">
+              Bet placed successfully!!!
+            </Box>
+          </Box>
+        ),
+      });
     },
   });
 };
