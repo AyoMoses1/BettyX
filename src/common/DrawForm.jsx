@@ -56,6 +56,7 @@ const DrawForm = ({ odd, eventData, prediction, home, away }) => {
       addToGames({
         game,
         stake,
+        playerId: localStorage.getItem('accountId'),
       })
     );
   };

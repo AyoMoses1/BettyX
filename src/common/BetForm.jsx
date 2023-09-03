@@ -81,6 +81,7 @@ const BetForm = ({
       addToGames({
         game,
         stake,
+        playerId: localStorage.getItem('accountId'),
         predictedLogo,
       })
     );
