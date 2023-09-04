@@ -57,6 +57,7 @@ export const CurrentPageContext = createContext();
 
 const App = () => {
   const [currentPage, setCurrentPage] = useState('home');
+  const [currentTab, setCurrentTab] = useState('straight')
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [accessToken, setAccessToken] = useState('');
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -92,6 +93,8 @@ const App = () => {
         value={{
           currentPage,
           setCurrentPage,
+          currentTab,
+          setCurrentTab,
           accessToken,
           setAccessToken,
           isModalOpen,

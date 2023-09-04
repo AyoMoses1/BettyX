@@ -173,15 +173,6 @@ export const useNav = () => {
     },
     {
       main: {
-        name: NavNames.soccer,
-        path: paths.soccer,
-        icon: BiFootball,
-        sport_id: 1,
-      },
-      sub: [],
-    },
-    {
-      main: {
         name: NavNames.golf,
         path: paths.golf,
         icon: FaGolfBall,

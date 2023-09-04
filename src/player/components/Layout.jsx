@@ -1,18 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 import {
   Grid,
   GridItem,
   Box,
-  Flex,
-  useDisclosure,
-  keyframes,
-  IconButton,
-  useMediaQuery,
-  Heading,
 } from '@chakra-ui/react';
-import { AiFillCaretLeft, AiFillCaretRight } from 'react-icons/ai';
 
 import SideBar from './SideBar';
 import Navbar from './NavBar';

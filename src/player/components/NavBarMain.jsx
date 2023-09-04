@@ -13,6 +13,8 @@ import {
 import Wager from 'pages/wager';
 
 import styled from 'styled-components';
+import { useContext } from 'react';
+import { CurrentPageContext } from 'App';
 
 const navLinks = (placeWager) => {
   return [
@@ -49,6 +51,11 @@ const navLinks = (placeWager) => {
 };
 const NavBarMain = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const { setCurrentTab } = useContext(CurrentPageContext);
+  const handleTabClick = (name, fn) => {
+    setCurrentTab(name);
+    fn && fn();
+  };
   const handleWager = () => {
     onOpen();
   };
@@ -68,7 +75,7 @@ const NavBarMain = () => {
               <Box
                 ml={2}
                 cursor="pointer"
-                onClick={item?.onClick}
+                onClick={() => handleTabClick(item.name, item.onClick)}
               >
                 <Text variant="navBold">{item.symbol}</Text>
                 <Text variant="nav">{item.name}</Text>

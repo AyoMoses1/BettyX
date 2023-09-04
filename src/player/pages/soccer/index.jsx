@@ -6,6 +6,9 @@ import { useLocation } from 'react-router-dom';
 import { useGetAllEventsBySportsAndLeague } from './queryHooks';
 import styled from 'styled-components';
 import Heading from './Heading';
+import { CurrentPageContext } from 'App';
+import { useContext } from 'react';
+import ParlayBox from 'common/ParlayBox';
 
 const NoDataBox = () => {
   return (
@@ -29,6 +32,7 @@ const NoDataBox = () => {
 
 const Index = () => {
   const location = useLocation();
+  const { currentTab } = useContext(CurrentPageContext);
   const { data } = useGetAllEventsBySportsAndLeague({
     sport_id: location?.state?.sportId,
     league_id: location?.state?.id,
@@ -37,8 +41,14 @@ const Index = () => {
   return (
     <Box>
       <Heading />
-      {data?.length ? (
+      {currentTab === 'straight' && data?.length ? (
         data?.map((item) => <SoccerBox data={item} key={item.id} />)
+      ) : (
+        <NoDataBox />
+      )}
+
+      {currentTab === 'parlay' && data?.length ? (
+        data?.map((item) => <ParlayBox data={item} key={item.id} />)
       ) : (
         <NoDataBox />
       )}
