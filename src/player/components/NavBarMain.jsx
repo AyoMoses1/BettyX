@@ -1,10 +1,18 @@
 import React from 'react';
-import { Box, Flex, VStack, Text, useDisclosure } from '@chakra-ui/react';
-import { useDispatch } from 'react-redux';
+import {
+  Box,
+  Flex,
+  Text,
+  useDisclosure,
+  Tabs,
+  Tab,
+  TabList,
+  TabPanels,
+  TabPanel,
+} from '@chakra-ui/react';
 import Wager from 'pages/wager';
 
 import styled from 'styled-components';
-import { placeWager } from 'store/wagers/wagerSlice';
 
 const navLinks = (placeWager) => {
   return [
@@ -47,23 +55,36 @@ const NavBarMain = () => {
 
   return (
     <StyledBox color="white" px={0} py={0} pb={2} bgColor="playerBlue">
-      <Flex align="center">
-        {navLinks(handleWager).map((item) => (
-          <StyledInnerBox
-            ml={2}
-            width="14%"
-            cursor="pointer"
-            onClick={item?.onClick}
-          >
-            <Text variant="navBold" color="white">
-              {item.symbol}
-            </Text>
-            <Text variant="nav" color="white">
-              {item.name}
-            </Text>
-          </StyledInnerBox>
-        ))}
-      </Flex>
+      <Tabs variant="unstyled">
+        <TabList>
+          {navLinks(handleWager).map((item) => (
+            <Tab
+              _selected={{ color: 'black', bg: 'grey' }}
+              width="100%"
+              border="1px solid"
+              borderColor="grey"
+              mx={2}
+            >
+              <Box
+                ml={2}
+                cursor="pointer"
+                onClick={item?.onClick}
+              >
+                <Text variant="navBold">{item.symbol}</Text>
+                <Text variant="nav">{item.name}</Text>
+              </Box>
+            </Tab>
+          ))}
+        </TabList>
+        <TabPanels>
+          <TabPanel>
+            <p>one!</p>
+          </TabPanel>
+          <TabPanel>
+            <p>two!</p>
+          </TabPanel>
+        </TabPanels>
+      </Tabs>
       <Wager isOpen={isOpen} handleClose={onClose} />
     </StyledBox>
   );
