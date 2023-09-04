@@ -19,7 +19,6 @@ const wagerSlice = createSlice({
       return newState;
     },
     addToGames: (state, action) => {
-      // state.games = [...state.games, action.payload.game]
       state.games = [action.payload.game];
       state.stake = action.payload.stake;
       state.playerId=action.payload.playerId

@@ -29,7 +29,9 @@ import MobileNav from './MobileNav';
 const Navbar = () => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
-  const [isMobile] = useMediaQuery('(max-width: 1020px)'); // Check for mobile screens
+  const user_details = JSON.parse(localStorage.getItem('user'));
+  console.log({ user_details });
+  const [isMobile] = useMediaQuery('(max-width: 1020px)');
 
   const handleLogout = (e) => {
     e.preventDefault();
@@ -79,15 +81,15 @@ const Navbar = () => {
           <Flex>
             <VStack mr={12} alignItems="end">
               <Text variant="navBold">Balance</Text>
-              <Text>$0</Text>
+              <Text>${user_details.balance}</Text>
             </VStack>
             <VStack mr={12} alignItems="end">
               <Text variant="navBold">Pending</Text>
-              <Text>$0</Text>
+              <Text>${user_details.pending}</Text>
             </VStack>
             <VStack mr={12} alignItems="end">
               <Text variant="navBold">Available</Text>
-              <Text>$100</Text>
+              <Text>${user_details.available}</Text>
             </VStack>
             <Box p="4" mr={12} bg="blue" display={['block', 'none']}>
               <FiSearch size={24} />

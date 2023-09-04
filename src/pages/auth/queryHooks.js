@@ -24,6 +24,17 @@ export const useSignIn = () => {
     },
     onSuccess: (data) => {
       setAccessToken(data.data.token);
+      const user_object = {
+        bet_token: data.data.token,
+        accountId: data.data.user.accountId,
+        user_role: data.data.user.role,
+        user_prefix: data.data.user.prefix,
+        nextAccountStart: data.data.user.nextAccountStart,
+        balance: data.data.user.balance,
+        available: data.data.user.available,
+        pending: data.data.user.pending,
+      };
+      localStorage.setItem('user', JSON.stringify(user_object));
       localStorage.setItem('bet_token', data.data.token);
       localStorage.setItem('accountId', data.data.user.accountId);
       localStorage.setItem('user_role', data.data.user.role);

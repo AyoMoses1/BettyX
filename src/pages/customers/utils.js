@@ -45,15 +45,39 @@ export const formatDateAndTime = (timestamp) => {
   return formattedTime;
 };
 
+export const formatDateAndTimeTwo = (timestamp) => {
+  const timestampInMilliseconds = timestamp * 1000;
+  const date = new Date(timestampInMilliseconds);
 
+  // Define an array of day names in the desired format
+  const dayNames = [
+    'SUNDAY',
+    'MONDAY',
+    'TUESDAY',
+    'WEDNESDAY',
+    'THURSDAY',
+    'FRIDAY',
+    'SATURDAY',
+  ];
+
+  // Get the day of the week and month using the arrays
+  const dayOfWeek = dayNames[date.getDay()];
+  const month = date.toLocaleString('en-US', { month: 'short' });
+  const day = date.getDate();
+
+  const formattedDate = `${dayOfWeek}, ${month.toUpperCase()} ${day}`;
+  return formattedDate;
+};
 
 export const callApi = () => {
-  fetch('https://habibet-ag.onrender.com/api/events/view-leagues?sport_id=1&page=2')
-    .then(response => response.json())
-    .then(data => {
-      return data
+  fetch(
+    'https://habibet-ag.onrender.com/api/events/view-leagues?sport_id=1&page=2'
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      return data;
     })
-    .catch(error => {
+    .catch((error) => {
       console.error('API call error:', error);
     });
-}
+};

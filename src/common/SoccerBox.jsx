@@ -1,5 +1,5 @@
 import { Box, Flex, Grid, GridItem, Heading, Text } from '@chakra-ui/react';
-import { formatDateAndTime } from 'pages/customers/utils';
+import { formatDateAndTime, formatDateAndTimeTwo } from 'pages/customers/utils';
 import styled from 'styled-components';
 import BetBox from './BetBox';
 
@@ -7,13 +7,14 @@ const SoccerBox = ({ data }) => {
   const { league, home, away, time, odds, sport_id, id } = data;
 
   const formatTime = formatDateAndTime(time);
+  const formatDate = formatDateAndTimeTwo(time);
   return (
     <StyledBox my={8}>
       <Header bgColor="black" px={4}>
         <Grid templateColumns="repeat(3, 1fr)">
           <GridItem>
             <Flex justifyContent="space-between">
-              <StyledText variant="">SATURDAY, AUG 19</StyledText>
+              <StyledText variant="">{formatDate}</StyledText>
               <StyledText>MAX:</StyledText>
             </Flex>
           </GridItem>
