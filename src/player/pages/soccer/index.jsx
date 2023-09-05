@@ -41,7 +41,7 @@ const NoDataBox = () => {
 const Index = () => {
   const location = useLocation();
   const { currentTab } = useContext(CurrentPageContext);
-  const { data } = useGetAllEventsBySportsAndLeague({
+  const { data, isLoading } = useGetAllEventsBySportsAndLeague({
     sport_id: location?.state?.sportId ?? 1, //Get all leagues for soccer as the default
     league_id: location?.state?.id ?? 94, //Get all upcoming events for EPL as the default
   });
@@ -49,7 +49,20 @@ const Index = () => {
   return (
     <Box>
       <Heading />
-      {currentTab === 'straight' && data?.length ? (
+      {isLoading ? (
+        <Box mt="15%" mx="auto" width="10%">
+          <CircularProgress
+            value={30}
+            color="purple"
+            thickness="12px"
+            isIndeterminate
+            size="50px"
+          />
+        </Box>
+      ) : (
+        data?.map((item) => <SoccerBox data={item} key={item.id} />)
+      )}
+      {/* {currentTab === 'straight' && data?.length ? (
         data?.map((item) => <SoccerBox data={item} key={item.id} />)
       ) : (
         <Box mt="15%" mx="auto" width="10%">
@@ -61,7 +74,7 @@ const Index = () => {
             size="50px"
           />
         </Box>
-      )}
+      )} */}
 
       {/* {currentTab === 'parlay' && data?.length ? (
         data?.map((item) => <ParlayBox data={item} key={item.id} />)
