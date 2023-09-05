@@ -39,6 +39,11 @@ const FormElements = ({ item, handleChange, odd, market }) => {
 const DrawForm = ({ odd, eventData, prediction, home, away }) => {
   const [state, setState] = useState(initialState);
   const dispatch = useDispatch();
+
+  const roundToTwoDecimalPlaces = (number) => {
+    return Math.round(number * 100) / 100;
+  };
+
   const handleChange = (e, odd, market) => {
     const stake = parseInt(e.target.value);
     const game = {
@@ -50,7 +55,6 @@ const DrawForm = ({ odd, eventData, prediction, home, away }) => {
       prediction,
       handicap: market === 1 ? null : '2.5',
     };
-    console.log({ game });
     setState({ state, ...game });
     dispatch(
       addToGames({
@@ -64,7 +68,7 @@ const DrawForm = ({ odd, eventData, prediction, home, away }) => {
     {
       name: 1,
       type: 'number',
-      label: odd,
+      label: roundToTwoDecimalPlaces(odd),
     },
   ];
   return (

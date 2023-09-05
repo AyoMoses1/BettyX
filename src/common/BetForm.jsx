@@ -64,7 +64,7 @@ const BetForm = ({
       name: 1,
       type: 'number',
       value: odds.odd_1,
-      label: odds.odd_1,
+      label: `${roundToTwoDecimalPlaces(odds.odd_1)}`,
     },
     {
       name: 3,

@@ -6,8 +6,9 @@ export const usePlaceBet = () => {
   const toast = useToast();
   return useMutation(Services.placeBet, {
     onError: (data) => {
-      const errObj = data?.message;
-       toast({ description: errObj.errorMsg, status: 'error', title: "Invalid Credential" })
+      const errObj = data?.response?.data?.message;
+      console.log(data?.response?.data?.message, "error")
+       toast({ description: errObj, status: 'error', title: "Failed Wager Placement" })
     },
     onSuccess: (data, variables) => {
       toast({
