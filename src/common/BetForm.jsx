@@ -10,6 +10,7 @@ import {
   GridItem,
 } from '@chakra-ui/react';
 import { addToGames } from 'store/wagers/wagerSlice';
+import { decimalToFraction } from 'player/components/utils/helpers';
 
 const FormElements = ({ item, handleChange, odd, market }) => {
   return (
@@ -45,22 +46,31 @@ const BetForm = ({
   predictedLogo,
 }) => {
   const [state, setState] = useState(initialState);
+  const label2 = decimalToFraction(odds?.odd_2_handicap);
+  const label3 = decimalToFraction(odds?.odd_3_handicap);
+
+  const roundToTwoDecimalPlaces = (number) => {
+    return Math.round(number * 100) / 100;
+  };
   const dispatch = useDispatch();
   const inputElements = [
     {
       name: 2,
       type: 'number',
-      label: odds.odd_2,
+      value: odds.odd_2,
+      label: `${label2} ${roundToTwoDecimalPlaces(odds.odd_2)}`,
     },
     {
       name: 1,
       type: 'number',
+      value: odds.odd_1,
       label: odds.odd_1,
     },
     {
       name: 3,
       type: 'number',
-      label: odds.odd_3,
+      value: odds.odd_3,
+      label: `${label3} ${roundToTwoDecimalPlaces(odds.odd_3)}`,
     },
   ];
 
@@ -68,7 +78,7 @@ const BetForm = ({
     const stake = parseInt(e.target.value);
     const game = {
       ...eventData,
-      odd,
+      odd: parseInt(odd, 10),
       market,
       home,
       away,
@@ -97,7 +107,9 @@ const BetForm = ({
                 item={item}
                 key={idx}
                 handleChange={handleChange}
-                odd={parseFloat(item.label)}
+                odd={item.value}
+                label={item.label}
+                // odd={parseFloat(item.label)}
                 market={item.name}
               />
             ))}

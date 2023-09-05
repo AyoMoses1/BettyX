@@ -63,7 +63,7 @@ export const paths = {
   baseball: "baseball",
   football: "football",
   basketball: "basketball",
-  soccer: "soccer",
+  soccer: "/soccer",
   golf: "golf",
   martialArts: "martial-arts",
   boxing: "boxing",

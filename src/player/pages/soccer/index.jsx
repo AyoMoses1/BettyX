@@ -1,4 +1,12 @@
-import { Box, Flex, Grid, GridItem, Text } from '@chakra-ui/react';
+import {
+  Box,
+  CircularProgress,
+  Flex,
+  Grid,
+  GridItem,
+  Progress,
+  Text,
+} from '@chakra-ui/react';
 import SoccerBox from 'common/SoccerBox';
 import { results } from 'pages/agents/components/data';
 import { AiOutlineInbox } from 'react-icons/ai';
@@ -34,8 +42,8 @@ const Index = () => {
   const location = useLocation();
   const { currentTab } = useContext(CurrentPageContext);
   const { data } = useGetAllEventsBySportsAndLeague({
-    sport_id: location?.state?.sportId,
-    league_id: location?.state?.id,
+    sport_id: location?.state?.sportId ?? 1, //Get all leagues for soccer as the default
+    league_id: location?.state?.id ?? 94, //Get all upcoming events for EPL as the default
   });
 
   return (
@@ -44,14 +52,27 @@ const Index = () => {
       {currentTab === 'straight' && data?.length ? (
         data?.map((item) => <SoccerBox data={item} key={item.id} />)
       ) : (
-        <NoDataBox />
+        <Box mt="15%" mx="auto" width="10%">
+          <CircularProgress
+            value={30}
+            color="purple"
+            thickness="12px"
+            isIndeterminate
+            size="50px"
+          />
+        </Box>
       )}
 
-      {currentTab === 'parlay' && data?.length ? (
+      {/* {currentTab === 'parlay' && data?.length ? (
         data?.map((item) => <ParlayBox data={item} key={item.id} />)
       ) : (
-        <NoDataBox />
-      )}
+        <CircularProgress
+          value={30}
+          color="orange.400"
+          thickness="12px"
+          isIndeterminate
+        />
+      )} */}
     </Box>
   );
 };

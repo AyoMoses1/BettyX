@@ -9,8 +9,10 @@ const BetGrid = ({
   prediction,
   home,
   away,
+  odd_2_handicap,
+  odd_3_handicap
 }) => {
-  const odds = { odd_1, odd_2, odd_3 };
+  const odds = { odd_1, odd_2, odd_3, odd_2_handicap, odd_3_handicap };
   return (
     <Box mt={4} bg="grey" p={2}>
       <Grid templateColumns="repeat(4, 1fr)">

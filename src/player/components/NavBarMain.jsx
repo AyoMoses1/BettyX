@@ -70,6 +70,13 @@ const NavBarMain = () => {
               width="100%"
               border="1px solid"
               borderColor="grey"
+              bg={
+                item.name === 'continue'
+                  ? 'green'
+                  : item.name === 'refresh'
+                  ? 'blue'
+                  : ''
+              }
               mx={2}
             >
               <Box

@@ -41,7 +41,7 @@ export const useSignIn = () => {
       localStorage.setItem('user_prefix', data.data.user.prefix);
       localStorage.setItem('nextAccountStart', data.data.user.nextAccountStart);
       setCurrentPage(paths.home);
-      navigate(data.data.user.role === 'player' ? paths.home : paths.dashboard);
+      navigate(data.data.user.role === 'player' ? paths.soccer : paths.dashboard);
     },
   });
 };
