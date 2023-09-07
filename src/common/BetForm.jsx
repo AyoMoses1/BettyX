@@ -61,7 +61,7 @@ const BetForm = ({
       name: 2,
       type: 'number',
       value: odds.odd_2,
-      label: `${label2 ?? ""} ${decimalToAmericanOdds(
+      label: `${label2 ?? ''} ${decimalToAmericanOdds(
         roundToTwoDecimalPlaces(odds.odd_2)
       )}`,
     },
@@ -75,9 +75,9 @@ const BetForm = ({
       name: 3,
       type: 'number',
       value: odds.odd_3,
-      label: `${label3 ?? ""} ${decimalToAmericanOdds(
-        roundToTwoDecimalPlaces(odds.odd_3)
-      )}`,
+      label: `${prediction === 'home' ? 'O' : 'U'} ${
+        label3 ?? ''
+      } ${decimalToAmericanOdds(roundToTwoDecimalPlaces(odds.odd_3))}`,
     },
   ];
 
