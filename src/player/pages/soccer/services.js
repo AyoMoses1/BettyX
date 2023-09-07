@@ -18,7 +18,11 @@ class Services {
       method: 'GET',
       url: `${endpoints.eventsByLeague}${param}`,
     });
-    return response?.data;
+    if (Array.isArray(response?.data)) {
+      return response?.data;
+    } else {
+      return response?.data?.results;
+    }
   }
 
   async createAgent(payload) {

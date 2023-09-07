@@ -10,6 +10,7 @@ import {
 } from '@chakra-ui/react';
 import { useDispatch } from 'react-redux';
 import { addToGames } from 'store/wagers/wagerSlice';
+import { decimalToAmericanOdds } from 'player/components/utils/helpers';
 
 const initialState = {
   home: '',
@@ -68,7 +69,7 @@ const DrawForm = ({ odd, eventData, prediction, home, away }) => {
     {
       name: 1,
       type: 'number',
-      label: roundToTwoDecimalPlaces(odd),
+      label: decimalToAmericanOdds(roundToTwoDecimalPlaces(odd)),
     },
   ];
   return (

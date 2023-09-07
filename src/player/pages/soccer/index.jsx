@@ -59,8 +59,12 @@ const Index = () => {
             size="50px"
           />
         </Box>
+      ) : data.length === 0 ? (
+        // Render something else when data is empty
+        <NoDataBox />
       ) : (
-        data?.map((item) => <SoccerBox data={item} key={item.id} />)
+        // Render the data items
+        data.map((item) => <SoccerBox data={item} key={item.id} />)
       )}
       {/* {currentTab === 'straight' && data?.length ? (
         data?.map((item) => <SoccerBox data={item} key={item.id} />)

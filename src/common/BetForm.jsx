@@ -10,7 +10,10 @@ import {
   GridItem,
 } from '@chakra-ui/react';
 import { addToGames } from 'store/wagers/wagerSlice';
-import { decimalToFraction } from 'player/components/utils/helpers';
+import {
+  decimalToAmericanOdds,
+  decimalToFraction,
+} from 'player/components/utils/helpers';
 
 const FormElements = ({ item, handleChange, odd, market }) => {
   return (
@@ -58,19 +61,23 @@ const BetForm = ({
       name: 2,
       type: 'number',
       value: odds.odd_2,
-      label: `${label2} ${roundToTwoDecimalPlaces(odds.odd_2)}`,
+      label: `${label2 ?? ""} ${decimalToAmericanOdds(
+        roundToTwoDecimalPlaces(odds.odd_2)
+      )}`,
     },
     {
       name: 1,
       type: 'number',
       value: odds.odd_1,
-      label: `${roundToTwoDecimalPlaces(odds.odd_1)}`,
+      label: `${decimalToAmericanOdds(roundToTwoDecimalPlaces(odds.odd_1))}`,
     },
     {
       name: 3,
       type: 'number',
       value: odds.odd_3,
-      label: `${label3} ${roundToTwoDecimalPlaces(odds.odd_3)}`,
+      label: `${label3 ?? ""} ${decimalToAmericanOdds(
+        roundToTwoDecimalPlaces(odds.odd_3)
+      )}`,
     },
   ];
 

@@ -45,6 +45,25 @@ export const menuItems = [
   },
 ];
 
+export const decimalToAmericanOdds = (input) => {
+  let americanOdds;
+  if(!input){
+    return "no odd"
+  }
+  if (input >= 2) {
+    americanOdds = Math.round((input - 1) * 100);
+    if (americanOdds >= 0) {
+      return `+${americanOdds}`;
+    } else {
+      return americanOdds.toString(); // No plus sign for negative numbers
+    }
+  } else {
+    americanOdds = Math.round(-100 / (input - 1));
+    return americanOdds.toString(); // No plus sign for negative numbers
+  }
+};
+
+
 export const decimalToFraction = (input) => {
   if (input) {
     const numbers = input.split(',').map(Number);
@@ -82,4 +101,3 @@ export const decimalToFraction = (input) => {
     return results.join(', ');
   }
 };
-// Output: "3 1/4"
