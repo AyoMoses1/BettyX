@@ -7,6 +7,7 @@ import FootballMatchesGrid from './components/helpers';
 import TotalBox from './components/TotalBox';
 import { usePlaceBet } from './queryHooks';
 import { CurrentPageContext } from 'App';
+import WagerHeader from './components/WagerHeader';
 
 const Index = ({ isOpen, handleClose }) => {
   const wager = useSelector((state) => state.wagersReducer);
@@ -18,6 +19,7 @@ const Index = ({ isOpen, handleClose }) => {
     const { predictedLogo, ...gameData } = wager.games[0];
     const newPayload = { ...wager, games: [gameData] };
     const data = { ...newPayload, toWin, accumulatedOdds: wager.games[0].odd };
+    delete data.parlay;
     mutate({ data });
   };
 
@@ -42,19 +44,11 @@ const Index = ({ isOpen, handleClose }) => {
         </>
       }
     >
-      {/* <wagerHeader /> */}
-      {/* {wager?.games?.map((item) => (
-        <FootballMatchesGrid
-          data={item}
-          stake={wager?.stake}
-        />
-      ))} */}
-      {currentTab === "parlay" && wager?.parlay?.map((item) => (
-        <FootballMatchesGrid
-          data={item}
-          stake={wager?.stake}
-        />
-      ))}
+      <WagerHeader />
+      {currentTab === 'straight' &&
+        wager?.games?.map((item) => (
+          <FootballMatchesGrid data={item} stake={wager?.stake} />
+        ))}
       <TotalBox />
     </Drawer>
   );
