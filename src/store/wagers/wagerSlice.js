@@ -3,6 +3,7 @@ import axios from 'axios';
 
 const initialState = {
   games: [],
+  parlay: [],
   stake: null,
   status: 'pending',
   accumulatedOdds: null,
@@ -21,10 +22,23 @@ const wagerSlice = createSlice({
     addToGames: (state, action) => {
       state.games = [action.payload.game];
       state.stake = action.payload.stake;
-      state.playerId=action.payload.playerId
+      state.playerId = action.payload.playerId;
+    },
+    addToGamesForParlay: (state, action) => {
+      const { payload } = action;
+      const existingIndex = state.parlay.findIndex(
+        (item) => item.eventId === payload.eventId
+      );
+      if (existingIndex !== -1) {
+        state.parlay[existingIndex] = payload;
+      } else {
+        state.parlay.push(payload);
+      }
+      state.betType = 'parlay';
     },
   },
 });
 
-export const { placeWager, addToGames } = wagerSlice.actions;
+export const { placeWager, addToGames, addToGamesForParlay } =
+  wagerSlice.actions;
 export default wagerSlice.reducer;

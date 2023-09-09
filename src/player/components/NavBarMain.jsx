@@ -15,8 +15,10 @@ import Wager from 'pages/wager';
 import styled from 'styled-components';
 import { useContext } from 'react';
 import { CurrentPageContext } from 'App';
+import { useSelector } from 'react-redux';
+import ParlayWager from 'pages/wager/ParlayWager';
 
-const navLinks = (placeWager) => {
+const navLinks = (placeWager, currentTab, parlay) => {
   return [
     {
       name: 'straight',
@@ -42,16 +44,22 @@ const navLinks = (placeWager) => {
       name: 'refresh',
       symbol: 'r',
     },
-    {
-      name: 'continue',
-      symbol: 'c',
-      onClick: placeWager,
-    },
+    // {
+    //   name: 'continue',
+    //   symbol: currentTab === 'parlay' ? `c[${parlay.length}]` : 'c',
+    //   onClick: placeWager,
+    // },
   ];
 };
 const NavBarMain = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { setCurrentTab } = useContext(CurrentPageContext);
+  const {
+    isOpen: parlayOpen,
+    onOpen: parlayOnOpen,
+    onClose: parlayOnClose,
+  } = useDisclosure();
+  const { setCurrentTab, currentTab } = useContext(CurrentPageContext);
+  const parlay = useSelector((state) => state.wagersReducer.parlay);
   const handleTabClick = (name, fn) => {
     setCurrentTab(name);
     fn && fn();
@@ -59,12 +67,15 @@ const NavBarMain = () => {
   const handleWager = () => {
     onOpen();
   };
+  const handleParlayWager = () => {
+    parlayOnOpen();
+  };
 
   return (
     <StyledBox color="white" px={0} py={0} pb={2} bgColor="playerBlue">
       <Tabs variant="unstyled">
         <TabList>
-          {navLinks(handleWager).map((item) => (
+          {navLinks(handleWager, currentTab, parlay).map((item) => (
             <Tab
               _selected={{ color: 'black', bg: 'grey' }}
               width="100%"
@@ -89,17 +100,31 @@ const NavBarMain = () => {
               </Box>
             </Tab>
           ))}
+          <Tab
+            _selected={{ color: 'black', bg: 'grey' }}
+            width="100%"
+            border="1px solid"
+            borderColor="grey"
+            bg="green"
+            mx={2}
+          >
+            <Box
+              ml={2}
+              cursor="pointer"
+              onClick={
+                currentTab === 'straight' ? handleWager : handleParlayWager
+              }
+            >
+              <Text variant="navBold">
+                {currentTab === 'parlay' ? `c[${parlay.length}]` : 'c'}
+              </Text>
+              <Text variant="nav">Continue</Text>
+            </Box>
+          </Tab>
         </TabList>
-        <TabPanels>
-          <TabPanel>
-            <p>one!</p>
-          </TabPanel>
-          <TabPanel>
-            <p>two!</p>
-          </TabPanel>
-        </TabPanels>
       </Tabs>
       <Wager isOpen={isOpen} handleClose={onClose} />
+      <ParlayWager isOpen={parlayOpen} handleClose={parlayOnClose} />
     </StyledBox>
   );
 };

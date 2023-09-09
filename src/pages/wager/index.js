@@ -1,15 +1,17 @@
 import { Button } from '@chakra-ui/react';
 import Drawer from 'common/Drawer';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { placeWager } from 'store/wagers/wagerSlice';
 import FootballMatchesGrid from './components/helpers';
 import TotalBox from './components/TotalBox';
 import { usePlaceBet } from './queryHooks';
+import { CurrentPageContext } from 'App';
 
 const Index = ({ isOpen, handleClose }) => {
   const wager = useSelector((state) => state.wagersReducer);
   const { mutate, isLoading } = usePlaceBet();
+  const { currentTab } = useContext(CurrentPageContext);
 
   const handlePlaceBet = () => {
     const toWin = wager.games[0].odd * wager.stake - wager.stake;
@@ -40,8 +42,14 @@ const Index = ({ isOpen, handleClose }) => {
         </>
       }
     >
-      <wagerHeader />
-      {wager?.games?.map((item) => (
+      {/* <wagerHeader /> */}
+      {/* {wager?.games?.map((item) => (
+        <FootballMatchesGrid
+          data={item}
+          stake={wager?.stake}
+        />
+      ))} */}
+      {currentTab === "parlay" && wager?.parlay?.map((item) => (
         <FootballMatchesGrid
           data={item}
           stake={wager?.stake}

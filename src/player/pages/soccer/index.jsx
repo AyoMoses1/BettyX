@@ -16,7 +16,7 @@ import styled from 'styled-components';
 import Heading from './Heading';
 import { CurrentPageContext } from 'App';
 import { useContext } from 'react';
-import ParlayBox from 'common/ParlayBox';
+import ParlayBox from 'common/Parlay/Box';
 
 const NoDataBox = () => {
   return (
@@ -49,7 +49,7 @@ const Index = () => {
   return (
     <Box>
       <Heading />
-      {isLoading ? (
+      {currentTab === 'straight' && isLoading && (
         <Box mt="15%" mx="auto" width="10%">
           <CircularProgress
             value={30}
@@ -59,16 +59,12 @@ const Index = () => {
             size="50px"
           />
         </Box>
-      ) : data.length === 0 ? (
-        // Render something else when data is empty
-        <NoDataBox />
-      ) : (
-        // Render the data items
-        data.map((item) => <SoccerBox data={item} key={item.id} />)
       )}
-      {/* {currentTab === 'straight' && data?.length ? (
-        data?.map((item) => <SoccerBox data={item} key={item.id} />)
-      ) : (
+      {currentTab === 'straight' && data?.length === 0 ? <NoDataBox /> : null}
+      {currentTab === 'straight' && data?.length > 0
+        ? data.map((item) => <SoccerBox data={item} key={item.id} />)
+        : null}
+      {currentTab === 'parlay' && isLoading && (
         <Box mt="15%" mx="auto" width="10%">
           <CircularProgress
             value={30}
@@ -78,18 +74,11 @@ const Index = () => {
             size="50px"
           />
         </Box>
-      )} */}
-
-      {/* {currentTab === 'parlay' && data?.length ? (
-        data?.map((item) => <ParlayBox data={item} key={item.id} />)
-      ) : (
-        <CircularProgress
-          value={30}
-          color="orange.400"
-          thickness="12px"
-          isIndeterminate
-        />
-      )} */}
+      )}
+      {currentTab === 'parlay' && data?.length === 0 ? <NoDataBox /> : null}
+      {currentTab === 'parlay' && data?.length > 0
+        ? data.map((item) => <ParlayBox data={item} key={item.id} />)
+        : null}
     </Box>
   );
 };

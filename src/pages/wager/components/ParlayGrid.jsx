@@ -17,7 +17,7 @@ import styled from 'styled-components';
 import { wagerData } from './data';
 import WagerHeader from './WagerHeader';
 
-const FootballMatchesGrid = ({ data, stake }) => {
+const ParlayGrid = ({ data, stake }) => {
   const toWin = data.odd * stake - stake;
   return (
     <Accordion allowToggle p={0}>
@@ -67,22 +67,6 @@ const FootballMatchesGrid = ({ data, stake }) => {
             </StyledText>
           ))}
         </AccordionPanel>
-        <Flex justifyContent="space-between" alignItems="center">
-          <Button variant="noBg" color="red" p={0}>
-            Delete
-          </Button>
-          <Input
-            type="number"
-            value={stake}
-            sx={{ borderRadius: '0px', width: '100px' }}
-          />
-          TO WIN
-          <Input
-            type="number"
-            value={toWin}
-            sx={{ borderRadius: '0px', width: '100px' }}
-          />
-        </Flex>
       </AccordionItem>
     </Accordion>
   );
@@ -100,4 +84,4 @@ const StyledText = styled(Text)`
 
 `;
 
-export default FootballMatchesGrid;
+export default ParlayGrid;

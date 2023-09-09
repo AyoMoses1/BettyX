@@ -40,6 +40,7 @@ const FormElements = ({ item, handleChange, odd, market }) => {
 const DrawForm = ({ odd, eventData, prediction, home, away }) => {
   const [state, setState] = useState(initialState);
   const dispatch = useDispatch();
+  
 
   const roundToTwoDecimalPlaces = (number) => {
     return Math.round(number * 100) / 100;

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   Box,
   FormControl,
@@ -11,8 +11,8 @@ import {
 } from '@chakra-ui/react';
 import { addToGames } from 'store/wagers/wagerSlice';
 import {
-  decimalToAmericanOdds,
   decimalToFraction,
+  decimalToAmericanOdds,
 } from 'player/components/utils/helpers';
 
 const FormElements = ({ item, handleChange, odd, market }) => {
@@ -60,24 +60,24 @@ const BetForm = ({
     {
       name: 2,
       type: 'number',
-      value: odds.odd_2,
-      label: `${label2 ?? ''} ${decimalToAmericanOdds(
-        roundToTwoDecimalPlaces(odds.odd_2)
+      value: odds?.odd_2,
+      label: `${label2} ${decimalToAmericanOdds(
+        roundToTwoDecimalPlaces(odds?.odd_2)
       )}`,
     },
     {
       name: 1,
       type: 'number',
-      value: odds.odd_1,
-      label: `${decimalToAmericanOdds(roundToTwoDecimalPlaces(odds.odd_1))}`,
+      value: odds?.odd_1,
+      label: `${decimalToAmericanOdds(roundToTwoDecimalPlaces(odds?.odd_1))}`,
     },
     {
       name: 3,
       type: 'number',
-      value: odds.odd_3,
-      label: `${prediction === 'home' ? 'O' : 'U'} ${
-        label3 ?? ''
-      } ${decimalToAmericanOdds(roundToTwoDecimalPlaces(odds.odd_3))}`,
+      value: odds?.odd_3,
+      label: `${label3} ${decimalToAmericanOdds(
+        roundToTwoDecimalPlaces(odds?.odd_3)
+      )}`,
     },
   ];
 
