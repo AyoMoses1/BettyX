@@ -38,6 +38,7 @@ const DrawForm = ({
   market,
 }) => {
   const [state, setState] = useState(initialState);
+  const [selectedPrediction, setSelectedPrediction] = useState(null);
   const [game, setGame] = useState({});
 
   const [value, setValue] = React.useState('1');
@@ -74,6 +75,12 @@ const DrawForm = ({
   ];
 
   const handleChange = (e, prediction, value, label) => {
+    if (selectedPrediction === prediction) {
+      setSelectedPrediction(null); // If the clicked box is already selected, unselect it
+    } else {
+      setSelectedPrediction(prediction);
+    }
+
     const game = {
       ...eventData,
       odd: Number(roundToTwoDecimalPlaces(value)),
@@ -82,8 +89,9 @@ const DrawForm = ({
       market: 1,
       prediction,
       label,
-      predictedLogo: prediction === 'home' ? home?.image_id : home?.away_id,
+      predictedLogo: prediction === 'home' ? home?.image_id : away?.image_id,
     };
+
     setGame(game);
     dispatch(addToGamesForParlay(game));
   };
@@ -94,17 +102,27 @@ const DrawForm = ({
         <form>
           <StyledBox>
             {inputElements.map((item, idx) => (
-              <label className="custom-radio" key={item.id}>
+              <Box
+                p={2}
+                borderWidth={1}
+                width="100%"
+                textAlign="center"
+                cursor="pointer"
+                onClick={(e) =>
+                  handleChange(e, item.prediction, item.value, item?.label)
+                }
+                key={item.id}
+                bgColor={
+                  selectedPrediction === item.prediction
+                    ? 'black'
+                    : 'transparent'
+                }
+                color={
+                  selectedPrediction === item.prediction ? 'white' : 'inherit'
+                }
+              >
                 {item?.label}
-                <input
-                  type="radio"
-                  name="parlay"
-                  value={item.label}
-                  onChange={(e) => handleChange(e, item.prediction, item.value, item?.label)}
-                  className="custom-radio-input"
-                />
-                <span className="checkmark"></span>
-              </label>
+              </Box>
             ))}
           </StyledBox>
         </form>

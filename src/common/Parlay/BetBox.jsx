@@ -9,7 +9,7 @@ const BetBox = ({ away, home, odds, sportId, eventId }) => {
   const eventData = { sportId, eventId };
   return (
     <Box>
-      <Grid templateColumns="repeat(4, 1fr)">
+      <Grid templateColumns="repeat(5, 1fr)">
         <Logo home={home} away={away} />
         <GridItem>
           <SpreadForm

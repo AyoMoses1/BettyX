@@ -1,15 +1,15 @@
 import { Box, Flex, Text } from '@chakra-ui/react';
 
-const TotalBox = () => {
+const TotalBox = ({ totalWager, totalWin }) => {
   return (
     <Box border="1px solid grey" p={4} mt={24}>
       <Flex justifyContent="space-between">
         <Text>Total Wagered:</Text>
-        <Text>$2.10</Text>
+        <Text>${totalWager}</Text>
       </Flex>
       <Flex justifyContent="space-between">
         <Text>Total Possible Win:</Text>
-        <Text>$2.10</Text>
+        <Text>${totalWin}</Text>
       </Flex>
     </Box>
   );

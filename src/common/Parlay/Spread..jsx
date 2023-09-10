@@ -7,6 +7,7 @@ import {
   Input,
   HStack,
   Flex,
+  Text,
   GridItem,
   VStack,
   RadioGroup,
@@ -71,7 +72,15 @@ const SpreadForm = ({
     },
   ];
 
+  const [selectedPrediction, setSelectedPrediction] = useState(null);
+
   const handleChange = (e, prediction, value, label) => {
+    if (selectedPrediction === prediction) {
+      setSelectedPrediction(null); // If the clicked box is already selected, unselect it
+    } else {
+      setSelectedPrediction(prediction);
+    }
+
     const game = {
       ...eventData,
       odd: Number(roundToTwoDecimalPlaces(value)),
@@ -82,6 +91,7 @@ const SpreadForm = ({
       label,
       predictedLogo: prediction === 'home' ? home?.image_id : away?.image_id,
     };
+
     setGame(game);
     dispatch(addToGamesForParlay(game));
   };
@@ -92,17 +102,27 @@ const SpreadForm = ({
         <form>
           <StyledBox>
             {inputElements.map((item, idx) => (
-              <label className="custom-radio" key={item.id}>
+              <Box
+                p={2}
+                borderWidth={1}
+                textAlign="center"
+                width="100%"
+                cursor="pointer"
+                onClick={(e) =>
+                  handleChange(e, item.prediction, item.value, item?.label)
+                }
+                key={item.id}
+                bgColor={
+                  selectedPrediction === item.prediction
+                    ? 'black'
+                    : 'transparent'
+                }
+                color={
+                  selectedPrediction === item.prediction ? 'white' : 'inherit'
+                }
+              >
                 {item?.label}
-                <input
-                  type="radio"
-                  name="parlay"
-                  value={item.value}
-                  onChange={(e) => handleChange(e, item.prediction, item.value, item?.label)}
-                  className="custom-radio-input"
-                />
-                <span className="checkmark"></span>
-              </label>
+              </Box>
             ))}
           </StyledBox>
         </form>
@@ -115,11 +135,11 @@ const StyledBox = styled.div`
   display: flex;
   flex-direction: column;
 
-  .custom-radio {
-    position: relative;
-    padding-left: 30px; /* Adjust as needed */
-    cursor: pointer;
-  }
+  // .custom-radio {
+  //   position: relative;
+  //   padding-left: 30px; /* Adjust as needed */
+  //   cursor: pointer;
+  // }
 
   .custom-radio input {
     position: absolute;

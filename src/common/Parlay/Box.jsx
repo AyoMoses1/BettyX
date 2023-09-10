@@ -31,7 +31,7 @@ const SoccerBox = ({ data }) => {
         </Grid>
       </Header>
       <Body bgColor="white" color="black" p={4}>
-        <Title>
+        <Title mb={4}>
           <span style={{ color: 'green' }}>{formatTime}</span> - {league?.name}
         </Title>
         <BetBox

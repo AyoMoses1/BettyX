@@ -24,7 +24,7 @@ const FormElements = ({ item, handleChange, odd, market }) => {
           <Input
             type={item.type}
             sx={{ borderRadius: '0px', width: '100px' }}
-            onChange={(e) => handleChange(e, odd, market)}
+            onChange={(e) => handleChange(e, odd, market, item?.label)}
           />
         </Flex>
       </FormControl>
@@ -81,11 +81,12 @@ const BetForm = ({
     },
   ];
 
-  const handleChange = (e, odd, market) => {
+  const handleChange = (e, odd, market, label) => {
     const stake = parseInt(e.target.value);
     const game = {
       ...eventData,
       odd: parseInt(odd, 10),
+      label,
       market,
       home,
       away,

@@ -49,7 +49,6 @@ const Index = ({ isOpen, handleClose }) => {
         wager?.games?.map((item) => (
           <FootballMatchesGrid data={item} stake={wager?.stake} />
         ))}
-      <TotalBox />
     </Drawer>
   );
 };

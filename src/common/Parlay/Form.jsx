@@ -30,6 +30,7 @@ const initialState = {
 
 const Form = ({ odds, eventData, home, away }) => {
   const [state, setState] = useState(initialState);
+  const [selectedPrediction, setSelectedPrediction] = useState(null);
   const [game, setGame] = useState({});
 
   // const label1 = decimalToFraction(odds?[0].odd_2_handicap);
@@ -39,7 +40,6 @@ const Form = ({ odds, eventData, home, away }) => {
   const roundToTwoDecimalPlaces = (number) => {
     return (Math.round(number * 100) / 100).toFixed(2);
   };
-
 
   const dispatch = useDispatch();
   const inputElements = [
@@ -73,6 +73,12 @@ const Form = ({ odds, eventData, home, away }) => {
   ];
 
   const handleChange = (e, prediction, value, label) => {
+    if (selectedPrediction === prediction) {
+      setSelectedPrediction(null); // If the clicked box is already selected, unselect it
+    } else {
+      setSelectedPrediction(prediction);
+    }
+
     const game = {
       ...eventData,
       odd: Number(roundToTwoDecimalPlaces(value)),
@@ -81,8 +87,9 @@ const Form = ({ odds, eventData, home, away }) => {
       market: 1,
       prediction,
       label,
-      predictedLogo: prediction === 'home' ? home?.image_id : home?.away_id,
+      predictedLogo: prediction === 'home' ? home?.image_id : away?.image_id,
     };
+
     setGame(game);
     dispatch(addToGamesForParlay(game));
   };
@@ -93,17 +100,27 @@ const Form = ({ odds, eventData, home, away }) => {
         <form>
           <StyledBox>
             {inputElements.map((item, idx) => (
-              <label className="custom-radio" key={item.id}>
+              <Box
+                p={2}
+                borderWidth={1}
+                textAlign="center"
+                width="100%"
+                cursor="pointer"
+                onClick={(e) =>
+                  handleChange(e, item.prediction, item.value, item?.label)
+                }
+                key={item.id}
+                bgColor={
+                  selectedPrediction === item.prediction
+                    ? 'black'
+                    : 'transparent'
+                }
+                color={
+                  selectedPrediction === item.prediction ? 'white' : 'inherit'
+                }
+              >
                 {item?.label}
-                <input
-                  type="radio"
-                  name="parlay"
-                  value={item.label}
-                  onChange={(e) => handleChange(e, item.prediction, item.value, item?.label)}
-                  className="custom-radio-input"
-                />
-                <span className="checkmark"></span>
-              </label>
+              </Box>
             ))}
           </StyledBox>
         </form>
