@@ -13,15 +13,16 @@ import {
   FormLabel,
   Input,
 } from '@chakra-ui/react';
+import { CurrentPageContext } from 'App';
 import { decimalToAmericanOdds } from 'player/components/utils/helpers';
+import { useContext } from 'react';
 import styled from 'styled-components';
 import { wagerData } from './data';
 import TotalBox from './TotalBox';
-import WagerHeader from './WagerHeader';
 
 const FootballMatchesGrid = ({ data, stake }) => {
+  const { currentTab } = useContext(CurrentPageContext);
   const toWin = data.odd * stake - stake;
-  console.log(data?.label, "data?.odd")
   return (
     <>
       <Accordion allowToggle p={0}>
@@ -59,7 +60,11 @@ const FootballMatchesGrid = ({ data, stake }) => {
 
             <Input
               type="text"
-              value={decimalToAmericanOdds(data?.odd)}
+              value={
+                currentTab === 'parlay'
+                  ? decimalToAmericanOdds(data?.odd)
+                  : data?.label
+              }
               sx={{ borderRadius: '0px', width: '100px' }}
             />
           </Flex>
@@ -104,6 +109,7 @@ const StyledText = styled(Text)`
   font-size: 12px !important;
   text-transform: uppercase;import wagerHeader from './WagerHeader';
 import { decimalToAmericanOdds } from 'player/components/utils/helpers';
+import { useContext } from 'react';
 
 `;
 
