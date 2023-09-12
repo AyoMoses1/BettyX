@@ -19,15 +19,21 @@ const Index = ({ isOpen, handleClose }) => {
   const { currentTab } = useContext(CurrentPageContext);
 
   const handlePlaceBet = () => {
-    // const toWin = wager.games[0].odd * wager.stake - wager.stake;
     const toWin = roundUpToTwoDecimalPlaces(
-      calculatePotentialWin(wager.games[0].label, wager.stake)
+      calculatePotentialWin(
+        wager.games[0].market === 3
+          ? wager.games[0].marketOdd
+          : wager.games[0].label,
+        wager.stake
+      )
     );
     const { predictedLogo, ...gameData } = wager.games[0];
     const newPayload = { ...wager, games: [gameData] };
     const data = { ...newPayload, toWin, accumulatedOdds: wager.games[0].odd };
     delete data.parlay;
     delete data.games[0].label;
+    console.log(wager.games[0].marketOdd)
+    delete data.games[0].marketOdd;
     mutate({ data });
   };
 
@@ -59,7 +65,10 @@ const Index = ({ isOpen, handleClose }) => {
             data={item}
             stake={wager?.stake}
             toWin={roundUpToTwoDecimalPlaces(
-              calculatePotentialWin(item.label, wager.stake)
+              calculatePotentialWin(
+                item.market === 3 ? item.marketOdd : item.label,
+                wager.stake
+              )
             )}
           />
         ))}

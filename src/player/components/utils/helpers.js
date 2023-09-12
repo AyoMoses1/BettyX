@@ -117,3 +117,46 @@ export const calculatePotentialWin = (odd, betAmount) => {
 export const roundUpToTwoDecimalPlaces = (number) => {
   return Math.ceil(number * 100) / 100;
 };
+
+export const transformString = (inputString) => {
+  // Replace commas with periods
+  const stringWithPeriods = inputString.replace(/,/g, ',');
+
+  // Split the string by space to separate the integer and fraction parts
+  const parts = stringWithPeriods.split(' ');
+
+  // Check if there is a fraction part
+  if (parts.length === 2) {
+    const fraction = parts[1].split('/');
+    if (fraction.length === 2) {
+      const numerator = parseFloat(fraction[0]);
+      const denominator = parseFloat(fraction[1]);
+      if (!isNaN(numerator) && !isNaN(denominator) && denominator !== 0) {
+        const decimalFraction = numerator / denominator;
+        // Replace the fraction part with the decimal representation
+        parts[1] = decimalFraction.toFixed(1);
+      }
+    }
+  }
+
+  // Join the parts back together with a comma
+  const transformedString = parts.join(',');
+
+  return transformedString;
+};
+
+const inputString = '2,2 1/2';
+const transformedString = transformString(inputString);
+console.log(transformedString); // Output: "2.0,2.5"
+
+export const refineParlayPayload = (data) => {
+  const editedArrayOfGames = data.games.map((item) => {
+    const { predictedLogo, label, ...others } = item;
+    return others;
+  });
+  let accumulatedOdds = 1;
+  data.games.forEach((item) => {
+    accumulatedOdds = item.odd * accumulatedOdds;
+  });
+  return { ...data, games: editedArrayOfGames, accumulatedOdds };
+};

@@ -1,7 +1,7 @@
 import { Box, Flex, Grid, GridItem, Heading, Text } from '@chakra-ui/react';
 import { formatDateAndTime, formatDateAndTimeTwo } from 'pages/customers/utils';
 import styled from 'styled-components';
-import BetBox from './BetBox';
+import BetBox from './straight/BetBox';
 
 const SoccerBox = ({ data }) => {
   const { league, home, away, time, odds, sport_id, id } = data;

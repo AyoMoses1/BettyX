@@ -14,9 +14,19 @@ import {
   decimalToFraction,
   decimalToAmericanOdds,
   roundUpToTwoDecimalPlaces,
+  transformString,
 } from 'player/components/utils/helpers';
 
-const FormElements = ({ item, handleChange, odd, market, odd_2_handicap, odd_3_handicap }) => {
+const FormElements = ({
+  item,
+  handleChange,
+  odd,
+  market,
+  odd_2_handicap,
+  odd_3_handicap,
+  market_3_prediction,
+  marketOdd,
+}) => {
   return (
     <Box>
       <FormControl>
@@ -25,7 +35,18 @@ const FormElements = ({ item, handleChange, odd, market, odd_2_handicap, odd_3_h
           <Input
             type={item.type}
             sx={{ borderRadius: '0px', width: '100px' }}
-            onChange={(e) => handleChange(e, odd, market, item?.label, odd_2_handicap, odd_3_handicap)}
+            onChange={(e) =>
+              handleChange(
+                e,
+                odd,
+                market,
+                item?.label,
+                odd_2_handicap,
+                odd_3_handicap,
+                market_3_prediction,
+                marketOdd
+              )
+            }
           />
         </Flex>
       </FormControl>
@@ -48,6 +69,7 @@ const BetForm = ({
   home,
   away,
   predictedLogo,
+  market_3_prediction,
 }) => {
   const [state, setState] = useState(initialState);
   const label2 = decimalToFraction(odds?.odd_2_handicap);
@@ -62,6 +84,7 @@ const BetForm = ({
       name: 2,
       type: 'number',
       value: odds?.odd_2,
+      marketOdd: decimalToAmericanOdds(roundToTwoDecimalPlaces(odds?.odd_2)),
       label: `${label2} ${decimalToAmericanOdds(
         roundToTwoDecimalPlaces(odds?.odd_2)
       )}`,
@@ -70,19 +93,31 @@ const BetForm = ({
       name: 1,
       type: 'number',
       value: odds?.odd_1,
+      marketOdd: decimalToAmericanOdds(roundToTwoDecimalPlaces(odds?.odd_1)),
       label: `${decimalToAmericanOdds(roundToTwoDecimalPlaces(odds?.odd_1))}`,
     },
     {
       name: 3,
       type: 'number',
       value: odds?.odd_3,
+      marketOdd: decimalToAmericanOdds(roundToTwoDecimalPlaces(odds?.odd_3)),
       label: `${label3} ${decimalToAmericanOdds(
         roundToTwoDecimalPlaces(odds?.odd_3)
       )}`,
     },
   ];
 
-  const handleChange = (e, odd, market, label, odd_2_handicap, odd_3_handicap) => {
+  const handleChange = (
+    e,
+    odd,
+    market,
+    label,
+    odd_2_handicap,
+    odd_3_handicap,
+    market_3_prediction,
+    marketOdd
+  ) => {
+    console.log({marketOdd})
     const stake = parseInt(e.target.value);
     const game = {
       ...eventData,
@@ -91,9 +126,15 @@ const BetForm = ({
       market,
       home,
       away,
-      prediction,
+      prediction: market === 3 ? market_3_prediction : prediction,
       predictedLogo,
-      handicap: market === 1 ? null : market === 2 ? odd_2_handicap : odd_3_handicap,
+      marketOdd,
+      handicap:
+        market === 1
+          ? null
+          : market === 2
+          ? transformString(odd_2_handicap)
+          : transformString(odd_3_handicap),
     };
     setState({ state, ...game });
     dispatch(
@@ -118,8 +159,10 @@ const BetForm = ({
                 handleChange={handleChange}
                 odd={item.value}
                 label={item.label}
-                odd_2_handicap = {odds.odd_2_handicap}
-                odd_3_handicap = {odds.odd_3_handicap}
+                marketOdd={item.marketOdd}
+                odd_2_handicap={odds.odd_2_handicap}
+                odd_3_handicap={odds.odd_3_handicap}
+                market_3_prediction={market_3_prediction}
                 // odd={parseFloat(item.label)}
                 market={item.name}
               />

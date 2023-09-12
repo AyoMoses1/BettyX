@@ -19,6 +19,7 @@ const BetBox = ({ away, home, odds, sportId, eventId }) => {
         odd_3={odds_1_3 && odds_1_3[0]?.over_od}
         odd_2_handicap={odds_1_2 && odds_1_2[0]?.handicap}
         odd_3_handicap={odds_1_3 && odds_1_3[0]?.handicap}
+        market_3_prediction="over"
       />
       <BetGrid
         data={away}
@@ -31,6 +32,7 @@ const BetBox = ({ away, home, odds, sportId, eventId }) => {
         odd_2_handicap={odds_1_2 && odds_1_2[0]?.handicap}
         odd_3_handicap={odds_1_3 && odds_1_3[0]?.handicap}
         odd_3={odds_1_3 && odds_1_3[0]?.under_od}
+        market_3_prediction="under"
       />
       <DrawGrid
         odd={odds_1_1 && odds_1_1[0]?.draw_od}

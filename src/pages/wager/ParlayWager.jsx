@@ -5,6 +5,11 @@ import { useSelector } from 'react-redux';
 import { usePlaceBet } from './queryHooks';
 import WagerHeader from './components/WagerHeader';
 import ParlayGrid from './components/ParlayGrid';
+import {
+  calculatePotentialWin,
+  refineParlayPayload,
+  roundUpToTwoDecimalPlaces,
+} from 'player/components/utils/helpers';
 
 const ParlayWager = ({ isOpen, handleClose }) => {
   const wager = useSelector((state) => state.wagersReducer);
@@ -13,11 +18,20 @@ const ParlayWager = ({ isOpen, handleClose }) => {
   const { mutate, isLoading } = usePlaceBet();
 
   const handlePlaceBet = () => {
-    const toWin = wager.games[0].odd * wager.stake - wager.stake;
-    const { predictedLogo, ...gameData } = wager.games[0];
-    const newPayload = { ...wager, games: [gameData] };
-    const data = { ...newPayload, toWin, accumulatedOdds: wager.games[0].odd };
-    mutate({ data });
+    const data = { ...wager, games: wager.parlay };
+    delete data.parlay;
+    const newData = refineParlayPayload(data);
+    // const toWin = roundUpToTwoDecimalPlaces(
+    //   calculatePotentialWin(wager.games[0].label, wager.stake)
+    // );
+    console.log({ newData });
+    // let toWin;
+    // const { predictedLogo, ...gameData } = wager.games[0];
+    // const newPayload = { ...wager, games: [gameData] };
+    // const data = { ...newPayload, toWin, accumulatedOdds: wager.games[0].odd };
+    // delete data.parlay;
+    // delete data.games[0].label;
+    // mutate({ data });
   };
 
   const handleGetWinAmount = (e) => {
