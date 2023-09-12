@@ -8,6 +8,10 @@ import TotalBox from './components/TotalBox';
 import { usePlaceBet } from './queryHooks';
 import { CurrentPageContext } from 'App';
 import WagerHeader from './components/WagerHeader';
+import {
+  calculatePotentialWin,
+  roundUpToTwoDecimalPlaces,
+} from 'player/components/utils/helpers';
 
 const Index = ({ isOpen, handleClose }) => {
   const wager = useSelector((state) => state.wagersReducer);
@@ -15,11 +19,15 @@ const Index = ({ isOpen, handleClose }) => {
   const { currentTab } = useContext(CurrentPageContext);
 
   const handlePlaceBet = () => {
-    const toWin = wager.games[0].odd * wager.stake - wager.stake;
+    // const toWin = wager.games[0].odd * wager.stake - wager.stake;
+    const toWin = roundUpToTwoDecimalPlaces(
+      calculatePotentialWin(wager.games[0].label, wager.stake)
+    );
     const { predictedLogo, ...gameData } = wager.games[0];
     const newPayload = { ...wager, games: [gameData] };
     const data = { ...newPayload, toWin, accumulatedOdds: wager.games[0].odd };
     delete data.parlay;
+    delete data.games[0].label;
     mutate({ data });
   };
 
@@ -47,7 +55,13 @@ const Index = ({ isOpen, handleClose }) => {
       <WagerHeader />
       {currentTab === 'straight' &&
         wager?.games?.map((item) => (
-          <FootballMatchesGrid data={item} stake={wager?.stake} />
+          <FootballMatchesGrid
+            data={item}
+            stake={wager?.stake}
+            toWin={roundUpToTwoDecimalPlaces(
+              calculatePotentialWin(item.label, wager.stake)
+            )}
+          />
         ))}
     </Drawer>
   );

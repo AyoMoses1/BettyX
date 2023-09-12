@@ -13,9 +13,10 @@ import { addToGames } from 'store/wagers/wagerSlice';
 import {
   decimalToFraction,
   decimalToAmericanOdds,
+  roundUpToTwoDecimalPlaces,
 } from 'player/components/utils/helpers';
 
-const FormElements = ({ item, handleChange, odd, market }) => {
+const FormElements = ({ item, handleChange, odd, market, odd_2_handicap, odd_3_handicap }) => {
   return (
     <Box>
       <FormControl>
@@ -24,7 +25,7 @@ const FormElements = ({ item, handleChange, odd, market }) => {
           <Input
             type={item.type}
             sx={{ borderRadius: '0px', width: '100px' }}
-            onChange={(e) => handleChange(e, odd, market, item?.label)}
+            onChange={(e) => handleChange(e, odd, market, item?.label, odd_2_handicap, odd_3_handicap)}
           />
         </Flex>
       </FormControl>
@@ -81,18 +82,18 @@ const BetForm = ({
     },
   ];
 
-  const handleChange = (e, odd, market, label) => {
+  const handleChange = (e, odd, market, label, odd_2_handicap, odd_3_handicap) => {
     const stake = parseInt(e.target.value);
     const game = {
       ...eventData,
-      odd: parseInt(odd, 10),
+      odd: roundUpToTwoDecimalPlaces(parseFloat(odd)),
       label,
       market,
       home,
       away,
       prediction,
       predictedLogo,
-      handicap: market === 1 ? null : '2.5',
+      handicap: market === 1 ? null : market === 2 ? odd_2_handicap : odd_3_handicap,
     };
     setState({ state, ...game });
     dispatch(
@@ -117,6 +118,8 @@ const BetForm = ({
                 handleChange={handleChange}
                 odd={item.value}
                 label={item.label}
+                odd_2_handicap = {odds.odd_2_handicap}
+                odd_3_handicap = {odds.odd_3_handicap}
                 // odd={parseFloat(item.label)}
                 market={item.name}
               />

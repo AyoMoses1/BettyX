@@ -4,7 +4,6 @@ import {
   BiEnvelope,
   BiGlobe,
   BiLogoWikipedia,
-  BiPowerOff,
   BiShuffle,
 } from 'react-icons/bi';
 import { FaPaintBrush } from 'react-icons/fa';
@@ -47,22 +46,21 @@ export const menuItems = [
 
 export const decimalToAmericanOdds = (input) => {
   let americanOdds;
-  if(!input){
-    return "no odd"
+  if (!input) {
+    return 'no odd';
   }
   if (input >= 2) {
     americanOdds = Math.round((input - 1) * 100);
     if (americanOdds >= 0) {
       return `+${americanOdds}`;
     } else {
-      return americanOdds.toString(); // No plus sign for negative numbers
+      return americanOdds.toString();
     }
   } else {
     americanOdds = Math.round(-100 / (input - 1));
-    return americanOdds.toString(); // No plus sign for negative numbers
+    return americanOdds.toString();
   }
 };
-
 
 export const decimalToFraction = (input) => {
   if (input) {
@@ -81,7 +79,7 @@ export const decimalToFraction = (input) => {
         continue;
       }
 
-      const maxDenominator = 10000; // Adjust as needed for precision
+      const maxDenominator = 10000;
 
       for (let denominator = 2; denominator <= maxDenominator; denominator++) {
         const numerator = Math.round(fractionPart * denominator);
@@ -100,4 +98,22 @@ export const decimalToFraction = (input) => {
 
     return results.join(', ');
   }
+};
+
+export const calculatePotentialWin = (odd, betAmount) => {
+  const oddNumber = parseFloat(odd);
+  if (isNaN(oddNumber)) {
+    return 0;
+  }
+  if (oddNumber > 0) {
+    return (betAmount / 100) * oddNumber;
+  } else if (oddNumber < 0) {
+    return betAmount / (Math.abs(oddNumber) / 100);
+  } else {
+    return 0;
+  }
+};
+
+export const roundUpToTwoDecimalPlaces = (number) => {
+  return Math.ceil(number * 100) / 100;
 };

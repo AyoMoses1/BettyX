@@ -14,15 +14,17 @@ import {
   Input,
 } from '@chakra-ui/react';
 import { CurrentPageContext } from 'App';
-import { decimalToAmericanOdds } from 'player/components/utils/helpers';
+import {
+  calculatePotentialWin,
+  decimalToAmericanOdds,
+} from 'player/components/utils/helpers';
 import { useContext } from 'react';
 import styled from 'styled-components';
 import { wagerData } from './data';
 import TotalBox from './TotalBox';
 
-const FootballMatchesGrid = ({ data, stake }) => {
+const FootballMatchesGrid = ({ data, stake, toWin }) => {
   const { currentTab } = useContext(CurrentPageContext);
-  const toWin = data.odd * stake - stake;
   return (
     <>
       <Accordion allowToggle p={0}>

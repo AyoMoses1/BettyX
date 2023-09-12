@@ -101,7 +101,7 @@ const NavBarMain = () => {
             </Tab>
           ))}
           <Tab
-            _selected={{ color: 'black', bg: 'grey' }}
+            _selected={{ color: 'black', bg: 'green' }}
             width="100%"
             border="1px solid"
             borderColor="grey"
@@ -111,12 +111,20 @@ const NavBarMain = () => {
             <Box
               ml={2}
               cursor="pointer"
+              color="white"
               onClick={
                 currentTab === 'straight' ? handleWager : handleParlayWager
               }
             >
-              <Text variant="navBold">
-                {currentTab === 'parlay' ? `c[${parlay.length}]` : 'c'}
+              <Text
+                variant="navBold"
+                bg="orange"
+                width="35px"
+                mx="auto"
+                borderRadius="50%"
+                textAlign="center"
+              >
+                {currentTab === 'parlay' ? `${parlay.length}` : 'c'}
               </Text>
               <Text variant="nav">Continue</Text>
             </Box>

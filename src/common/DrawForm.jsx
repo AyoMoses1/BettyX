@@ -10,7 +10,10 @@ import {
 } from '@chakra-ui/react';
 import { useDispatch } from 'react-redux';
 import { addToGames } from 'store/wagers/wagerSlice';
-import { decimalToAmericanOdds } from 'player/components/utils/helpers';
+import {
+  decimalToAmericanOdds,
+  roundUpToTwoDecimalPlaces,
+} from 'player/components/utils/helpers';
 
 const initialState = {
   home: '',
@@ -40,7 +43,6 @@ const FormElements = ({ item, handleChange, odd, market }) => {
 const DrawForm = ({ odd, eventData, prediction, home, away }) => {
   const [state, setState] = useState(initialState);
   const dispatch = useDispatch();
-  
 
   const roundToTwoDecimalPlaces = (number) => {
     return Math.round(number * 100) / 100;
@@ -50,7 +52,7 @@ const DrawForm = ({ odd, eventData, prediction, home, away }) => {
     const stake = parseInt(e.target.value);
     const game = {
       ...eventData,
-      odd,
+      odd: roundUpToTwoDecimalPlaces(parseFloat(odd)),
       market,
       label,
       home,
