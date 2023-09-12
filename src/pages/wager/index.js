@@ -1,10 +1,8 @@
 import { Button } from '@chakra-ui/react';
 import Drawer from 'common/Drawer';
-import { useState, useContext } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { placeWager } from 'store/wagers/wagerSlice';
+import { useContext } from 'react';
+import { useSelector } from 'react-redux';
 import FootballMatchesGrid from './components/helpers';
-import TotalBox from './components/TotalBox';
 import { usePlaceBet } from './queryHooks';
 import { CurrentPageContext } from 'App';
 import WagerHeader from './components/WagerHeader';
@@ -32,7 +30,6 @@ const Index = ({ isOpen, handleClose }) => {
     const data = { ...newPayload, toWin, accumulatedOdds: wager.games[0].odd };
     delete data.parlay;
     delete data.games[0].label;
-    console.log(wager.games[0].marketOdd)
     delete data.games[0].marketOdd;
     mutate({ data });
   };

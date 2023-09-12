@@ -1,6 +1,6 @@
 import { Button, Box, FormControl, FormLabel, Input } from '@chakra-ui/react';
 import Drawer from 'common/Drawer';
-import { useState, useContext } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { usePlaceBet } from './queryHooks';
 import WagerHeader from './components/WagerHeader';
@@ -14,6 +14,9 @@ import {
 const ParlayWager = ({ isOpen, handleClose }) => {
   const wager = useSelector((state) => state.wagersReducer);
   const [win, setWin] = useState();
+  const [accumulatedOdds, setAccumulatedOdds] = useState();
+  const [state, setState] = useState();
+  const [stake, setStake] = useState(null);
 
   const { mutate, isLoading } = usePlaceBet();
 
@@ -21,22 +24,29 @@ const ParlayWager = ({ isOpen, handleClose }) => {
     const data = { ...wager, games: wager.parlay };
     delete data.parlay;
     const newData = refineParlayPayload(data);
-    // const toWin = roundUpToTwoDecimalPlaces(
-    //   calculatePotentialWin(wager.games[0].label, wager.stake)
-    // );
-    console.log({ newData });
-    // let toWin;
-    // const { predictedLogo, ...gameData } = wager.games[0];
-    // const newPayload = { ...wager, games: [gameData] };
-    // const data = { ...newPayload, toWin, accumulatedOdds: wager.games[0].odd };
-    // delete data.parlay;
-    // delete data.games[0].label;
-    // mutate({ data });
+    setAccumulatedOdds(newData.accumulatedOdds);
+    setState((prev) => newData);
   };
+
+  useEffect(() => {
+    handlePlaceBet();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [wager]);
 
   const handleGetWinAmount = (e) => {
     const value = e.target.value;
-    setWin(value * 200);
+    setStake(value);
+    setWin(value * accumulatedOdds - value);
+  };
+
+  const placeBet = () => {
+    const data = {
+      ...state,
+      toWin: win,
+      stake: Number(stake),
+      playerId: localStorage.getItem('accountId'),
+    };
+    mutate({ data });
   };
 
   return (
@@ -50,11 +60,7 @@ const ParlayWager = ({ isOpen, handleClose }) => {
           <Button variant="primary" onClick={handleClose}>
             Clear All
           </Button>
-          <Button
-            variant="success"
-            onClick={handlePlaceBet}
-            isLoading={isLoading}
-          >
+          <Button variant="success" onClick={placeBet} isLoading={isLoading}>
             Place Wagers
           </Button>
         </>
@@ -69,7 +75,12 @@ const ParlayWager = ({ isOpen, handleClose }) => {
           <FormLabel htmlFor="field1" display="block">
             Risking
           </FormLabel>
-          <Input type="number" id="field1" onChange={handleGetWinAmount} />
+          <Input
+            type="number"
+            id="field1"
+            onChange={handleGetWinAmount}
+            value={stake}
+          />
         </FormControl>
 
         <FormControl width="200px">

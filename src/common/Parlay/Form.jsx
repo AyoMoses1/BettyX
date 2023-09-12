@@ -28,7 +28,7 @@ const initialState = {
   prediction: '',
 };
 
-const Form = ({ odds, eventData, home, away }) => {
+const Form = ({ odds, eventData, home, away, market }) => {
   const [state, setState] = useState(initialState);
   const [selectedPrediction, setSelectedPrediction] = useState(null);
   const [game, setGame] = useState({});
@@ -87,6 +87,7 @@ const Form = ({ odds, eventData, home, away }) => {
       market: 1,
       prediction,
       label,
+      handicap: null,
       predictedLogo: prediction === 'home' ? home?.image_id : away?.image_id,
     };
 
