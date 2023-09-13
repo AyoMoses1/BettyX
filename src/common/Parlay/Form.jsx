@@ -55,19 +55,19 @@ const Form = ({ odds, eventData, home, away, market }) => {
     {
       id: 2,
       type: 'number',
-      value: odds ? odds[0]?.away_od : '',
-      prediction: 'draw',
+      prediction: 'away',
+      value: odds ? odds[0]?.draw_od : '',
       label: odds
-        ? `${decimalToAmericanOdds(roundToTwoDecimalPlaces(odds[0]?.away_od))}`
+        ? `${decimalToAmericanOdds(roundToTwoDecimalPlaces(odds[0]?.draw_od))}`
         : '',
     },
     {
       id: 3,
       type: 'number',
-      prediction: 'away',
-      value: odds ? odds[0]?.draw_od : '',
+      value: odds ? odds[0]?.away_od : '',
+      prediction: 'draw',
       label: odds
-        ? `${decimalToAmericanOdds(roundToTwoDecimalPlaces(odds[0]?.draw_od))}`
+        ? `${decimalToAmericanOdds(roundToTwoDecimalPlaces(odds[0]?.away_od))}`
         : '',
     },
   ];

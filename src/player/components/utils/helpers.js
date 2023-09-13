@@ -158,5 +158,9 @@ export const refineParlayPayload = (data) => {
   data.games.forEach((item) => {
     accumulatedOdds = item.odd * accumulatedOdds;
   });
-  return { ...data, games: editedArrayOfGames, accumulatedOdds };
+  return {
+    ...data,
+    games: editedArrayOfGames,
+    accumulatedOdds: roundUpToTwoDecimalPlaces(accumulatedOdds),
+  };
 };

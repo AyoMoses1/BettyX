@@ -36,7 +36,7 @@ const ParlayWager = ({ isOpen, handleClose }) => {
   const handleGetWinAmount = (e) => {
     const value = e.target.value;
     setStake(value);
-    setWin(value * accumulatedOdds - value);
+    setWin(roundUpToTwoDecimalPlaces(value * accumulatedOdds - value));
   };
 
   const placeBet = () => {
