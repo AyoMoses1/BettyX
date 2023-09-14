@@ -68,7 +68,10 @@ const ParlayWager = ({ isOpen, handleClose }) => {
     >
       <WagerHeader items={wager?.parlay?.length} />
       {wager?.parlay?.map((item) => (
-        <ParlayGrid data={item} stake={wager?.stake} />
+        <ParlayGrid
+          data={item}
+          gameInfo={{ ...item.gameInfo, market: item.market }}
+        />
       ))}
       <Box display="flex" justifyContent="space-between" mt={24}>
         <FormControl width="200px">

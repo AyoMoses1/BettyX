@@ -1,6 +1,6 @@
 import { Grid, GridItem, HStack, Avatar, Text, Box } from '@chakra-ui/react';
 import { FaTimes } from 'react-icons/fa';
-import DrawForm from './DrawForm';
+import DrawForm from './TotalForm';
 const DrawGrid = ({ odd, eventData, prediction, home, away }) => {
   return (
     <Box mt={4} bg="grey" p={2}>

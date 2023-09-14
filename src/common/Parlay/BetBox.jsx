@@ -1,10 +1,10 @@
 import { Avatar, Box, Grid, GridItem, Text } from '@chakra-ui/react';
 import Logo from './Logo';
 import BetForm from 'common/Parlay/Form';
-import DrawForm from './DrawForm';
+import TotalForm from './TotalForm';
 import SpreadForm from './Spread.';
 
-const BetBox = ({ away, home, odds, sportId, eventId }) => {
+const BetBox = ({ away, home, odds, sportId, eventId, gameInfo }) => {
   const { '1_1': odds_1_1, '1_2': odds_1_2, '1_3': odds_1_3 } = odds;
   const eventData = { sportId, eventId };
   return (
@@ -25,10 +25,12 @@ const BetBox = ({ away, home, odds, sportId, eventId }) => {
             eventData={eventData}
             home={home}
             away={away}
+            gameInfo={gameInfo}
           />
         </GridItem>
         <GridItem>
-          <DrawForm
+          <TotalForm
+            gameInfo={gameInfo}
             odds={odds_1_3}
             eventData={eventData}
             home={home}

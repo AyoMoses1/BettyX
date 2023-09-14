@@ -151,7 +151,7 @@ console.log(transformedString); // Output: "2.0,2.5"
 
 export const refineParlayPayload = (data) => {
   const editedArrayOfGames = data.games.map((item) => {
-    const { predictedLogo, label, ...others } = item;
+    const { predictedLogo, label, gameInfo, ...others } = item;
     return others;
   });
   let accumulatedOdds = 1;

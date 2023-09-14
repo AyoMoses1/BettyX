@@ -28,14 +28,10 @@ const initialState = {
   prediction: '',
 };
 
-const Form = ({ odds, eventData, home, away, market }) => {
+const Form = ({ odds, eventData, home, away, market, gameInfo }) => {
   const [state, setState] = useState(initialState);
   const [selectedPrediction, setSelectedPrediction] = useState(null);
   const [game, setGame] = useState({});
-
-  // const label1 = decimalToFraction(odds?[0].odd_2_handicap);
-  // const label2 = decimalToFraction(odds?[0].odd_2_handicap);
-  // const label3 = decimalToFraction(odds?.odd_3_handicap);
 
   const roundToTwoDecimalPlaces = (number) => {
     return (Math.round(number * 100) / 100).toFixed(2);
@@ -89,6 +85,7 @@ const Form = ({ odds, eventData, home, away, market }) => {
       label,
       handicap: null,
       predictedLogo: prediction === 'home' ? home?.image_id : away?.image_id,
+      gameInfo
     };
 
     setGame(game);

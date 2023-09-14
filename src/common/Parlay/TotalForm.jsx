@@ -28,7 +28,7 @@ const initialState = {
   prediction: '',
 };
 
-const DrawForm = ({
+const TotalForm = ({
   odds,
   eventData,
   prediction,
@@ -36,6 +36,7 @@ const DrawForm = ({
   away,
   predictedLogo,
   market,
+  gameInfo
 }) => {
   const [state, setState] = useState(initialState);
   const [selectedPrediction, setSelectedPrediction] = useState(null);
@@ -53,7 +54,7 @@ const DrawForm = ({
     {
       id: 1,
       type: 'number',
-      prediction: 'home',
+      prediction: 'over',
       value: odds ? odds[0]?.over_od : '',
       label: odds
         ? `O ${label} ${decimalToAmericanOdds(
@@ -64,7 +65,7 @@ const DrawForm = ({
     {
       id: 2,
       type: 'number',
-      prediction: 'away',
+      prediction: 'under',
       value: odds ? odds[0]?.under_od : '',
       label: odds
         ? `U ${label} ${decimalToAmericanOdds(
@@ -86,10 +87,11 @@ const DrawForm = ({
       odd: Number(roundToTwoDecimalPlaces(value)),
       home: home?.name,
       away: away?.name,
-      market: 1,
+      market: 3,
       prediction,
       label,
       predictedLogo: prediction === 'home' ? home?.image_id : away?.image_id,
+      gameInfo
     };
 
     setGame(game);
@@ -172,4 +174,4 @@ const StyledBox = styled.div`
   }
 `;
 
-export default DrawForm;
+export default TotalForm;

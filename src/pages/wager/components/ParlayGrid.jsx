@@ -8,17 +8,33 @@ import {
   Box,
   AccordionIcon,
   HStack,
-  Button,
   Flex,
-  FormLabel,
   Input,
 } from '@chakra-ui/react';
 import styled from 'styled-components';
 import { wagerData } from './data';
-import WagerHeader from './WagerHeader';
 
-const ParlayGrid = ({ data, stake }) => {
-  const toWin = data.odd * stake - stake;
+const ParlayGrid = ({ data, gameInfo }) => {
+  const wagerDatas = [
+    {
+      title: 'Scheduled',
+      value: `${gameInfo.date}, ${gameInfo.time}`,
+    },
+    {
+      title: 'Selection',
+      value:
+        gameInfo.market === 1
+          ? 'MoneyLine'
+          : gameInfo.market === 2
+          ? 'Spread'
+          : 'Total',
+    },
+    {
+      title: 'Game Notes',
+      value: `${gameInfo.league}`,
+    },
+  ];
+
   return (
     <Accordion allowToggle p={0}>
       <AccordionItem>
@@ -44,26 +60,20 @@ const ParlayGrid = ({ data, stake }) => {
                 size="sm"
               />
             )}
-            <Text>
-              {data?.prediction === 'home'
-                ? data.home
-                : data?.prediction === 'away'
-                ? data.away
-                : `Draw(${data?.home} vs ${data?.away})`}
-            </Text>
+            <Text>{data?.prediction === 'home' ? data.home : data?.away}</Text>
           </HStack>
 
           <Input
             type="text"
             value={data?.label}
-            sx={{ borderRadius: '0px', width: '100px' }}
+            sx={{ borderRadius: '0px', width: '150px' }}
           />
         </Flex>
         <AccordionPanel pb={4} px={0}>
-          {wagerData?.map((item) => (
+          {wagerDatas?.map((item) => (
             <StyledText>
-              <StyledSpan>{item?.title} :</StyledSpan>
-              {`${item?.value} PST`}
+              <StyledSpan>{item?.title}: </StyledSpan>
+              {`${item?.value}`}
             </StyledText>
           ))}
         </AccordionPanel>

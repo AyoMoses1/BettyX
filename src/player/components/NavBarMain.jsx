@@ -13,10 +13,11 @@ import {
 import Wager from 'pages/wager';
 
 import styled from 'styled-components';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { CurrentPageContext } from 'App';
 import { useSelector } from 'react-redux';
 import ParlayWager from 'pages/wager/ParlayWager';
+import Alert from './Alert';
 
 const navLinks = (placeWager, currentTab, parlay) => {
   return [
@@ -44,15 +45,11 @@ const navLinks = (placeWager, currentTab, parlay) => {
       name: 'refresh',
       symbol: 'r',
     },
-    // {
-    //   name: 'continue',
-    //   symbol: currentTab === 'parlay' ? `c[${parlay.length}]` : 'c',
-    //   onClick: placeWager,
-    // },
   ];
 };
 const NavBarMain = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [alert, setAlert] = useState(false);
   const {
     isOpen: parlayOpen,
     onOpen: parlayOnOpen,
@@ -68,7 +65,12 @@ const NavBarMain = () => {
     onOpen();
   };
   const handleParlayWager = () => {
-    parlayOnOpen();
+    if (parlay.length <= 1) {
+      setAlert(true);
+    } else {
+      setAlert(false);
+      parlayOnOpen();
+    }
   };
 
   return (
@@ -133,6 +135,13 @@ const NavBarMain = () => {
       </Tabs>
       <Wager isOpen={isOpen} handleClose={onClose} />
       <ParlayWager isOpen={parlayOpen} handleClose={parlayOnClose} />
+      {alert && (
+        <Alert
+          title="Warning"
+          description="At least 2 picks are required for a parlay"
+          status="error"
+        />
+      )}
     </StyledBox>
   );
 };
@@ -142,8 +151,4 @@ export default NavBarMain;
 const StyledBox = styled(Box)`
   padding: 5px 30px;
   text-align: center;
-`;
-
-const StyledInnerBox = styled(Box)`
-  border: 1px solid #393838;
 `;
