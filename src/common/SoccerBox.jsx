@@ -40,6 +40,11 @@ const SoccerBox = ({ data }) => {
           odds={odds}
           sportId={sport_id}
           eventId={id}
+          gameInfo={{
+            time: formatTime,
+            league: league?.name,
+            date: formatDate,
+          }}
         />
       </Body>
     </StyledBox>

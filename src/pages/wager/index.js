@@ -31,6 +31,7 @@ const Index = ({ isOpen, handleClose }) => {
     delete data.parlay;
     delete data.games[0].label;
     delete data.games[0].marketOdd;
+    delete data.games[0].gameInfo;
     mutate({ data });
   };
 
@@ -61,6 +62,7 @@ const Index = ({ isOpen, handleClose }) => {
           <FootballMatchesGrid
             data={item}
             stake={wager?.stake}
+            gameInfo={{ ...wager.games[0].gameInfo, market: item.market }}
             toWin={roundUpToTwoDecimalPlaces(
               calculatePotentialWin(
                 item.market === 3 ? item.marketOdd : item.label,

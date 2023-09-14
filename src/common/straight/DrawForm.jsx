@@ -40,7 +40,7 @@ const FormElements = ({ item, handleChange, odd, market }) => {
   );
 };
 
-const DrawForm = ({ odd, eventData, prediction, home, away }) => {
+const DrawForm = ({ odd, eventData, prediction, home, away, gameInfo }) => {
   const [state, setState] = useState(initialState);
   const dispatch = useDispatch();
 
@@ -59,6 +59,7 @@ const DrawForm = ({ odd, eventData, prediction, home, away }) => {
       away,
       prediction,
       handicap: market === 1 ? null : '2.5',
+      gameInfo
     };
     setState({ state, ...game });
     dispatch(

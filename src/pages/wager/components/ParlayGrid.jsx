@@ -15,25 +15,6 @@ import styled from 'styled-components';
 import { wagerData } from './data';
 
 const ParlayGrid = ({ data, gameInfo }) => {
-  const wagerDatas = [
-    {
-      title: 'Scheduled',
-      value: `${gameInfo.date}, ${gameInfo.time}`,
-    },
-    {
-      title: 'Selection',
-      value:
-        gameInfo.market === 1
-          ? 'MoneyLine'
-          : gameInfo.market === 2
-          ? 'Spread'
-          : 'Total',
-    },
-    {
-      title: 'Game Notes',
-      value: `${gameInfo.league}`,
-    },
-  ];
 
   return (
     <Accordion allowToggle p={0}>
@@ -70,7 +51,7 @@ const ParlayGrid = ({ data, gameInfo }) => {
           />
         </Flex>
         <AccordionPanel pb={4} px={0}>
-          {wagerDatas?.map((item) => (
+          {wagerData(gameInfo)?.map((item) => (
             <StyledText>
               <StyledSpan>{item?.title}: </StyledSpan>
               {`${item?.value}`}

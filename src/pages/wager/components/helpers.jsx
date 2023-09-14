@@ -23,7 +23,7 @@ import styled from 'styled-components';
 import { wagerData } from './data';
 import TotalBox from './TotalBox';
 
-const FootballMatchesGrid = ({ data, stake, toWin }) => {
+const FootballMatchesGrid = ({ data, stake, toWin, gameInfo }) => {
   const { currentTab } = useContext(CurrentPageContext);
   return (
     <>
@@ -45,7 +45,7 @@ const FootballMatchesGrid = ({ data, stake, toWin }) => {
           </h2>
           <Flex my={2} justifyContent="space-between" width="100%">
             <HStack>
-              {data?.prediction !== 'draw' && (
+              {!['draw', 'under', 'over'].includes(data?.prediction) && (
                 <Avatar
                   src={`https://assets.b365api.com/images/team/m/${data?.predictedLogo}.png`}
                   size="sm"
@@ -56,6 +56,8 @@ const FootballMatchesGrid = ({ data, stake, toWin }) => {
                   ? data.home
                   : data?.prediction === 'away'
                   ? data.away
+                  : data.prediction === 'over' || 'under'
+                  ? `${data.home}/${data.away}`
                   : `Draw(${data?.home} vs ${data?.away})`}
               </Text>
             </HStack>
@@ -67,11 +69,11 @@ const FootballMatchesGrid = ({ data, stake, toWin }) => {
                   ? decimalToAmericanOdds(data?.odd)
                   : data?.label
               }
-              sx={{ borderRadius: '0px', width: '100px' }}
+              sx={{ borderRadius: '0px', width: '150px' }}
             />
           </Flex>
           <AccordionPanel pb={4} px={0}>
-            {wagerData?.map((item) => (
+            {wagerData(gameInfo)?.map((item) => (
               <StyledText>
                 <StyledSpan>{item?.title} :</StyledSpan>
                 {`${item?.value} PST`}

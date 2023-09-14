@@ -11,7 +11,8 @@ const BetGrid = ({
   away,
   odd_2_handicap,
   odd_3_handicap,
-  market_3_prediction
+  market_3_prediction,
+  gameInfo
 }) => {
   const odds = { odd_1, odd_2, odd_3, odd_2_handicap, odd_3_handicap };
   return (
@@ -35,6 +36,7 @@ const BetGrid = ({
           market_3_prediction={market_3_prediction}
           home={home}
           away={away}
+          gameInfo={gameInfo}
         />
       </Grid>
     </Box>

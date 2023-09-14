@@ -70,6 +70,7 @@ const BetForm = ({
   away,
   predictedLogo,
   market_3_prediction,
+  gameInfo
 }) => {
   const [state, setState] = useState(initialState);
   const label2 = decimalToFraction(odds?.odd_2_handicap);
@@ -129,6 +130,7 @@ const BetForm = ({
       prediction: market === 3 ? market_3_prediction : prediction,
       predictedLogo,
       marketOdd,
+      gameInfo,
       handicap:
         market === 1
           ? null
