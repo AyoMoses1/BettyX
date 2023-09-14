@@ -30,7 +30,8 @@ const wagerSlice = createSlice({
         (item) => item.eventId === payload.eventId
       );
       if (existingIndex !== -1) {
-        state.parlay[existingIndex] = payload;
+        // state.parlay[existingIndex] = payload;
+        state.parlay.splice(existingIndex, 1);
       } else {
         state.parlay.push(payload);
       }
