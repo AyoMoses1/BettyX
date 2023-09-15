@@ -1,5 +1,4 @@
 import { Box } from '@chakra-ui/react';
-import { useSelector } from 'react-redux';
 import BetGrid from './BetGrid';
 import DrawGrid from './DrawGrid';
 
