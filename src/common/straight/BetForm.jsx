@@ -70,7 +70,7 @@ const BetForm = ({
   away,
   predictedLogo,
   market_3_prediction,
-  gameInfo
+  gameInfo,
 }) => {
   const [state, setState] = useState(initialState);
   const label2 = decimalToFraction(odds?.odd_2_handicap);
@@ -102,7 +102,9 @@ const BetForm = ({
       type: 'number',
       value: odds?.odd_3,
       marketOdd: decimalToAmericanOdds(roundToTwoDecimalPlaces(odds?.odd_3)),
-      label: `${label3} ${decimalToAmericanOdds(
+      label: `${
+        prediction === 'home' ? 'O' : 'U'
+      } ${label3} ${decimalToAmericanOdds(
         roundToTwoDecimalPlaces(odds?.odd_3)
       )}`,
     },
@@ -118,7 +120,7 @@ const BetForm = ({
     market_3_prediction,
     marketOdd
   ) => {
-    console.log({marketOdd})
+    console.log({ marketOdd });
     const stake = parseInt(e.target.value);
     const game = {
       ...eventData,
@@ -165,7 +167,6 @@ const BetForm = ({
                 odd_2_handicap={odds.odd_2_handicap}
                 odd_3_handicap={odds.odd_3_handicap}
                 market_3_prediction={market_3_prediction}
-                // odd={parseFloat(item.label)}
                 market={item.name}
               />
             ))}
