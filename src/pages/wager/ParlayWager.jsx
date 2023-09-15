@@ -1,7 +1,7 @@
 import { Button, Box, FormControl, FormLabel, Input } from '@chakra-ui/react';
 import Drawer from 'common/Drawer';
 import { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { usePlaceBet } from './queryHooks';
 import WagerHeader from './components/WagerHeader';
 import ParlayGrid from './components/ParlayGrid';
@@ -10,6 +10,8 @@ import {
   refineParlayPayload,
   roundUpToTwoDecimalPlaces,
 } from 'player/components/utils/helpers';
+import { updateUserBalance } from 'store/users/userSlice';
+import { resetWagerState } from 'store/wagers/wagerSlice';
 
 const ParlayWager = ({ isOpen, handleClose }) => {
   const wager = useSelector((state) => state.wagersReducer);
@@ -17,6 +19,7 @@ const ParlayWager = ({ isOpen, handleClose }) => {
   const [accumulatedOdds, setAccumulatedOdds] = useState();
   const [state, setState] = useState();
   const [stake, setStake] = useState(null);
+  const dispatch = useDispatch();
 
   const { mutate, isLoading } = usePlaceBet();
 
@@ -47,6 +50,9 @@ const ParlayWager = ({ isOpen, handleClose }) => {
       playerId: localStorage.getItem('accountId'),
     };
     mutate({ data });
+    handleClose();
+    dispatch(updateUserBalance(stake));
+    dispatch(resetWagerState());
   };
 
   return (

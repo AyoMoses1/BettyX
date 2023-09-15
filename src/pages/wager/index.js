@@ -1,7 +1,7 @@
 import { Button } from '@chakra-ui/react';
 import Drawer from 'common/Drawer';
 import { useContext } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import FootballMatchesGrid from './components/helpers';
 import { usePlaceBet } from './queryHooks';
 import { CurrentPageContext } from 'App';
@@ -10,11 +10,14 @@ import {
   calculatePotentialWin,
   roundUpToTwoDecimalPlaces,
 } from 'player/components/utils/helpers';
+import { updateUserBalance } from 'store/users/userSlice';
+import { resetWagerState } from 'store/wagers/wagerSlice';
 
 const Index = ({ isOpen, handleClose }) => {
   const wager = useSelector((state) => state.wagersReducer);
   const { mutate, isLoading } = usePlaceBet();
   const { currentTab } = useContext(CurrentPageContext);
+  const dispatch = useDispatch();
 
   const handlePlaceBet = () => {
     const toWin = roundUpToTwoDecimalPlaces(
@@ -33,6 +36,9 @@ const Index = ({ isOpen, handleClose }) => {
     delete data.games[0].marketOdd;
     delete data.games[0].gameInfo;
     mutate({ data });
+    dispatch(updateUserBalance(wager.stake));
+    dispatch(resetWagerState());
+    handleClose();
   };
 
   return (

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import {
   Box,
   Flex,
@@ -18,19 +18,21 @@ import { FiSearch } from 'react-icons/fi';
 import { AiOutlineHome } from 'react-icons/ai';
 import { FaAddressCard, FaChevronDown, FaTh, FaTv } from 'react-icons/fa';
 import { CgProfile } from 'react-icons/cg';
-import { menuItems } from './utils/helpers';
+import { menuItems, roundUpToTwoDecimalPlaces } from './utils/helpers';
 import { BiBasketball, BiPowerOff } from 'react-icons/bi';
 import { useQueryClient } from '@tanstack/react-query';
 import paths from './utils/paths';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import MobileNav from './MobileNav';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchUser } from 'store/users/userSlice';
 
 const Navbar = () => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
-  const user_details = JSON.parse(localStorage.getItem('user'));
-  console.log({ user_details });
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.userReducer.user);
   const [isMobile] = useMediaQuery('(max-width: 1020px)');
 
   const handleLogout = (e) => {
@@ -41,6 +43,10 @@ const Navbar = () => {
     queryClient.clear();
     navigate(paths.login);
   };
+
+  useEffect(() => {
+    dispatch(fetchUser(localStorage.accountId));
+  }, [dispatch]);
   return (
     <StyledBox
       bg="playerBlue"
@@ -81,15 +87,15 @@ const Navbar = () => {
           <Flex>
             <VStack mr={12} alignItems="end">
               <Text variant="navBold">Balance</Text>
-              <Text>${user_details.balance}</Text>
+              <Text>${user?.balance}</Text>
             </VStack>
             <VStack mr={12} alignItems="end">
               <Text variant="navBold">Pending</Text>
-              <Text>${user_details.pending}</Text>
+              <Text>${roundUpToTwoDecimalPlaces(user?.pending)}</Text>
             </VStack>
             <VStack mr={12} alignItems="end">
               <Text variant="navBold">Available</Text>
-              <Text>${user_details.available}</Text>
+              <Text>${user?.available}</Text>
             </VStack>
             <Box p="4" mr={12} bg="blue" display={['block', 'none']}>
               <FiSearch size={24} />

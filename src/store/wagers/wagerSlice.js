@@ -37,9 +37,12 @@ const wagerSlice = createSlice({
       }
       state.betType = 'parlay';
     },
+    resetWagerState: (state) => {
+      return { ...state, games: [], parlay: [] };
+    },
   },
 });
 
-export const { placeWager, addToGames, addToGamesForParlay } =
+export const { placeWager, addToGames, addToGamesForParlay, resetWagerState } =
   wagerSlice.actions;
 export default wagerSlice.reducer;
