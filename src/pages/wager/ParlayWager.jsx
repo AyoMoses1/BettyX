@@ -50,11 +50,10 @@ const ParlayWager = ({ isOpen, handleClose }) => {
       stake: Number(stake),
       playerId: localStorage.getItem('accountId'),
     };
-    console.log({ data });
-    // mutate({ data });
-    // handleClose();
-    // dispatch(updateUserBalance(stake));
-    // dispatch(resetWagerState());
+    mutate({ data });
+    dispatch(updateUserBalance(stake));
+    dispatch(resetWagerState());
+    handleClose();
   };
 
   return (
