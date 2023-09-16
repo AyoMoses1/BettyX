@@ -7,7 +7,7 @@ const initialState = {
   stake: null,
   status: 'pending',
   accumulatedOdds: null,
-  betType: 'straight',
+  betType: '',
   toWin: null,
 };
 
@@ -15,10 +15,6 @@ const wagerSlice = createSlice({
   name: 'wagers',
   initialState,
   reducers: {
-    placeWager: (state, action) => {
-      const newState = { ...state };
-      return newState;
-    },
     addToGames: (state, action) => {
       state.games = [action.payload.game];
       state.stake = action.payload.stake;
@@ -30,12 +26,10 @@ const wagerSlice = createSlice({
         (item) => item.eventId === payload.eventId
       );
       if (existingIndex !== -1) {
-        // state.parlay[existingIndex] = payload;
         state.parlay.splice(existingIndex, 1);
       } else {
         state.parlay.push(payload);
       }
-      state.betType = 'parlay';
     },
     resetWagerState: (state) => {
       return { ...state, games: [], parlay: [] };
@@ -43,6 +37,6 @@ const wagerSlice = createSlice({
   },
 });
 
-export const { placeWager, addToGames, addToGamesForParlay, resetWagerState } =
+export const { addToGames, addToGamesForParlay, resetWagerState } =
   wagerSlice.actions;
 export default wagerSlice.reducer;

@@ -18,15 +18,8 @@ import styled from 'styled-components';
 import {
   decimalToAmericanOdds,
   decimalToFraction,
+  decimalToFractionForParlay,
 } from 'player/components/utils/helpers';
-
-const initialState = {
-  home: '',
-  away: '',
-  odd: null,
-  market: null,
-  prediction: '',
-};
 
 const TotalForm = ({
   odds,
@@ -36,14 +29,12 @@ const TotalForm = ({
   away,
   predictedLogo,
   market,
-  gameInfo
+  gameInfo,
 }) => {
-  const [state, setState] = useState(initialState);
   const [selectedPrediction, setSelectedPrediction] = useState(null);
   const [game, setGame] = useState({});
-
-  const [value, setValue] = React.useState('1');
-  const label = odds ? decimalToFraction(odds[0]?.handicap) : 'No odd';
+  const label = odds ? decimalToFractionForParlay(odds[0]?.handicap) : 'No odd';
+  const [handicap, setHandicap] = useState(label?.decimal);
 
   const roundToTwoDecimalPlaces = (number) => {
     return Math.round(number * 100) / 100;
@@ -57,7 +48,7 @@ const TotalForm = ({
       prediction: 'over',
       value: odds ? odds[0]?.over_od : '',
       label: odds
-        ? `O ${label} ${decimalToAmericanOdds(
+        ? `O ${label?.wholeFraction} ${decimalToAmericanOdds(
             roundToTwoDecimalPlaces(odds[0]?.over_od)
           )}`
         : '',
@@ -68,7 +59,7 @@ const TotalForm = ({
       prediction: 'under',
       value: odds ? odds[0]?.under_od : '',
       label: odds
-        ? `U ${label} ${decimalToAmericanOdds(
+        ? `U ${label?.wholeFraction} ${decimalToAmericanOdds(
             roundToTwoDecimalPlaces(odds[0]?.under_od)
           )}`
         : '',
@@ -87,11 +78,12 @@ const TotalForm = ({
       odd: Number(roundToTwoDecimalPlaces(value)),
       home: home?.name,
       away: away?.name,
+      handicap,
       market: 3,
       prediction,
       label,
       predictedLogo: prediction === 'home' ? home?.image_id : away?.image_id,
-      gameInfo
+      gameInfo,
     };
 
     setGame(game);

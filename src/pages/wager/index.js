@@ -8,6 +8,7 @@ import { CurrentPageContext } from 'App';
 import WagerHeader from './components/WagerHeader';
 import {
   calculatePotentialWin,
+  deleteNestedProperty,
   roundUpToTwoDecimalPlaces,
 } from 'player/components/utils/helpers';
 import { updateUserBalance } from 'store/users/userSlice';
@@ -30,11 +31,14 @@ const Index = ({ isOpen, handleClose }) => {
     );
     const { predictedLogo, ...gameData } = wager.games[0];
     const newPayload = { ...wager, games: [gameData] };
-    const data = { ...newPayload, toWin, accumulatedOdds: wager.games[0].odd };
-    delete data.parlay;
-    delete data.games[0].label;
-    delete data.games[0].marketOdd;
-    delete data.games[0].gameInfo;
+    const payload = {
+      ...newPayload,
+      toWin,
+      accumulatedOdds: wager.games[0].odd,
+      betType: 'straight',
+    };
+    const { parlay, ...data } = payload;
+    deleteNestedProperty(data.games[0], ['label', 'marketOdd', 'gameInfo']);
     mutate({ data });
     dispatch(updateUserBalance(wager.stake));
     dispatch(resetWagerState());

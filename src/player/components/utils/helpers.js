@@ -100,6 +100,67 @@ export const decimalToFraction = (input) => {
   }
 };
 
+export const decimalToFractionForParlay = (input) => {
+  if (input) {
+    const numbers = input.split(',').map(Number);
+    const tolerance = 1.0e-6;
+
+    if (numbers.length === 1) {
+      const sign = numbers[0] < 0 ? '-' : '';
+      const absDecimal = Math.abs(numbers[0]);
+      let wholePart = Math.floor(absDecimal);
+      let fractionPart = absDecimal - wholePart;
+
+      if (Math.abs(fractionPart) < tolerance) {
+        return {
+          wholeFraction: (fractionPart === 0 ? sign + wholePart : sign + wholePart + ' ' + wholePart + ' ' + fractionPart.toFixed(1)),
+          decimal: numbers[0].toFixed(1),
+        };
+      }
+
+      const maxDenominator = 10000;
+
+      for (let denominator = 2; denominator <= maxDenominator; denominator++) {
+        const numerator = Math.round(fractionPart * denominator);
+        if (Math.abs(numerator / denominator - fractionPart) < tolerance) {
+          return {
+            wholeFraction: sign + wholePart + ' ' + numerator + '/' + denominator,
+            decimal: numbers[0].toFixed(1),
+          };
+        }
+      }
+    } else if (numbers.length === 2) {
+      const wholePart = Math.floor(numbers[0]);
+      const sign = numbers[1] < 0 ? '-' : '';
+      const absDecimal = Math.abs(numbers[1]);
+      let fractionPart = absDecimal - Math.floor(absDecimal);
+
+      if (Math.abs(fractionPart) < tolerance) {
+        return {
+          wholeFraction: (fractionPart === 0 ? sign + wholePart : sign + wholePart + ' ' + wholePart + ' ' + fractionPart.toFixed(1)),
+          decimal: numbers[1].toFixed(1),
+        };
+      }
+
+      const maxDenominator = 10000;
+
+      for (let denominator = 2; denominator <= maxDenominator; denominator++) {
+        const numerator = Math.round(fractionPart * denominator);
+        if (Math.abs(numerator / denominator - fractionPart) < tolerance) {
+          return {
+            wholeFraction: sign + wholePart + ' ' + numerator + '/' + denominator,
+            decimal: numbers[1].toFixed(1),
+          };
+        }
+      }
+    }
+  }
+
+  return ''; // Return an empty string for invalid input
+};
+
+
+
 export const calculatePotentialWin = (odd, betAmount) => {
   const oddNumber = parseFloat(odd);
   if (isNaN(oddNumber)) {
@@ -163,4 +224,18 @@ export const refineParlayPayload = (data) => {
     games: editedArrayOfGames,
     accumulatedOdds: roundUpToTwoDecimalPlaces(accumulatedOdds),
   };
+};
+
+export const deleteNestedProperty = (obj, propertiesToDelete) => {
+  for (const propToDelete of propertiesToDelete) {
+    const parts = propToDelete.split('.');
+    let currentObj = obj;
+
+    for (let i = 0; i < parts.length - 1; i++) {
+      currentObj = currentObj[parts[i]];
+      if (!currentObj) return;
+    }
+
+    delete currentObj[parts[parts.length - 1]];
+  }
 };
