@@ -2,17 +2,12 @@ import {
   Box,
   CircularProgress,
   Flex,
-  Grid,
-  GridItem,
-  Progress,
   Text,
 } from '@chakra-ui/react';
 import SoccerBox from 'common/SoccerBox';
-import { results } from 'pages/agents/components/data';
 import { AiOutlineInbox } from 'react-icons/ai';
 import { useLocation } from 'react-router-dom';
 import { useGetAllEventsBySportsAndLeague } from './queryHooks';
-import styled from 'styled-components';
 import Heading from './Heading';
 import { CurrentPageContext } from 'App';
 import { useContext } from 'react';

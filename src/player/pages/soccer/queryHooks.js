@@ -1,6 +1,5 @@
-import { useQuery, useMutation } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import Services from './services';
-import { Box, useToast } from '@chakra-ui/react';
 
 export const useGetAllLeaguesBySport = (param) => {
   return useQuery([`allSoccerLeaguesFor${param.sport_id}`], () =>
@@ -9,7 +8,11 @@ export const useGetAllLeaguesBySport = (param) => {
 };
 
 export const useGetAllEventsBySportsAndLeague = (params) => {
-  return useQuery([`allLeagueEvents${params.league_id}`], () =>
-    Services.getAllEventsByLeague(params)
+  return useQuery(
+    [`allLeagueEvents${params.league_id}`],
+    () => Services.getAllEventsByLeague(params),
+    {
+      refetchInterval: 180000,
+    }
   );
 };
