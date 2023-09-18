@@ -15,11 +15,13 @@ import Wager from 'pages/wager';
 import styled from 'styled-components';
 import { useContext, useState } from 'react';
 import { CurrentPageContext } from 'App';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import ParlayWager from 'pages/wager/ParlayWager';
 import Alert from './Alert';
+import { resetWagerState } from 'store/wagers/wagerSlice';
+import { FaSync } from 'react-icons/fa';
 
-const navLinks = (placeWager, currentTab, parlay) => {
+const navLinks = (placeWager, currentTab, parlay, onRefresh) => {
   return [
     {
       name: 'straight',
@@ -43,12 +45,18 @@ const navLinks = (placeWager, currentTab, parlay) => {
     },
     {
       name: 'refresh',
-      symbol: 'r',
+      symbol: (
+        <Box mb={2}>
+          <FaSync />
+        </Box>
+      ),
+      onClick: onRefresh,
     },
   ];
 };
 const NavBarMain = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const dispatch = useDispatch();
   const [alert, setAlert] = useState(false);
   const {
     isOpen: parlayOpen,
@@ -64,6 +72,12 @@ const NavBarMain = () => {
   const handleWager = () => {
     onOpen();
   };
+
+  const onRefresh = () => {
+    dispatch(resetWagerState());
+    window.location.reload();
+  };
+
   const handleParlayWager = () => {
     if (parlay.length <= 1) {
       setAlert(true);
@@ -77,7 +91,7 @@ const NavBarMain = () => {
     <StyledBox color="white" px={0} py={0} pb={2} bgColor="playerBlue">
       <Tabs variant="unstyled">
         <TabList>
-          {navLinks(handleWager, currentTab, parlay).map((item) => (
+          {navLinks(handleWager, currentTab, parlay, onRefresh).map((item) => (
             <Tab
               _selected={{ color: 'black', bg: 'grey' }}
               width="100%"
@@ -96,9 +110,14 @@ const NavBarMain = () => {
                 ml={2}
                 cursor="pointer"
                 onClick={() => handleTabClick(item.name, item.onClick)}
+                display="flex"
+                flexDirection="column"
+                alignItems="center"
               >
                 <Text variant="navBold">{item.symbol}</Text>
-                <Text variant="nav">{item.name}</Text>
+                <Text variant="nav" textTransform="uppercase">
+                  {item.name}
+                </Text>
               </Box>
             </Tab>
           ))}
@@ -128,7 +147,9 @@ const NavBarMain = () => {
               >
                 {currentTab === 'parlay' ? `${parlay.length}` : 'c'}
               </Text>
-              <Text variant="nav">Continue</Text>
+              <Text variant="nav" textTransform="uppercase">
+                Continue
+              </Text>
             </Box>
           </Tab>
         </TabList>

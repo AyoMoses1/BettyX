@@ -32,7 +32,7 @@ const wagerSlice = createSlice({
       }
     },
     resetWagerState: (state) => {
-      return { ...state, games: [], parlay: [] };
+      return {...initialState};
     },
   },
 });
