@@ -12,7 +12,7 @@ export const useGetAllEventsBySportsAndLeague = (params) => {
     [`allLeagueEvents${params.league_id}`],
     () => Services.getAllEventsByLeague(params),
     {
-      refetchInterval: 180000,
+      refetchInterval: 120000,
     }
   );
 };
