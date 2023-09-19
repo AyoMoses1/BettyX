@@ -24,7 +24,7 @@ import NavBarMain from './NavBarMain';
 
 const Index = (props) => {
   const { pathObject } = useNav();
-  
+
   const navs = pathObject.map((item) =>
     item.sub.length ? (
       <GroupNav {...item} key={item.main.name} />

@@ -1,7 +1,6 @@
 import {
   useDisclosure,
   Text,
-  // Link,
   Icon,
   Collapse,
   Box,
@@ -10,17 +9,17 @@ import {
 import Clickable from './Clickable';
 import NavMole from './NavMole';
 import { NavLink } from 'react-router-dom';
-import { VscTriangleDown, VscTriangleRight } from 'react-icons/vsc';
-import { useGetAllLeaguesBySport } from './../pages/soccer/queryHooks';
 
 const GroupNav = (props) => {
   const { isOpen, onToggle } = useDisclosure();
-  const navs = props.sub.map((item) => <SingleNav {...item} key={item.id} />);
+  const navs = props.sub.map((item) => (
+    <SingleNav {...item} key={item.id} isOpen={isOpen} />
+  ));
 
   return (
-    <Box mb={3} pl="4">
+    <Box mb={3}  borderTop="1px solid" borderColor="#393838">
       <Clickable height="auto" onClick={onToggle}>
-        <HStack mb={2}>
+        <HStack mt={2} mb={isOpen ? 4 : ''} pl="4">
           <Icon as={props.main?.icon} color="white" />
           <Text variant="nav">{props.main.name}</Text>
         </HStack>
@@ -34,9 +33,17 @@ const GroupNav = (props) => {
   );
 };
 
-export const SingleNav = ({ path, name, icon, isSub, leagueId, sport_id }) => {
+export const SingleNav = ({
+  path,
+  name,
+  icon,
+  isSub,
+  leagueId,
+  sport_id,
+  isOpen,
+}) => {
   return (
-    <NavLink to={path}>
+    <NavLink to={path} width="100%">
       <NavMole
         name={name}
         icon={icon}
@@ -44,6 +51,7 @@ export const SingleNav = ({ path, name, icon, isSub, leagueId, sport_id }) => {
         path={path}
         id={leagueId}
         sportId={sport_id}
+        isOpen={isOpen}
       />
     </NavLink>
   );

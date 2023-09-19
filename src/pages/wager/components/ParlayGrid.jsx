@@ -15,7 +15,6 @@ import styled from 'styled-components';
 import { wagerData } from './data';
 
 const ParlayGrid = ({ data, gameInfo }) => {
-
   return (
     <Accordion allowToggle p={0}>
       <AccordionItem>
@@ -35,13 +34,21 @@ const ParlayGrid = ({ data, gameInfo }) => {
         </h2>
         <Flex my={2} justifyContent="space-between" width="100%">
           <HStack>
-            {data?.prediction !== 'draw' && (
+            {!['draw', 'under', 'over'].includes(data?.prediction) && (
               <Avatar
                 src={`https://assets.b365api.com/images/team/m/${data?.predictedLogo}.png`}
                 size="sm"
               />
             )}
-            <Text>{data?.prediction === 'home' ? data.home : data?.away}</Text>
+            <Text>
+              {data?.prediction === 'home'
+                ? data.home
+                : data?.prediction === 'away'
+                ? data.away
+                : data.prediction === 'over' || data?.prediction === 'under'
+                ? `${data.home}/${data.away}`
+                : `Draw(${data?.home} vs ${data?.away})`}
+            </Text>
           </HStack>
 
           <Input

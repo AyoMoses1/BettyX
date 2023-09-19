@@ -1,5 +1,4 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   games: [],
@@ -32,7 +31,7 @@ const wagerSlice = createSlice({
       }
     },
     resetWagerState: (state) => {
-      return {...initialState};
+      return { ...initialState };
     },
   },
 });

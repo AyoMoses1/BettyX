@@ -1,15 +1,5 @@
 import React from 'react';
-import {
-  Box,
-  Flex,
-  Text,
-  useDisclosure,
-  Tabs,
-  Tab,
-  TabList,
-  TabPanels,
-  TabPanel,
-} from '@chakra-ui/react';
+import { Box, Text, useDisclosure, Tabs, Tab, TabList } from '@chakra-ui/react';
 import Wager from 'pages/wager';
 
 import styled from 'styled-components';
@@ -21,7 +11,7 @@ import Alert from './Alert';
 import { resetWagerState } from 'store/wagers/wagerSlice';
 import { FaSync } from 'react-icons/fa';
 
-const navLinks = (placeWager, currentTab, parlay, onRefresh) => {
+const navLinks = () => {
   return [
     {
       name: 'straight',
@@ -43,17 +33,9 @@ const navLinks = (placeWager, currentTab, parlay, onRefresh) => {
       name: 'reverse',
       symbol: 'R',
     },
-    {
-      name: 'refresh',
-      symbol: (
-        <Box mb={2}>
-          <FaSync />
-        </Box>
-      ),
-      onClick: onRefresh,
-    },
   ];
 };
+
 const NavBarMain = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const dispatch = useDispatch();
@@ -89,9 +71,9 @@ const NavBarMain = () => {
 
   return (
     <StyledBox color="white" px={0} py={0} pb={2} bgColor="playerBlue">
-      <Tabs variant="unstyled">
+      <Tabs variant="unstyled" size={["xs", "sm", "md", "lg"]}>
         <TabList>
-          {navLinks(handleWager, currentTab, parlay, onRefresh).map((item) => (
+          {navLinks().map((item) => (
             <Tab
               _selected={{ color: 'black', bg: 'grey' }}
               width="100%"
@@ -126,8 +108,37 @@ const NavBarMain = () => {
             width="100%"
             border="1px solid"
             borderColor="grey"
+            bg="blue"
+            mx={2}
+            display={['none', 'none', 'block']}
+          >
+            <Box
+              ml={2}
+              cursor="pointer"
+              onClick={() => onRefresh()}
+              display="flex"
+              flexDirection="column"
+              alignItems="center"
+            >
+              <Text variant="navBold">
+                {' '}
+                <Box mb={2}>
+                  <FaSync />
+                </Box>
+              </Text>
+              <Text variant="nav" textTransform="uppercase">
+                refresh
+              </Text>
+            </Box>
+          </Tab>
+          <Tab
+            _selected={{ color: 'black', bg: 'green' }}
+            width="100%"
+            border="1px solid"
+            borderColor="grey"
             bg="green"
             mx={2}
+            display={['none', 'none', 'block']}
           >
             <Box
               ml={2}

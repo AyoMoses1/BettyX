@@ -56,7 +56,7 @@ const FootballMatchesGrid = ({ data, stake, toWin, gameInfo }) => {
                   ? data.home
                   : data?.prediction === 'away'
                   ? data.away
-                  : data.prediction === 'over' || 'under'
+                  : data.prediction === 'over' || data?.prediction === 'under'
                   ? `${data.home}/${data.away}`
                   : `Draw(${data?.home} vs ${data?.away})`}
               </Text>

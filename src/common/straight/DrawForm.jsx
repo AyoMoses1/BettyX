@@ -23,7 +23,7 @@ const initialState = {
   prediction: '',
 };
 
-const FormElements = ({ item, handleChange, odd, market }) => {
+const FormElements = ({ item, handleChange, odd, market, label }) => {
   return (
     <Box>
       <FormControl>
@@ -32,7 +32,7 @@ const FormElements = ({ item, handleChange, odd, market }) => {
           <Input
             type={item.type}
             sx={{ borderRadius: '0px', width: '100px' }}
-            onChange={(e) => handleChange(e, odd, market, item?.label)}
+            onChange={(e) => handleChange(e, odd, market, label)}
           />
         </Flex>
       </FormControl>
@@ -59,7 +59,7 @@ const DrawForm = ({ odd, eventData, prediction, home, away, gameInfo }) => {
       away,
       prediction,
       handicap: market === 1 ? null : '2.5',
-      gameInfo
+      gameInfo,
     };
     setState({ state, ...game });
     dispatch(
@@ -74,6 +74,7 @@ const DrawForm = ({ odd, eventData, prediction, home, away, gameInfo }) => {
     {
       name: 1,
       type: 'number',
+      value: odd,
       label: decimalToAmericanOdds(roundToTwoDecimalPlaces(odd)),
     },
   ];
@@ -87,7 +88,8 @@ const DrawForm = ({ odd, eventData, prediction, home, away, gameInfo }) => {
                 item={item}
                 key={idx}
                 handleChange={handleChange}
-                odd={parseFloat(item.label)}
+                label={item.label}
+                odd={item.value}
                 market={item.name}
               />
             ))}

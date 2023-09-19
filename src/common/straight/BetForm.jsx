@@ -120,7 +120,6 @@ const BetForm = ({
     market_3_prediction,
     marketOdd
   ) => {
-    console.log({ marketOdd });
     const stake = parseInt(e.target.value);
     const game = {
       ...eventData,

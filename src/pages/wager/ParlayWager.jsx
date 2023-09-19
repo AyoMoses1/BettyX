@@ -6,7 +6,6 @@ import { usePlaceBet } from './queryHooks';
 import WagerHeader from './components/WagerHeader';
 import ParlayGrid from './components/ParlayGrid';
 import {
-  calculatePotentialWin,
   refineParlayPayload,
   roundUpToTwoDecimalPlaces,
 } from 'player/components/utils/helpers';
