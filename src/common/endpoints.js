@@ -8,6 +8,8 @@ const endpoints = {
   agentsWithPlayers: '/agent/allAgentsWithPlayers?sort=date',
   adminWeeklyFigures: '/analytics/getAdminWeeklyFigures',
   agentWeeklyFigures: `/analytics/agentWeeklyFigures/${localStorage.accountId}`,
+  adminAllBets: '/bet/all',
+  agentAllBets: `/bet/allAgentBets/${localStorage.accountId}`,
   agents: '/agent',
   players: '/player',
   admin: '/admin',
