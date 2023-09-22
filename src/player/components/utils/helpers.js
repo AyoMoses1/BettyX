@@ -100,6 +100,105 @@ export const decimalToFraction = (input) => {
   }
 };
 
+const greatestCommonDivisor = (a, b) => {
+  if (b === 0) {
+    return a;
+  }
+  return greatestCommonDivisor(b, a % b);
+};
+
+const decimalToFractionForSpread = (decimal) => {
+  if (isNaN(decimal)) {
+    return 'Invalid input';
+  }
+
+  if (decimal === 0) {
+    return '0';
+  }
+
+  let wholePart = Math.floor(decimal);
+  decimal -= wholePart;
+
+  let numerator, denominator;
+
+  if (decimal !== 0) {
+    const gcd = greatestCommonDivisor(decimal * 10000, 10000);
+    numerator = (decimal * 10000) / gcd;
+    denominator = 10000 / gcd;
+  } else {
+    numerator = 0;
+    denominator = 1;
+  }
+
+  if (numerator === 0) {
+    return wholePart.toString();
+  } else if (wholePart === 0) {
+    return `${numerator}/${denominator}`;
+  } else {
+    return `${wholePart} ${numerator}/${denominator}`;
+  }
+};
+
+export const calculateSpreadHandicap = (team, handicap) => {
+  const parts = handicap.split(',');
+
+  // If there's only one part and it's "0" or "0.0", return "PK"
+  if (parts.length === 1 && parseFloat(parts[0]) === 0) {
+    return 'PK';
+  } else if (parts.length === 2 && parseFloat(parts[0]) === 0) {
+    return `PK,${decimalToFractionForSpread(parseFloat(parts[1]))}`;
+  }
+
+  // Check if the handicap has a negative sign
+  const hasNegativeSign = handicap.includes('-');
+
+  // Determine the sign for home and away based on team
+  const homeSign = hasNegativeSign ? '-' : '';
+  const awaySign = hasNegativeSign ? '' : '-';
+
+  // Construct the result based on the number of parts
+  let result = '';
+  if (parts.length === 1 && team === 'home') {
+    if (parts[0].includes('-')) {
+      const choppedString = parts[0].slice(1);
+      result = `${homeSign}${decimalToFractionForSpread(choppedString)}`;
+    } else {
+      result = `${homeSign}${decimalToFractionForSpread(parts[0])}`;
+    }
+  } else if (parts.length === 1 && team === 'away') {
+    if (parts[0].includes('-')) {
+      const choppedString = parts[0].slice(1);
+      result = `${awaySign}${decimalToFractionForSpread(choppedString)}`;
+    } else {
+      result = `${awaySign}${decimalToFractionForSpread(parts[0])}`;
+    }
+  } else if (parts.length === 2 && team === 'home') {
+    if (parts[0].includes('-')) {
+      const choppedString = parts[0].slice(1);
+      result = `${homeSign}${decimalToFractionForSpread(
+        choppedString
+      )},${decimalToFractionForSpread(parts[1])}`;
+    } else {
+      result = `${homeSign}${decimalToFractionForSpread(
+        parts[0]
+      )},${decimalToFractionForSpread(parts[1])}`;
+    }
+  } else if (parts.length === 2 && team === 'away') {
+    if (parts[0].includes('-')) {
+      const choppedString = parts[0].slice(1);
+      result = `${awaySign}${decimalToFractionForSpread(
+        choppedString
+      )},${decimalToFractionForSpread(parts[1])}`;
+    } else {
+      result = `${awaySign}${decimalToFractionForSpread(
+        parts[0]
+      )},${decimalToFractionForSpread(parts[1])}`;
+    }
+  }
+
+  return result;
+};
+
 export const decimalToFractionForParlay = (input) => {
   if (input) {
     const numbers = input.split(',').map(Number);
@@ -113,7 +212,15 @@ export const decimalToFractionForParlay = (input) => {
 
       if (Math.abs(fractionPart) < tolerance) {
         return {
-          wholeFraction: (fractionPart === 0 ? sign + wholePart : sign + wholePart + ' ' + wholePart + ' ' + fractionPart.toFixed(1)),
+          wholeFraction:
+            fractionPart === 0
+              ? sign + wholePart
+              : sign +
+                wholePart +
+                ' ' +
+                wholePart +
+                ' ' +
+                fractionPart.toFixed(1),
           decimal: numbers[0].toFixed(1),
         };
       }
@@ -124,7 +231,8 @@ export const decimalToFractionForParlay = (input) => {
         const numerator = Math.round(fractionPart * denominator);
         if (Math.abs(numerator / denominator - fractionPart) < tolerance) {
           return {
-            wholeFraction: sign + wholePart + ' ' + numerator + '/' + denominator,
+            wholeFraction:
+              sign + wholePart + ' ' + numerator + '/' + denominator,
             decimal: numbers[0].toFixed(1),
           };
         }
@@ -137,7 +245,15 @@ export const decimalToFractionForParlay = (input) => {
 
       if (Math.abs(fractionPart) < tolerance) {
         return {
-          wholeFraction: (fractionPart === 0 ? sign + wholePart : sign + wholePart + ' ' + wholePart + ' ' + fractionPart.toFixed(1)),
+          wholeFraction:
+            fractionPart === 0
+              ? sign + wholePart
+              : sign +
+                wholePart +
+                ' ' +
+                wholePart +
+                ' ' +
+                fractionPart.toFixed(1),
           decimal: numbers[1].toFixed(1),
         };
       }
@@ -148,7 +264,8 @@ export const decimalToFractionForParlay = (input) => {
         const numerator = Math.round(fractionPart * denominator);
         if (Math.abs(numerator / denominator - fractionPart) < tolerance) {
           return {
-            wholeFraction: sign + wholePart + ' ' + numerator + '/' + denominator,
+            wholeFraction:
+              sign + wholePart + ' ' + numerator + '/' + denominator,
             decimal: numbers[1].toFixed(1),
           };
         }
@@ -158,8 +275,6 @@ export const decimalToFractionForParlay = (input) => {
 
   return ''; // Return an empty string for invalid input
 };
-
-
 
 export const calculatePotentialWin = (odd, betAmount) => {
   const oddNumber = parseFloat(odd);

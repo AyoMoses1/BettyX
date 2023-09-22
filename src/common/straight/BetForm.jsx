@@ -15,6 +15,7 @@ import {
   decimalToAmericanOdds,
   roundUpToTwoDecimalPlaces,
   transformString,
+  calculateSpreadHandicap,
 } from 'player/components/utils/helpers';
 
 const FormElements = ({
@@ -73,7 +74,7 @@ const BetForm = ({
   gameInfo,
 }) => {
   const [state, setState] = useState(initialState);
-  const label2 = decimalToFraction(odds?.odd_2_handicap);
+  const label2 = calculateSpreadHandicap(prediction, odds?.odd_2_handicap);
   const label3 = decimalToFraction(odds?.odd_3_handicap);
 
   const roundToTwoDecimalPlaces = (number) => {
