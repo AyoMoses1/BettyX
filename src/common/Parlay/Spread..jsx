@@ -16,7 +16,10 @@ import {
 } from '@chakra-ui/react';
 import { addToGames, addToGamesForParlay } from 'store/wagers/wagerSlice';
 import styled from 'styled-components';
+import { calculateSpreadHandicapForParlay } from './../../player/components/utils/helpers';
+
 import {
+  calculateSpreadHandicap,
   decimalToAmericanOdds,
   decimalToFraction,
 } from 'player/components/utils/helpers';
@@ -29,19 +32,13 @@ const initialState = {
   prediction: '',
 };
 
-const SpreadForm = ({
-  odds,
-  eventData,
-  prediction,
-  home,
-  away,
-  predictedLogo,
-  market,
-}) => {
+const SpreadForm = ({ odds, eventData, home, away, predictedLogo, market }) => {
   const [state, setState] = useState(initialState);
 
   const [game, setGame] = useState({});
-  const label = odds ? decimalToFraction(odds[0]?.handicap) : 'No odd';
+  // const label = odds ? decimalToFraction(odds[0]?.handicap) : 'No odd';
+  const label2 = calculateSpreadHandicapForParlay('home', odds[0]?.handicap);
+  const label3 = calculateSpreadHandicapForParlay('away', odds[0]?.handicap);
 
   const roundToTwoDecimalPlaces = (number) => {
     return Math.round(number * 100) / 100;
@@ -54,7 +51,7 @@ const SpreadForm = ({
       prediction: 'home',
       value: odds ? roundToTwoDecimalPlaces(odds[0]?.home_od) : '',
       label: odds
-        ? `${label} ${decimalToAmericanOdds(
+        ? `${label2} ${decimalToAmericanOdds(
             roundToTwoDecimalPlaces(odds[0]?.home_od)
           )}`
         : '',
@@ -65,7 +62,7 @@ const SpreadForm = ({
       prediction: 'away',
       value: odds ? roundToTwoDecimalPlaces(odds[0]?.away_od) : '',
       label: odds
-        ? `${label} ${decimalToAmericanOdds(
+        ? `${label3} ${decimalToAmericanOdds(
             roundToTwoDecimalPlaces(odds[0]?.away_od)
           )}`
         : '',

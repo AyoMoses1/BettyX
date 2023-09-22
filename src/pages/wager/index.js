@@ -23,7 +23,7 @@ const Index = ({ isOpen, handleClose }) => {
   const handlePlaceBet = () => {
     const toWin = roundUpToTwoDecimalPlaces(
       calculatePotentialWin(
-        wager.games[0].market === 3
+        wager.games[0].market === 3 || wager.games[0].market === 2
           ? wager.games[0].marketOdd
           : wager.games[0].label,
         wager.stake
@@ -75,7 +75,7 @@ const Index = ({ isOpen, handleClose }) => {
             gameInfo={{ ...wager.games[0].gameInfo, market: item.market }}
             toWin={roundUpToTwoDecimalPlaces(
               calculatePotentialWin(
-                item.market === 3 ? item.marketOdd : item.label,
+                item.market === 3 || item.market === 2 ? item.marketOdd : item.label,
                 wager.stake
               )
             )}

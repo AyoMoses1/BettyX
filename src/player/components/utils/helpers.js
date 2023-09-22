@@ -144,9 +144,11 @@ export const calculateSpreadHandicap = (team, handicap) => {
 
   // If there's only one part and it's "0" or "0.0", return "PK"
   if (parts.length === 1 && parseFloat(parts[0]) === 0) {
-    return 'PK';
+    return team === 'home' ? '+PK' : '-PK';
   } else if (parts.length === 2 && parseFloat(parts[0]) === 0) {
-    return `PK,${decimalToFractionForSpread(parseFloat(parts[1]))}`;
+    return team === 'home'
+      ? `+PK,${decimalToFractionForSpread(parseFloat(parts[1]))}`
+      : `-PK,${decimalToFractionForSpread(parseFloat(parts[1]))}`;
   }
 
   // Check if the handicap has a negative sign
@@ -193,6 +195,89 @@ export const calculateSpreadHandicap = (team, handicap) => {
       result = `${awaySign}${decimalToFractionForSpread(
         parts[0]
       )},${decimalToFractionForSpread(parts[1])}`;
+    }
+  }
+
+  return result;
+};
+
+const dTF = (decimal) => {
+  if (typeof decimal !== 'string' || !decimal.includes('.')) {
+    return decimal; // Return as is if it's not a decimal or doesn't contain a period.
+  }
+
+  const [wholePart, decimalPart] = decimal.split('.');
+  const integerPart = parseInt(wholePart, 10);
+
+  if (decimalPart === '0') {
+    return integerPart.toString(); // Return the whole number if the decimal part is "0".
+  }
+
+  const decimalValue = parseFloat(`0.${decimalPart}`);
+
+  if (!isNaN(integerPart) && !isNaN(decimalValue)) {
+    const gcd = greatestCommonDivisor(decimalValue * 10000, 10000);
+    const numerator = (decimalValue * 10000) / gcd;
+    const denominator = 10000 / gcd;
+
+    if (integerPart === 0) {
+      return `${numerator}/${denominator}`;
+    } else {
+      return `${integerPart} ${numerator}/${denominator}`;
+    }
+  }
+
+  return decimal;
+};
+
+// Output: "3" (no change)
+
+export const calculateSpreadHandicapForParlay = (team, handicap) => {
+  const parts = handicap.split(',');
+
+  // If there's only one part and it's "0" or "0.0", return "PK"
+  if (parts.length === 1 && parseFloat(parts[0]) === 0) {
+    return team === 'home' ? '+PK' : '-PK';
+  } else if (parts.length === 2 && parseFloat(parts[0]) === 0) {
+    return team === 'home'
+      ? `+${decimalToFractionForSpread(parseFloat(parts[1]))}`
+      : `-${decimalToFractionForSpread(parseFloat(parts[1]))}`;
+  }
+
+  // Check if the handicap has a negative sign
+  const hasNegativeSign = handicap.includes('-');
+
+  // Determine the sign for home and away based on team
+  const homeSign = hasNegativeSign ? '-' : '';
+  const awaySign = hasNegativeSign ? '' : '-';
+
+  // Construct the result based on the number of parts
+  let result = '';
+  if (parts.length === 1 && team === 'home') {
+    if (parts[0].includes('-')) {
+      const choppedString = parts[0].slice(1);
+      result = `${homeSign}${decimalToFractionForSpread(choppedString)}`;
+    } else {
+      result = `${homeSign}${decimalToFractionForSpread(parts[0])}`;
+    }
+  } else if (parts.length === 1 && team === 'away') {
+    if (parts[0].includes('-')) {
+      const choppedString = parts[0].slice(1);
+      result = `${awaySign}${decimalToFractionForSpread(choppedString)}`;
+    } else {
+      result = `${awaySign}${decimalToFractionForSpread(parts[0])}`;
+    }
+  } else if (parts.length === 2 && team === 'home') {
+    if (parts[0].includes('-')) {
+      result = `${homeSign}${dTF(parts[1])}`;
+    } else {
+      result = `${homeSign}${dTF(parts[1])}`;
+    }
+  } else if (parts.length === 2 && team === 'away') {
+    if (parts[0].includes('-')) {
+      result = `${awaySign}${dTF(parts[1])}`;
+    } else {
+      result = `${awaySign}${dTF(parts[1])}`;
     }
   }
 
@@ -320,10 +405,6 @@ export const transformString = (inputString) => {
 
   return transformedString;
 };
-
-const inputString = '2,2 1/2';
-const transformedString = transformString(inputString);
-console.log(transformedString); // Output: "2.0,2.5"
 
 export const refineParlayPayload = (data) => {
   const editedArrayOfGames = data.games.map((item) => {
